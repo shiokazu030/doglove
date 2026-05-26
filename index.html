@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>恋する犬タイプ診断｜16タイプ恋愛診断</title>
+  <meta name="description" content="あなたの恋愛タイプを16種類の犬キャラで診断。カップルでも片思いでも楽しめる無料診断です。" />
+  <meta property="og:title" content="恋する犬タイプ診断｜16タイプ恋愛診断" />
+  <meta property="og:description" content="あなたの恋愛タイプはどの犬？16種類の犬キャラでわかる恋愛傾向診断。" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#ff7aa8" />
+  <style>
+    :root {
+      --bg1: #fff4f8;
+      --bg2: #fff9e8;
+      --main: #ff6fa3;
+      --main-dark: #e84f87;
+      --accent: #ffc857;
+      --text: #382933;
+      --muted: #7d6670;
+      --card: rgba(255, 255, 255, 0.88);
+      --line: rgba(255, 111, 163, 0.22);
+      --shadow: 0 18px 45px rgba(232, 79, 135, 0.16);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 12%, rgba(255, 200, 87, 0.35), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(255, 111, 163, 0.28), transparent 26%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    .paw-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.13;
+      background-image:
+        radial-gradient(circle, #ff6fa3 0 5px, transparent 6px),
+        radial-gradient(circle, #ff6fa3 0 3px, transparent 4px),
+        radial-gradient(circle, #ff6fa3 0 3px, transparent 4px),
+        radial-gradient(circle, #ff6fa3 0 3px, transparent 4px),
+        radial-gradient(circle, #ff6fa3 0 3px, transparent 4px);
+      background-size: 120px 120px;
+      background-position: 25px 38px, 15px 22px, 35px 20px, 12px 52px, 38px 54px;
+    }
+
+    .container {
+      width: min(960px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 34px 0 54px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero, .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero {
+      padding: 34px 26px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "🐶";
+      position: absolute;
+      font-size: 112px;
+      right: -12px;
+      top: -26px;
+      opacity: 0.15;
+      transform: rotate(13deg);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 111, 163, 0.12);
+      color: var(--main-dark);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .03em;
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(32px, 6vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .lead {
+      margin: 0 auto;
+      max-width: 710px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    button, .link-button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 900;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+
+    button:hover, .link-button:hover { transform: translateY(-2px); }
+    button:active, .link-button:active { transform: translateY(0); opacity: .86; }
+
+    .primary {
+      color: white;
+      background: linear-gradient(135deg, var(--main), var(--main-dark));
+      box-shadow: 0 10px 26px rgba(232, 79, 135, 0.28);
+    }
+
+    .secondary {
+      color: var(--main-dark);
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat strong { display: block; font-size: 20px; }
+    .stat span { color: var(--muted); font-size: 12px; font-weight: 800; }
+
+    .screen { display: none; margin-top: 18px; }
+    .screen.active { display: block; animation: pop .28s ease both; }
+
+    @keyframes pop {
+      from { opacity: 0; transform: translateY(10px) scale(.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .card { padding: 24px; }
+
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .progress {
+      height: 12px;
+      background: rgba(255, 111, 163, .14);
+      border-radius: 999px;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--main));
+      border-radius: inherit;
+      transition: width .25s ease;
+    }
+
+    .question-title {
+      font-size: clamp(23px, 4.6vw, 34px);
+      line-height: 1.35;
+      letter-spacing: -0.03em;
+      margin: 0 0 18px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      justify-content: flex-start;
+      border-radius: 18px;
+      padding: 16px 18px;
+      color: var(--text);
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 20px rgba(56, 41, 51, 0.06);
+    }
+
+    .option small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .back-row {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .result-head {
+      text-align: center;
+      padding: 8px 0 18px;
+    }
+
+    .dog-emoji {
+      font-size: 74px;
+      line-height: 1;
+      filter: drop-shadow(0 12px 16px rgba(232, 79, 135, .18));
+    }
+
+    .result-title {
+      margin: 10px 0 6px;
+      font-size: clamp(30px, 6vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -0.05em;
+    }
+
+    .result-subtitle {
+      margin: 0;
+      color: var(--main-dark);
+      font-weight: 900;
+      font-size: 17px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .mini-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .mini-card h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+
+    .mini-card p, .mini-card li {
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 650;
+    }
+
+    .mini-card p { margin: 0; }
+    ul { margin: 0; padding-left: 20px; }
+
+    .axis-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .axis-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .axis-label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .axis-meter {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 111, 163, .14);
+      overflow: hidden;
+    }
+
+    .axis-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--main));
+      width: 50%;
+    }
+
+    .compatibility {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .compat-box {
+      background: rgba(255, 244, 248, .9);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .compat-box b { display: block; margin-bottom: 4px; }
+    .compat-box span { color: var(--muted); font-weight: 750; font-size: 13px; line-height: 1.5; }
+
+    .cta {
+      margin-top: 16px;
+      padding: 20px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255, 111, 163, .15), rgba(255, 200, 87, .22));
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .cta h3 { margin: 0 0 8px; font-size: 21px; }
+    .cta p { margin: 0 auto 14px; max-width: 650px; color: var(--muted); line-height: 1.7; font-weight: 700; }
+
+    .share-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .notice {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      text-align: center;
+      font-weight: 650;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 760px) {
+      .container { width: min(100% - 20px, 960px); padding-top: 18px; }
+      .hero { padding: 28px 18px; }
+      .stats { grid-template-columns: 1fr; }
+      .card { padding: 18px; }
+      .result-grid { grid-template-columns: 1fr; }
+      .compatibility { grid-template-columns: 1fr; }
+      button, .link-button { width: 100%; }
+      .hero-actions, .share-row { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="paw-bg"></div>
+  <main class="container">
+    <section id="startScreen" class="hero screen active">
+      <span class="badge">🐾 3分でわかる恋愛キャラ診断</span>
+      <h1>恋する犬タイプ診断</h1>
+      <p class="lead">
+        あなたの恋愛スタイルを、16種類の犬キャラに分類します。<br />
+        カップルでやると「なんでそれ出たの？」でちょっと盛り上がるやつです。
+      </p>
+      <div class="stats">
+        <div class="stat"><strong>16</strong><span>犬タイプ</span></div>
+        <div class="stat"><strong>20</strong><span>質問</span></div>
+        <div class="stat"><strong>無料</strong><span>相性つき</span></div>
+      </div>
+      <div class="hero-actions">
+        <button class="primary" onclick="startQuiz()">診断をはじめる</button>
+        <button class="secondary" onclick="showTypeList()">16タイプを見る</button>
+      </div>
+      <p class="notice">※この診断はエンタメ目的です。医学的・心理学的な診断ではありません。</p>
+    </section>
+
+    <section id="quizScreen" class="screen">
+      <div class="card">
+        <div class="progress-wrap">
+          <span id="questionCount">1 / 20</span>
+          <div class="progress"><div id="bar" class="bar"></div></div>
+        </div>
+        <h2 id="questionTitle" class="question-title"></h2>
+        <div id="options" class="options"></div>
+        <div class="back-row">
+          <button class="secondary" onclick="prevQuestion()">← ひとつ戻る</button>
+          <button class="secondary" onclick="resetQuiz()">最初から</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="card" id="resultCard">
+        <div class="result-head">
+          <div id="dogEmoji" class="dog-emoji">🐶</div>
+          <h2 id="resultTitle" class="result-title"></h2>
+          <p id="resultSubtitle" class="result-subtitle"></p>
+        </div>
+
+        <div class="result-grid">
+          <div class="mini-card">
+            <h3>あなたの恋愛傾向</h3>
+            <p id="resultDescription"></p>
+          </div>
+          <div class="mini-card">
+            <h3>4つの恋愛軸</h3>
+            <div id="axisList" class="axis-list"></div>
+          </div>
+          <div class="mini-card">
+            <h3>恋愛で出やすいクセ</h3>
+            <ul id="resultTraits"></ul>
+          </div>
+          <div class="mini-card">
+            <h3>相性がいい犬タイプ</h3>
+            <div id="compatibility" class="compatibility"></div>
+          </div>
+          <div class="mini-card">
+            <h3>刺さる一言</h3>
+            <p id="magicWord"></p>
+          </div>
+          <div class="mini-card">
+            <h3>注意ポイント</h3>
+            <p id="weakPoint"></p>
+          </div>
+        </div>
+
+        <div class="cta">
+          <h3>もっと深く知りたい人へ</h3>
+          <p>
+            あなたの犬タイプ別に「沼りやすい相手」「追われるLINE」「長続きする付き合い方」をまとめています。
+            カップルで見せ合うと、わりと会話のネタになります。
+          </p>
+          <a id="paidLink" class="link-button primary" href="https://note.com/" target="_blank" rel="noopener">タイプ別の恋愛攻略を見る</a>
+        </div>
+
+        <div class="share-row">
+          <button class="primary" onclick="shareX()">Xで結果をシェア</button>
+          <button class="secondary" onclick="copyResult()">結果をコピー</button>
+          <button class="secondary" onclick="resetQuiz()">もう一回診断する</button>
+        </div>
+        <p class="notice">※結果文・犬タイプ名・導線文は自由に編集できます。販売ページURLはコード内の paidLink を変更してください。</p>
+      </div>
+    </section>
+
+    <section id="typeListScreen" class="screen">
+      <div class="card">
+        <h2 class="question-title">16種類の犬タイプ一覧</h2>
+        <div id="typeList" class="result-grid"></div>
+        <div class="back-row">
+          <button class="primary" onclick="startQuiz()">診断する</button>
+          <button class="secondary" onclick="goStart()">トップに戻る</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      { text: "好きな人ができたとき、あなたはどっち寄り？", options: [
+        { label: "自分から話しかけたり誘ったりする", note: "待つより動く。恋はちょっと攻めたい。", axis: "L", point: 2 },
+        { label: "相手の反応を見ながら距離を縮める", note: "空気を読みながら、じわっと近づく。", axis: "F", point: 2 }
+      ]},
+      { text: "付き合ったら、どっちの自分が出やすい？", options: [
+        { label: "かまってほしい、甘えたい", note: "好きな人にはわかりやすく懐く。", axis: "C", point: 2 },
+        { label: "相手を安心させたい、支えたい", note: "相手が弱っていると放っておけない。", axis: "A", point: 2 }
+      ]},
+      { text: "理想の恋愛に近いのは？", options: [
+        { label: "安心できて、無理なく続く関係", note: "日常の相性や価値観を大事にしたい。", axis: "R", point: 2 },
+        { label: "ドキドキして、感情が動く関係", note: "好きって気持ちをちゃんと味わいたい。", axis: "P", point: 2 }
+      ]},
+      { text: "恋人との距離感は？", options: [
+        { label: "お互い自由な時間も大事", note: "ずっと一緒より、いい距離感が好き。", axis: "O", point: 2 },
+        { label: "ちゃんと向き合う時間を大事にしたい", note: "適当な扱いをされると一気に冷める。", axis: "E", point: 2 }
+      ]},
+      { text: "デートの予定を決めるときは？", options: [
+        { label: "自分が候補を出して決めたい", note: "相手が迷っているなら引っ張れる。", axis: "L", point: 1 },
+        { label: "相手の行きたい場所を聞いて合わせたい", note: "相手が楽しそうだと自分も嬉しい。", axis: "F", point: 1 }
+      ]},
+      { text: "疲れている日に恋人から会いたいと言われたら？", options: [
+        { label: "少しだけでも会って甘えたい", note: "好きな人の充電力を信じている。", axis: "C", point: 1 },
+        { label: "相手が寂しいなら会いに行きたい", note: "自分より相手の気持ちを優先しがち。", axis: "A", point: 1 }
+      ]},
+      { text: "恋愛で一番イヤなのは？", options: [
+        { label: "将来や生活感が全然見えないこと", note: "好きでも不安定すぎるとしんどい。", axis: "R", point: 2 },
+        { label: "好きなのに熱量が伝わってこないこと", note: "平和でも冷めている感じはつらい。", axis: "P", point: 2 }
+      ]},
+      { text: "恋人への連絡頻度は？", options: [
+        { label: "毎秒じゃなくていい。ゆるく続けばOK", note: "義務LINEはちょっと苦手。", axis: "O", point: 1 },
+        { label: "できれば毎日ちゃんとやり取りしたい", note: "短くても気にかけてほしい。", axis: "E", point: 1 }
+      ]},
+      { text: "恋の駆け引きについてどう思う？", options: [
+        { label: "多少なら使う。追わせるのも大事", note: "恋愛には温度調整があると思う。", axis: "L", point: 1 },
+        { label: "できれば素直に向き合いたい", note: "駆け引きされると疲れる。", axis: "F", point: 1 }
+      ]},
+      { text: "恋人に褒められるなら？", options: [
+        { label: "かわいい、好き、会いたい", note: "愛情表現をストレートにもらうと弱い。", axis: "C", point: 1 },
+        { label: "落ち着く、信頼できる、頼れる", note: "存在そのものを認められると刺さる。", axis: "A", point: 1 }
+      ]},
+      { text: "付き合う前に重視するのは？", options: [
+        { label: "価値観・金銭感覚・生活リズム", note: "長く続くかを冷静に見ている。", axis: "R", point: 1 },
+        { label: "一緒にいるときの高揚感", note: "理屈より、心が動くかどうか。", axis: "P", point: 1 }
+      ]},
+      { text: "恋人が友達と遊びに行くときは？", options: [
+        { label: "楽しんできてね、で送り出せる", note: "信頼しているなら束縛しない。", axis: "O", point: 2 },
+        { label: "平気な顔をするけど少し気になる", note: "大切だからこそ、ちゃんと安心したい。", axis: "E", point: 2 }
+      ]},
+      { text: "告白されるより、告白する方が？", options: [
+        { label: "タイミング次第では全然あり", note: "自分の気持ちを自分で進めたい。", axis: "L", point: 1 },
+        { label: "できれば相手から来てほしい", note: "確信がないと踏み出しにくい。", axis: "F", point: 1 }
+      ]},
+      { text: "恋人にしてしまいがちなことは？", options: [
+        { label: "寂しいとちょっと試す", note: "本当に好きか確認したくなる。", axis: "C", point: 1 },
+        { label: "相手の問題まで背負う", note: "気づくと世話を焼きすぎる。", axis: "A", point: 1 }
+      ]},
+      { text: "記念日やイベントは？", options: [
+        { label: "無理のない範囲で大事にしたい", note: "特別感より継続感が大事。", axis: "R", point: 1 },
+        { label: "ちゃんと盛り上げたい", note: "思い出になる演出が好き。", axis: "P", point: 1 }
+      ]},
+      { text: "恋愛で一番ほしいものは？", options: [
+        { label: "気楽さと笑える空気", note: "重すぎる恋は長持ちしないと思う。", axis: "O", point: 1 },
+        { label: "安心感と一途さ", note: "ちゃんと大切にされている実感がほしい。", axis: "E", point: 1 }
+      ]},
+      { text: "喧嘩したときは？", options: [
+        { label: "早めに話して解決したい", note: "モヤモヤを長引かせたくない。", axis: "L", point: 1 },
+        { label: "少し落ち着いてから話したい", note: "感情的なままぶつかるのは避けたい。", axis: "F", point: 1 }
+      ]},
+      { text: "相手が落ち込んでいるときは？", options: [
+        { label: "そばにいて甘え合いたい", note: "言葉より体温で安心したい。", axis: "C", point: 1 },
+        { label: "話を聞いて支えたい", note: "相手の気持ちを受け止めたい。", axis: "A", point: 1 }
+      ]},
+      { text: "恋愛の始まり方で好きなのは？", options: [
+        { label: "自然に仲良くなって安心して付き合う", note: "勢いだけより納得感がほしい。", axis: "R", point: 1 },
+        { label: "一気に惹かれて燃え上がる", note: "恋は落ちるものだと思う。", axis: "P", point: 1 }
+      ]},
+      { text: "恋人に言われて一番うれしいのは？", options: [
+        { label: "一緒にいると楽しい", note: "空気感を好きと言われるとうれしい。", axis: "O", point: 1 },
+        { label: "これからも一緒にいたい", note: "未来を含めて大切にされたい。", axis: "E", point: 1 }
+      ]}
+    ];
+
+    const typeData = {
+      LCRO: { dog: "ポメラニアン", emoji: "🐶", title: "小悪魔ポメラニアン", subtitle: "主導権も甘えもほしい、愛され上手タイプ", description: "恋愛の温度調整がうまく、相手を自然に夢中にさせるタイプ。自分から動けるのに、好きな人の前ではかわいく甘えるギャップが強いです。安定も見るので、ただの勢いだけでは落ちません。", traits: ["好きになると距離を縮めるのが早い", "褒められるとわかりやすく懐く", "自由そうに見えて意外と現実的"], good: ["FAPE", "FCRE"], bad: "放置されすぎる関係", magic: "かわいいだけじゃなくて、ちゃんと大事にしたい。", weak: "相手を試しすぎると、本音が伝わる前に誤解されます。" },
+      LCRE: { dog: "柴犬", emoji: "🐕", title: "一途な柴犬", subtitle: "ツンと見えて中身は激重めの誠実タイプ", description: "自分のペースで恋を進めたいけれど、付き合うとかなり一途。軽いノリより信頼を重視します。好きな人には不器用に甘えるところがあり、わかる人には刺さりまくります。", traits: ["好き嫌いがはっきりしている", "信頼するまで時間がかかる", "恋人には意外と甘えたい"], good: ["FARE", "FCPE"], bad: "軽すぎるノリの相手", magic: "不器用なところも含めて好き。", weak: "素直になるタイミングを逃すと、冷たい人に見られがちです。" },
+      LCPO: { dog: "トイプードル", emoji: "🐩", title: "恋愛上手トイプードル", subtitle: "華やかで甘え上手なモテ犬タイプ", description: "好きな人との空気を一瞬で明るくできるタイプ。恋愛にときめきを求め、自分から楽しい流れを作れます。軽く見られやすいけれど、本気になるとかなり愛情深いです。", traits: ["会話とノリで距離を縮める", "恋愛のイベント感が好き", "寂しいと急にかまってモードになる"], good: ["FARE", "FARO"], bad: "リアクションが薄い相手", magic: "一緒にいると毎日かわいい。", weak: "刺激を求めすぎると、安定した相手を退屈に感じます。" },
+      LCPE: { dog: "チワワ", emoji: "🐕‍🦺", title: "激甘チワワ", subtitle: "好きになったら一直線なかまってタイプ", description: "恋の熱量が高く、好きな人に対してかなり素直。かまってほしい気持ちと一途さが強く、愛情表現が多い相手と相性抜群です。雑に扱われると一気に不安になります。", traits: ["連絡が来ないと考えすぎる", "好きな人には全力で懐く", "愛情表現が少ない相手は苦手"], good: ["FARE", "LARE"], bad: "曖昧な関係", magic: "不安にさせないよ。ちゃんと好きだよ。", weak: "不安なときほど、確認ではなくお願いの形で伝えると愛されやすいです。" },
+      LARO: { dog: "ゴールデンレトリバー", emoji: "🦮", title: "陽キャなゴールデン", subtitle: "引っ張って支える大型犬タイプ", description: "明るく頼れて、相手を楽しませるのが上手なタイプ。恋愛でも主導権を握りつつ、相手の気持ちを受け止めます。自由さもあるので、重くなりすぎない関係が得意です。", traits: ["恋人を元気にする力がある", "面倒見がよく頼られやすい", "束縛されると少し窮屈"], good: ["FCRE", "FCPO"], bad: "感謝が少ない相手", magic: "あなたといると前向きになれる。", weak: "強く見えるぶん、弱音を出すのが遅れがちです。" },
+      LARE: { dog: "秋田犬", emoji: "🐕", title: "守護神秋田犬", subtitle: "責任感で愛する誠実リーダータイプ", description: "大切な人を守りたい気持ちが強いタイプ。恋愛を軽く扱わず、付き合うなら長く深く向き合いたい派です。頼れる反面、ひとりで抱え込みやすいところがあります。", traits: ["一度好きになると簡単には離れない", "相手のために頑張りすぎる", "誠実さのない相手には冷める"], good: ["FCPE", "LCPE"], bad: "責任感を利用する相手", magic: "あなたがいると安心する。", weak: "守る恋だけでなく、頼る恋も覚えると関係が柔らかくなります。" },
+      LAPO: { dog: "ビーグル", emoji: "🐶", title: "冒険家ビーグル", subtitle: "楽しい恋を連れてくるムードメーカータイプ", description: "恋愛を明るく楽しく進めるタイプ。自分から誘えて、相手の気分も上げられます。深刻すぎる関係より、一緒に笑えて刺激のある関係で魅力が爆発します。", traits: ["デートの提案が得意", "マンネリが苦手", "相手を楽しませようと頑張る"], good: ["FCPO", "FARO"], bad: "否定から入る相手", magic: "次はどこ行く？一緒なら何でも楽しそう。", weak: "楽しい雰囲気でごまかさず、たまには真面目な話もすると信頼が深まります。" },
+      LAPE: { dog: "ドーベルマン", emoji: "🐕‍🦺", title: "情熱ドーベルマン", subtitle: "本気になったら逃がさない熱血タイプ", description: "恋愛への熱量が高く、好きな人にはまっすぐ向き合うタイプ。頼もしさと情熱があり、相手から見るとかなり心強い存在です。ただし独占欲が強く出ることもあります。", traits: ["好きな人には全力で尽くす", "曖昧な態度が苦手", "恋人を守りたい気持ちが強い"], good: ["FCPE", "FAPE"], bad: "逃げ腰な相手", magic: "本気で向き合ってくれるところが好き。", weak: "正しさで押すより、相手のペースを待つ余白があると愛が伝わります。" },
+      FCRO: { dog: "ミニチュアダックス", emoji: "🐾", title: "寄り添いダックス", subtitle: "自然体で甘える平和主義タイプ", description: "相手に合わせながら、やわらかく距離を縮めるタイプ。安心できる恋愛を好み、無理に主導権を握ろうとはしません。甘え上手で、穏やかな関係に強いです。", traits: ["空気を読むのがうまい", "安心できる相手にだけ甘える", "強引な相手には疲れやすい"], good: ["LARO", "LCRO"], bad: "急かしてくる相手", magic: "そのままでいてくれるだけで落ち着く。", weak: "合わせすぎると本音が見えなくなるので、小さな希望は早めに出すのが吉。" },
+      FCRE: { dog: "マルチーズ", emoji: "🐶", title: "癒しのマルチーズ", subtitle: "甘えたいけど誠実に愛したいタイプ", description: "やさしくて、好きな人に対してかなり一途。自分から強く押すより、相手の愛情を感じながら心を開いていきます。安心感のある相手には深く懐きます。", traits: ["愛情表現を大事にする", "不安になると黙りがち", "長く大切にされたい"], good: ["LARO", "LCRO"], bad: "適当な返信ばかりの相手", magic: "ちゃんと大切にするから安心して。", weak: "我慢して察してもらうより、寂しいを言葉にすると関係が安定します。" },
+      FCPO: { dog: "フレンチブルドッグ", emoji: "🐶", title: "愛されフレブル", subtitle: "ゆるく甘えて場を和ませるタイプ", description: "恋愛に楽しさとスキンシップを求めるタイプ。相手に合わせる柔らかさがありながら、好きな人にはかなり甘えます。笑える関係だとどんどん魅力が出ます。", traits: ["好きな人の前で素が出る", "重すぎる空気が苦手", "甘やかされるとすぐ懐く"], good: ["LAPO", "LARO"], bad: "真面目すぎて笑えない相手", magic: "一緒にいるとなんか癒される。", weak: "楽しいだけで流さず、大事な話はちゃんと向き合うと長続きします。" },
+      FCPE: { dog: "キャバリア", emoji: "🐶", title: "愛情深いキャバリア", subtitle: "甘えんぼで一途な恋愛ど真ん中タイプ", description: "好きな人にまっすぐ懐く、王道の愛されタイプ。ときめきも一途さも大切にします。愛情を返してくれる相手とは深くつながれますが、雑な相手には傷つきやすいです。", traits: ["好きが表情に出やすい", "恋人中心になりやすい", "安心できる言葉に弱い"], good: ["LARE", "LAPE"], bad: "気分屋すぎる相手", magic: "ずっと隣にいてほしい。", weak: "相手優先にしすぎると苦しくなるので、自分の予定も大切に。" },
+      FARO: { dog: "コーギー", emoji: "🐕", title: "陽だまりコーギー", subtitle: "明るく支える気楽な相棒タイプ", description: "相手に合わせながらも、関係を明るく保つのが得意。恋人を支える力があり、自由な空気も大事にします。友達みたいな恋人関係で魅力が伸びます。", traits: ["恋人の味方でいるのが得意", "重すぎる束縛は苦手", "日常の小さな楽しみを作れる"], good: ["LCPO", "LAPO"], bad: "ずっと不機嫌な相手", magic: "味方でいてくれてありがとう。", weak: "平気なふりをしすぎると、いつの間にか疲れが溜まります。" },
+      FARE: { dog: "ラブラドール", emoji: "🦮", title: "献身ラブラドール", subtitle: "やさしさで長く愛する安定タイプ", description: "恋人を大切に支える、信頼感の強いタイプ。派手な駆け引きより、日々のやさしさを積み重ねる恋愛が向いています。誠実な相手と組むと最強です。", traits: ["相手の変化に気づきやすい", "長期的な関係を大事にする", "頼られると頑張りすぎる"], good: ["LCRE", "LCPE"], bad: "感謝をしない相手", magic: "あなたのやさしさに救われてる。", weak: "尽くすだけではなく、受け取ることも恋愛の一部です。" },
+      FAPO: { dog: "シベリアンハスキー", emoji: "🐺", title: "自由なハスキー", subtitle: "情熱と自由を愛するマイペースタイプ", description: "好きな人を大切にしつつ、自分の世界も大事にするタイプ。感情が動く恋が好きで、束縛されすぎると逃げたくなります。自由を認めてくれる相手と好相性です。", traits: ["好きでも一人時間が必要", "刺激のある関係が好き", "押しつけられると反発する"], good: ["LCPO", "LAPO"], bad: "束縛が強すぎる相手", magic: "自由なところも含めて好き。", weak: "自由を守るほど、安心させる言葉もセットで渡すと関係が安定します。" },
+      FAPE: { dog: "ボーダーコリー", emoji: "🐕", title: "真剣ボーダーコリー", subtitle: "情熱を内側に秘めた一途な努力家タイプ", description: "相手に合わせながらも、内側にはかなり強い愛情を持つタイプ。恋愛を真剣に考え、好きな人のために努力できます。言葉より行動で愛を示しがちです。", traits: ["相手のために改善しようとする", "恋愛に手を抜けない", "本気の相手にはかなり一途"], good: ["LCRO", "LAPE"], bad: "不誠実な相手", magic: "ちゃんと見てるよ。努力してくれてありがとう。", weak: "完璧に頑張ろうとしすぎると、恋が修行になります。" }
+    };
+
+    const axisPairs = {
+      LF: { left: "L", right: "F", leftName: "リード", rightName: "寄り添い" },
+      CA: { left: "C", right: "A", leftName: "甘えたい", rightName: "受け止めたい" },
+      RP: { left: "R", right: "P", leftName: "安定", rightName: "情熱" },
+      OE: { left: "O", right: "E", leftName: "自由", rightName: "誠実" }
+    };
+
+    let current = 0;
+    let answers = [];
+    let scores = { L: 0, F: 0, C: 0, A: 0, R: 0, P: 0, O: 0, E: 0 };
+    let latestResult = null;
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startQuiz() {
+      current = 0;
+      answers = [];
+      scores = { L: 0, F: 0, C: 0, A: 0, R: 0, P: 0, O: 0, E: 0 };
+      showScreen('quizScreen');
+      renderQuestion();
+    }
+
+    function resetQuiz() { startQuiz(); }
+    function goStart() { showScreen('startScreen'); }
+
+    function renderQuestion() {
+      const q = questions[current];
+      document.getElementById('questionCount').textContent = `${current + 1} / ${questions.length}`;
+      document.getElementById('bar').style.width = `${((current) / questions.length) * 100}%`;
+      document.getElementById('questionTitle').textContent = q.text;
+
+      const options = document.getElementById('options');
+      options.innerHTML = '';
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'option';
+        btn.innerHTML = `${opt.label}<small>${opt.note}</small>`;
+        btn.onclick = () => selectOption(index);
+        options.appendChild(btn);
+      });
+    }
+
+    function selectOption(optionIndex) {
+      const q = questions[current];
+      const selected = q.options[optionIndex];
+      answers[current] = selected;
+
+      if (current < questions.length - 1) {
+        current++;
+        renderQuestion();
+      } else {
+        calculateResult();
+      }
+    }
+
+    function prevQuestion() {
+      if (current === 0) {
+        goStart();
+        return;
+      }
+      current--;
+      answers = answers.slice(0, current);
+      recalcScores();
+      renderQuestion();
+    }
+
+    function recalcScores() {
+      scores = { L: 0, F: 0, C: 0, A: 0, R: 0, P: 0, O: 0, E: 0 };
+      answers.forEach(ans => {
+        if (ans) scores[ans.axis] += ans.point;
+      });
+    }
+
+    function calculateResult() {
+      recalcScores();
+      const code = [
+        scores.L >= scores.F ? 'L' : 'F',
+        scores.C >= scores.A ? 'C' : 'A',
+        scores.R >= scores.P ? 'R' : 'P',
+        scores.O >= scores.E ? 'O' : 'E'
+      ].join('');
+
+      latestResult = { code, ...typeData[code] };
+      localStorage.setItem('dogLoveResult', JSON.stringify({ code, date: new Date().toISOString() }));
+      renderResult(latestResult);
+      showScreen('resultScreen');
+      document.getElementById('bar').style.width = '100%';
+    }
+
+    function renderResult(result) {
+      document.getElementById('dogEmoji').textContent = result.emoji;
+      document.getElementById('resultTitle').textContent = result.title;
+      document.getElementById('resultSubtitle').textContent = `${result.code}型｜${result.dog}`;
+      document.getElementById('resultDescription').textContent = result.description;
+      document.getElementById('magicWord').textContent = result.magic;
+      document.getElementById('weakPoint').textContent = result.weak;
+
+      const traits = document.getElementById('resultTraits');
+      traits.innerHTML = '';
+      result.traits.forEach(t => {
+        const li = document.createElement('li');
+        li.textContent = t;
+        traits.appendChild(li);
+      });
+
+      const compatibility = document.getElementById('compatibility');
+      compatibility.innerHTML = '';
+      result.good.forEach(code => {
+        const type = typeData[code];
+        const div = document.createElement('div');
+        div.className = 'compat-box';
+        div.innerHTML = `<b>${type.emoji} ${type.title}</b><span>${code}型｜${type.dog}</span>`;
+        compatibility.appendChild(div);
+      });
+
+      const axisList = document.getElementById('axisList');
+      axisList.innerHTML = '';
+      Object.values(axisPairs).forEach(pair => {
+        const leftScore = scores[pair.left];
+        const rightScore = scores[pair.right];
+        const total = Math.max(leftScore + rightScore, 1);
+        const percent = Math.round((leftScore / total) * 100);
+        const winner = leftScore >= rightScore ? pair.leftName : pair.rightName;
+        const div = document.createElement('div');
+        div.className = 'axis-item';
+        div.innerHTML = `
+          <div class="axis-label"><span>${pair.leftName}</span><span>${winner}</span><span>${pair.rightName}</span></div>
+          <div class="axis-meter"><div class="axis-fill" style="width:${percent}%"></div></div>
+        `;
+        axisList.appendChild(div);
+      });
+
+      const url = new URL(location.href);
+      url.searchParams.set('type', result.code);
+      window.history.replaceState({}, '', url);
+      document.title = `${result.title}｜恋する犬タイプ診断`;
+    }
+
+    function shareX() {
+      if (!latestResult) return;
+      const text = `私の恋愛タイプは「${latestResult.title}」でした！\n${latestResult.code}型｜${latestResult.dog}\nあなたは何犬？\n#恋する犬タイプ診断`;
+      const shareUrl = `${location.origin}${location.pathname}?type=${latestResult.code}`;
+      const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
+      window.open(xUrl, '_blank', 'noopener,noreferrer');
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const text = `恋する犬タイプ診断\n私の結果：${latestResult.title}\n${latestResult.code}型｜${latestResult.dog}\n${latestResult.description}\n#恋する犬タイプ診断`;
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('結果をコピーしました！');
+      } catch (e) {
+        alert('コピーに失敗しました。ブラウザの設定を確認してください。');
+      }
+    }
+
+    function showTypeList() {
+      const list = document.getElementById('typeList');
+      list.innerHTML = '';
+      Object.entries(typeData).forEach(([code, type]) => {
+        const div = document.createElement('div');
+        div.className = 'mini-card';
+        div.innerHTML = `
+          <h3>${type.emoji} ${type.title}</h3>
+          <p><b>${code}型｜${type.dog}</b><br>${type.subtitle}</p>
+        `;
+        list.appendChild(div);
+      });
+      showScreen('typeListScreen');
+    }
+
+    function loadFromUrl() {
+      const params = new URLSearchParams(location.search);
+      const code = params.get('type');
+      if (code && typeData[code]) {
+        scores = { L: 1, F: 1, C: 1, A: 1, R: 1, P: 1, O: 1, E: 1 };
+        latestResult = { code, ...typeData[code] };
+        renderResult(latestResult);
+        showScreen('resultScreen');
+      }
+    }
+
+    loadFromUrl();
+  </script>
+</body>
+</html>
