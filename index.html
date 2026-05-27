@@ -12,12 +12,7 @@
   <style>
     :root {
       --pink: #ff83b5;
-      --pink-dark: #ee5f9a;
-      --pink-soft: #fff0f7;
-      --cream: #fff9e9;
-      --yellow: #ffd983;
-      --mint: #bff4e5;
-      --purple: #ddd4ff;
+      --pink-dark: #ec5f98;
       --text: #4b3541;
       --muted: #8c7480;
       --line: rgba(255, 131, 181, .24);
@@ -25,13 +20,9 @@
       --shadow: 0 18px 50px rgba(238,95,154,.16);
       --radius: 30px;
     }
-
     * { box-sizing: border-box; }
-
     body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0; min-height: 100vh; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
         radial-gradient(circle at 12% 12%, rgba(255,217,131,.33), transparent 24%),
@@ -40,1372 +31,160 @@
         linear-gradient(135deg, #fff8fc, #fffaf0 55%, #fff2f8);
       overflow-x: hidden;
     }
-
     body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background-image:
         radial-gradient(circle, rgba(255,131,181,.16) 0 5px, transparent 6px),
         radial-gradient(circle, rgba(255,131,181,.12) 0 3px, transparent 4px),
         radial-gradient(circle, rgba(255,131,181,.12) 0 3px, transparent 4px),
         radial-gradient(circle, rgba(255,131,181,.12) 0 3px, transparent 4px),
         radial-gradient(circle, rgba(255,131,181,.12) 0 3px, transparent 4px);
-      background-size: 130px 130px;
-      background-position: 25px 38px, 15px 22px, 35px 20px, 12px 52px, 38px 54px;
-      opacity: .72;
-    }
-
-    .float {
-      position: fixed;
-      z-index: 0;
-      pointer-events: none;
-      opacity: .45;
-      font-size: 24px;
-      animation: floaty 6.5s ease-in-out infinite;
-    }
-    .f1 { top: 90px; left: 4vw; }
-    .f2 { top: 190px; right: 7vw; animation-delay: 1.2s; }
-    .f3 { bottom: 120px; left: 6vw; animation-delay: 2s; }
-    .f4 { bottom: 90px; right: 6vw; animation-delay: .6s; }
-
-    @keyframes floaty {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(7deg); }
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      width: min(1060px, calc(100% - 22px));
-      margin: 0 auto;
-      padding: 22px 0 56px;
-    }
-
-    .screen { display: none; }
-    .screen.active { display: block; animation: fadeUp .28s ease both; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px) scale(.99); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .hero, .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.86);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      backdrop-filter: blur(14px);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.12fr .88fr;
-      align-items: center;
-    }
-
-    .hero-main {
-      padding: 34px 28px 30px;
-    }
-
-    .hero-art {
-      min-height: 430px;
-      padding: 26px;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 70% 28%, rgba(255,255,255,.92), transparent 36%),
-        linear-gradient(145deg, rgba(255,131,181,.13), rgba(255,217,131,.18));
-      position: relative;
-    }
-
-    .hero-art::before,
-    .hero-art::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      background: rgba(255,255,255,.72);
-    }
-
-    .hero-art::before {
-      width: 74px;
-      height: 28px;
-      right: 48px;
-      top: 42px;
-      box-shadow: 24px 7px 0 5px rgba(255,255,255,.72), -20px 8px 0 2px rgba(255,255,255,.72);
-    }
-
-    .hero-art::after {
-      width: 62px;
-      height: 24px;
-      left: 36px;
-      bottom: 42px;
-      box-shadow: 20px 7px 0 4px rgba(255,255,255,.68), -18px 7px 0 2px rgba(255,255,255,.68);
-    }
-
-    .badge {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      padding: 9px 15px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,131,181,.16), rgba(255,217,131,.20));
-      color: var(--pink-dark);
-      font-weight: 900;
-      font-size: 13px;
-      letter-spacing: .03em;
-    }
-
-    h1 {
-      margin: 18px 0 12px;
-      font-size: clamp(35px, 6vw, 62px);
-      line-height: 1.03;
-      letter-spacing: -.06em;
-    }
-
-    .lead {
-      margin: 0;
-      max-width: 660px;
-      color: var(--muted);
-      font-size: 16px;
-      font-weight: 720;
-      line-height: 1.9;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 850;
-      box-shadow: 0 8px 18px rgba(75,53,65,.05);
-    }
-
-    .axis-preview {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .axis-pill {
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, #fff, #fff8fc);
-    }
-
-    .axis-pill b {
-      display: block;
-      color: var(--pink-dark);
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .axis-pill span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-      font-weight: 750;
-    }
-
-    .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    button, .link-button {
-      border: 0;
-      cursor: pointer;
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 14px 22px;
-      font-size: 15px;
-      font-weight: 950;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease;
-    }
-
-    button:hover, .link-button:hover { transform: translateY(-2px); }
-    button:active, .link-button:active { transform: translateY(0); opacity: .9; }
-
-    .primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
-      box-shadow: 0 10px 25px rgba(238,95,154,.28);
-    }
-
-    .secondary {
-      color: var(--pink-dark);
-      background: #fff;
-      border: 1px solid var(--line);
-      box-shadow: 0 8px 18px rgba(75,53,65,.04);
-    }
-
-    .notice {
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-      line-height: 1.75;
-      text-align: center;
-    }
-
-    .card {
-      margin-top: 18px;
-      padding: 24px;
-    }
-
-    .progress-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .progress {
-      flex: 1;
-      height: 14px;
-      border-radius: 999px;
-      background: rgba(255,131,181,.13);
-      overflow: hidden;
-      box-shadow: inset 0 1px 2px rgba(255,255,255,.9);
-    }
-
-    .bar {
-      width: 0%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #ffd983, #ff9ac2 55%, #ff76ad);
-      transition: width .22s ease;
-    }
-
-    .q-title {
-      margin: 0 0 18px;
-      font-size: clamp(24px, 4.3vw, 34px);
-      line-height: 1.38;
-      letter-spacing: -.035em;
-    }
-
-    .options {
-      display: grid;
-      gap: 12px;
-    }
-
-    .option {
-      width: 100%;
-      justify-content: flex-start;
-      text-align: left;
-      border-radius: 23px;
-      background: linear-gradient(180deg, #fff, #fff8fc);
-      border: 1px solid var(--line);
-      padding: 17px;
-      color: var(--text);
-      box-shadow: 0 12px 24px rgba(75,53,65,.05);
-    }
-
-    .option-inner {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .option-icon {
-      flex: 0 0 40px;
-      width: 40px;
-      height: 40px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(255,131,181,.16), rgba(255,217,131,.22));
-      font-size: 19px;
-    }
-
-    .option b {
-      display: block;
-      font-size: 16px;
-      line-height: 1.55;
-    }
-
-    .option small {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      font-weight: 730;
-    }
-
-    .back-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-
-    .result-hero {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .dog-panel, .summary-panel, .mini-card, .type-card {
-      background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,248,252,.96));
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      box-shadow: 0 12px 24px rgba(75,53,65,.045);
-    }
-
-    .dog-panel {
-      padding: 18px;
-      position: relative;
-      overflow: hidden;
-      min-height: 310px;
-      display: grid;
-      place-items: center;
-    }
-
-    .dog-panel::before {
-      content: "❤";
-      position: absolute;
-      top: 15px;
-      right: 18px;
-      color: var(--pink);
-      opacity: .18;
-      font-size: 34px;
-    }
-
-    .summary-panel {
-      padding: 22px;
-    }
-
-    .result-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      color: var(--pink-dark);
-      background: rgba(255,131,181,.13);
-      font-weight: 950;
-      font-size: 12px;
-    }
-
-    .result-title {
-      margin: 14px 0 7px;
-      font-size: clamp(31px, 5vw, 52px);
-      line-height: 1.08;
-      letter-spacing: -.055em;
-    }
-
-    .result-code {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 13px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--pink-dark);
-      font-weight: 950;
-      margin: 4px 0 12px;
-    }
-
-    .result-sub {
-      margin: 0;
-      color: var(--muted);
-      font-weight: 800;
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    .type-stack {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .type-chip {
-      padding: 12px;
-      border-radius: 18px;
-      background: #fff;
-      border: 1px solid var(--line);
-    }
-
-    .type-chip b {
-      display: block;
-      color: var(--pink-dark);
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .type-chip span {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-      font-weight: 740;
-    }
-
-    .result-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .mini-card {
-      padding: 18px;
-    }
-
-    .mini-card h3 {
-      margin: 0 0 10px;
-      font-size: 17px;
-    }
-
-    .mini-card p,
-    .mini-card li {
-      color: var(--muted);
-      line-height: 1.78;
-      font-weight: 720;
-    }
-
-    .mini-card p { margin: 0; }
-    ul { margin: 0; padding-left: 20px; }
-
-    .axis-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .axis-item {
-      display: grid;
-      gap: 7px;
-    }
-
-    .axis-name {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 950;
-    }
-
-    .axis-name strong {
-      color: var(--pink-dark);
-      font-size: 13px;
-    }
-
-    .meter {
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(255,131,181,.13);
-      overflow: hidden;
-    }
-
-    .fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #ffd983, #ff8fbd);
-    }
-
-    .compat {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .compat-box {
-      padding: 12px;
-      border-radius: 18px;
-      background: #fff;
-      border: 1px solid var(--line);
-    }
-
-    .compat-box b {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--text);
-    }
-
-    .compat-box span {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-      font-weight: 740;
-    }
-
-    .cta {
-      margin-top: 16px;
-      padding: 22px;
-      text-align: center;
-      border-radius: 27px;
-      border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,131,181,.16), rgba(255,217,131,.20));
-      box-shadow: 0 12px 24px rgba(75,53,65,.045);
-    }
-
-    .cta h3 {
-      margin: 0 0 8px;
-      font-size: 22px;
-    }
-
-    .cta p {
-      margin: 0 auto 14px;
-      max-width: 710px;
-      color: var(--muted);
-      line-height: 1.8;
-      font-weight: 730;
-    }
-
-    .share-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 16px;
-    }
-
-    .type-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .type-card {
-      display: grid;
-      grid-template-columns: 112px 1fr;
-      align-items: center;
-      gap: 12px;
-      padding: 14px;
-    }
-
-    .type-card h3 {
-      margin: 0 0 5px;
-      font-size: 20px;
-    }
-
-    .type-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-weight: 720;
-      font-size: 13px;
-    }
-
-    .type-card b {
-      color: var(--pink-dark);
-    }
-
-    .dog-stage {
-      width: min(310px, 100%);
-      aspect-ratio: 1/1;
-      display: grid;
-      place-items: center;
-      position: relative;
-      margin: 0 auto;
-    }
-
-    .dog-stage::before {
-      content: "";
-      position: absolute;
-      inset: 10% 8% 12%;
-      border-radius: 54% 46% 52% 48% / 48% 52% 46% 54%;
-      background: radial-gradient(circle at 50% 36%, rgba(255,255,255,.96), rgba(255,255,255,.48) 58%, transparent 72%);
-    }
-
-    .dog-svg {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 18px 24px rgba(238,95,154,.13));
-    }
-
-    .tiny-dog {
-      width: 112px;
-      height: 112px;
-      filter: drop-shadow(0 10px 14px rgba(238,95,154,.08));
-    }
-
-    @media (max-width: 880px) {
-      .hero-grid, .result-hero, .type-card {
-        grid-template-columns: 1fr;
-      }
-      .hero-art { min-height: 280px; }
-      .type-card { text-align: center; }
-      .tiny-dog { margin: 0 auto; }
-    }
-
-    @media (max-width: 720px) {
-      .container { width: min(100% - 16px, 1060px); padding-top: 14px; }
-      .hero-main, .card { padding: 18px; }
-      .axis-preview, .stats, .result-grid, .type-stack, .type-list, .compat {
-        grid-template-columns: 1fr;
-      }
-      .actions, .share-row, .back-row { width: 100%; }
-      button, .link-button { width: 100%; }
-      .option-inner { align-items: center; }
-    }
-  
-    /* axis graph improved */
-    .axis-list {
-      gap: 14px;
-    }
-
-    .axis-item {
-      padding: 14px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, #fff, #fff8fc);
-      border: 1px solid var(--line);
-    }
-
-    .axis-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .axis-code {
-      color: var(--pink-dark);
-      font-size: 16px;
-      font-weight: 950;
-      letter-spacing: .02em;
-    }
-
-    .axis-pair-name {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 850;
-      text-align: right;
-      line-height: 1.45;
-    }
-
-    .axis-winner {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      width: fit-content;
-      max-width: 100%;
-      padding: 8px 11px;
-      margin-bottom: 10px;
-      border-radius: 999px;
-      background: rgba(255, 131, 181, .12);
-      color: var(--pink-dark);
-      font-size: 14px;
-      font-weight: 950;
-      line-height: 1.35;
-    }
-
-    .axis-scale {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 850;
-      margin-top: 8px;
-      line-height: 1.45;
-    }
-
-    .axis-scale span:first-child {
-      text-align: left;
-    }
-
-    .axis-scale span:last-child {
-      text-align: right;
-    }
-
-    .axis-center {
-      color: rgba(140,116,128,.55);
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .meter {
-      height: 16px;
-      background: rgba(255, 131, 181, .13);
-      border-radius: 999px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .meter::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 2px;
-      transform: translateX(-1px);
-      background: rgba(255, 255, 255, .9);
-      box-shadow: 0 0 0 1px rgba(255, 131, 181, .08);
-    }
-
-    .fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #ffd983, #ff9bc4 58%, #ff72ac);
-      min-width: 8px;
-    }
-
-    @media (max-width: 720px) {
-      .axis-item {
-        padding: 13px;
-      }
-
-      .axis-top {
-        align-items: flex-start;
-      }
-
-      .axis-code {
-        font-size: 15px;
-      }
-
-      .axis-pair-name {
-        font-size: 11px;
-      }
-
-      .axis-winner {
-        font-size: 13px;
-      }
-
-      .axis-scale {
-        font-size: 11px;
-      }
-    }
-
+      background-size: 130px 130px; background-position: 25px 38px, 15px 22px, 35px 20px, 12px 52px, 38px 54px; opacity: .72;
+    }
+    .float { position: fixed; z-index: 0; pointer-events: none; opacity: .45; font-size: 24px; animation: floaty 6.5s ease-in-out infinite; }
+    .f1 { top: 90px; left: 4vw; } .f2 { top: 190px; right: 7vw; animation-delay: 1.2s; } .f3 { bottom: 120px; left: 6vw; animation-delay: 2s; } .f4 { bottom: 90px; right: 6vw; animation-delay: .6s; }
+    @keyframes floaty { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-12px) rotate(7deg);} }
+    .container { position: relative; z-index: 1; width: min(1060px, calc(100% - 22px)); margin: 0 auto; padding: 22px 0 56px; }
+    .screen { display:none; } .screen.active { display:block; animation:fadeUp .28s ease both; }
+    @keyframes fadeUp { from{opacity:0; transform:translateY(10px) scale(.99);} to{opacity:1; transform:translateY(0) scale(1);} }
+    .hero, .card { background: var(--card); border: 1px solid rgba(255,255,255,.86); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; backdrop-filter: blur(14px); }
+    .hero-grid { display:grid; grid-template-columns:1.12fr .88fr; align-items:center; }
+    .hero-main { padding:34px 28px 30px; }
+    .hero-art { min-height:430px; padding:26px; display:grid; place-items:center; background: radial-gradient(circle at 70% 28%, rgba(255,255,255,.92), transparent 36%), linear-gradient(145deg, rgba(255,131,181,.13), rgba(255,217,131,.18)); position:relative; }
+    .badge { display:inline-flex; gap:8px; align-items:center; padding:9px 15px; border-radius:999px; background:linear-gradient(135deg, rgba(255,131,181,.16), rgba(255,217,131,.20)); color:var(--pink-dark); font-weight:900; font-size:13px; letter-spacing:.03em; }
+    h1 { margin:18px 0 12px; font-size: clamp(35px,6vw,62px); line-height:1.03; letter-spacing:-.06em; }
+    .lead { margin:0; max-width:660px; color:var(--muted); font-size:16px; font-weight:720; line-height:1.9; }
+    .chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+    .chip { display:inline-flex; align-items:center; gap:7px; padding:10px 14px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:13px; font-weight:850; box-shadow:0 8px 18px rgba(75,53,65,.05); }
+    .axis-preview { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; margin-top:18px; }
+    .axis-pill { padding:12px; border:1px solid var(--line); border-radius:18px; background:linear-gradient(180deg, #fff, #fff8fc); }
+    .axis-pill b { display:block; color:var(--pink-dark); font-size:14px; margin-bottom:4px; }
+    .axis-pill span { display:block; color:var(--muted); font-size:12px; line-height:1.55; font-weight:750; }
+    .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+    button, .link-button { border:0; cursor:pointer; text-decoration:none; border-radius:999px; padding:14px 22px; font-size:15px; font-weight:950; display:inline-flex; align-items:center; justify-content:center; gap:8px; transition:transform .18s ease, opacity .18s ease, box-shadow .18s ease; }
+    button:hover, .link-button:hover { transform:translateY(-2px); }
+    button:active, .link-button:active { transform:translateY(0); opacity:.9; }
+    .primary { color:#fff; background:linear-gradient(135deg, var(--pink), var(--pink-dark)); box-shadow:0 10px 25px rgba(238,95,154,.28); }
+    .secondary { color:var(--pink-dark); background:#fff; border:1px solid var(--line); box-shadow:0 8px 18px rgba(75,53,65,.04); }
+    .notice { margin:16px 0 0; color:var(--muted); font-size:12px; font-weight:650; line-height:1.75; text-align:center; }
+    .card { margin-top:18px; padding:24px; }
+    .progress-row { display:flex; align-items:center; gap:12px; margin-bottom:20px; color:var(--muted); font-size:13px; font-weight:900; }
+    .progress { flex:1; height:14px; border-radius:999px; background:rgba(255,131,181,.13); overflow:hidden; box-shadow:inset 0 1px 2px rgba(255,255,255,.9); }
+    .bar { width:0%; height:100%; border-radius:inherit; background:linear-gradient(90deg, #ffd983, #ff9ac2 55%, #ff76ad); transition:width .22s ease; }
+    .q-title { margin:0 0 18px; font-size:clamp(24px, 4.3vw, 34px); line-height:1.38; letter-spacing:-.035em; }
+    .q-hint { margin:-6px 0 16px; color:var(--muted); font-size:13px; line-height:1.7; font-weight:700; }
+    .options { display:grid; gap:12px; }
+    .option { width:100%; justify-content:flex-start; text-align:left; border-radius:23px; background:linear-gradient(180deg, #fff, #fff8fc); border:1px solid var(--line); padding:17px; color:var(--text); box-shadow:0 12px 24px rgba(75,53,65,.05); }
+    .option-inner { display:flex; align-items:flex-start; gap:12px; }
+    .option-icon { flex:0 0 40px; width:40px; height:40px; border-radius:15px; display:grid; place-items:center; background:linear-gradient(135deg, rgba(255,131,181,.16), rgba(255,217,131,.22)); font-size:19px; }
+    .option b { display:block; font-size:15px; line-height:1.55; }
+    .option small { display:block; margin-top:5px; color:var(--muted); font-size:13px; line-height:1.6; font-weight:730; }
+    .back-row { display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .result-hero { display:grid; grid-template-columns:.9fr 1.1fr; gap:16px; align-items:stretch; }
+    .dog-panel, .summary-panel, .mini-card, .type-card { background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,248,252,.96)); border:1px solid var(--line); border-radius:26px; box-shadow:0 12px 24px rgba(75,53,65,.045); }
+    .dog-panel { padding:18px; position:relative; overflow:hidden; min-height:310px; display:grid; place-items:center; }
+    .summary-panel { padding:22px; }
+    .result-label { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; color:var(--pink-dark); background:rgba(255,131,181,.13); font-weight:950; font-size:12px; }
+    .result-title { margin:14px 0 7px; font-size:clamp(31px, 5vw, 52px); line-height:1.08; letter-spacing:-.055em; }
+    .result-code { display:inline-flex; align-items:center; gap:8px; padding:9px 13px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--pink-dark); font-weight:950; margin:4px 0 12px; }
+    .result-sub { margin:0; color:var(--muted); font-weight:800; line-height:1.8; font-size:15px; }
+    .type-stack { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; margin-top:14px; }
+    .type-chip { padding:12px; border-radius:18px; background:#fff; border:1px solid var(--line); }
+    .type-chip b { display:block; color:var(--pink-dark); font-size:14px; margin-bottom:4px; }
+    .type-chip span { color:var(--muted); font-size:12px; line-height:1.55; font-weight:740; }
+    .result-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; margin-top:14px; }
+    .mini-card { padding:18px; } .mini-card h3 { margin:0 0 10px; font-size:17px; }
+    .mini-card p, .mini-card li { color:var(--muted); line-height:1.78; font-weight:720; } .mini-card p { margin:0; } ul { margin:0; padding-left:20px; }
+    .axis-list { display:grid; gap:14px; }
+    .axis-item { padding:14px; border-radius:18px; background:linear-gradient(180deg, #fff, #fff8fc); border:1px solid var(--line); }
+    .axis-top { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
+    .axis-code { color:var(--pink-dark); font-size:16px; font-weight:950; letter-spacing:.02em; }
+    .axis-pair-name { color:var(--muted); font-size:12px; font-weight:850; text-align:right; line-height:1.45; }
+    .axis-winner { display:inline-flex; align-items:center; gap:7px; width:fit-content; max-width:100%; padding:8px 11px; margin-bottom:10px; border-radius:999px; background:rgba(255,131,181,.12); color:var(--pink-dark); font-size:14px; font-weight:950; line-height:1.35; }
+    .meter { height:16px; background:rgba(255,131,181,.13); border-radius:999px; overflow:hidden; position:relative; }
+    .meter::after { content:""; position:absolute; top:0; bottom:0; left:50%; width:2px; transform:translateX(-1px); background:rgba(255,255,255,.9); box-shadow:0 0 0 1px rgba(255,131,181,.08); }
+    .fill { height:100%; border-radius:inherit; background:linear-gradient(90deg, #ffd983, #ff9bc4 58%, #ff72ac); min-width:8px; }
+    .axis-scale { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:8px; color:var(--muted); font-size:12px; font-weight:850; margin-top:8px; line-height:1.45; }
+    .axis-scale span:first-child{text-align:left;} .axis-scale span:last-child{text-align:right;} .axis-center{color:rgba(140,116,128,.55); font-size:11px; font-weight:900;}
+    .compat { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; }
+    .compat-box { padding:12px; border-radius:18px; background:#fff; border:1px solid var(--line); }
+    .compat-box b { display:block; margin-bottom:4px; color:var(--text); }
+    .compat-box span { color:var(--muted); font-size:13px; line-height:1.5; font-weight:740; }
+    .cta { margin-top:16px; padding:22px; text-align:center; border-radius:27px; border:1px solid var(--line); background:linear-gradient(135deg, rgba(255,131,181,.16), rgba(255,217,131,.20)); box-shadow:0 12px 24px rgba(75,53,65,.045); }
+    .cta h3 { margin:0 0 8px; font-size:22px; }
+    .cta p { margin:0 auto 14px; max-width:710px; color:var(--muted); line-height:1.8; font-weight:730; }
+    .share-row { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:16px; }
+    .type-list { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; }
+    .type-card { display:grid; grid-template-columns:112px 1fr; align-items:center; gap:12px; padding:14px; }
+    .type-card h3 { margin:0 0 5px; font-size:20px; } .type-card p { margin:0; color:var(--muted); line-height:1.65; font-weight:720; font-size:13px; } .type-card b{color:var(--pink-dark);}
+    .dog-stage { width:min(320px, 100%); aspect-ratio:1/1; display:grid; place-items:center; position:relative; margin:0 auto; }
+    .dog-stage::before { content:""; position:absolute; inset:10% 8% 12%; border-radius:54% 46% 52% 48% / 48% 52% 46% 54%; background:radial-gradient(circle at 50% 36%, rgba(255,255,255,.96), rgba(255,255,255,.48) 58%, transparent 72%); }
+    .dog-svg { position:relative; z-index:1; width:100%; height:100%; filter:drop-shadow(0 18px 24px rgba(238,95,154,.13)); }
+    .tiny-dog { width:112px; height:112px; filter:drop-shadow(0 10px 14px rgba(238,95,154,.08)); }
+    @media (max-width:880px){ .hero-grid, .result-hero, .type-card { grid-template-columns:1fr; } .hero-art{min-height:280px;} .type-card{text-align:center;} .tiny-dog{margin:0 auto;} }
+    @media (max-width:720px){ .container{ width:min(100% - 16px, 1060px); padding-top:14px;} .hero-main,.card{padding:18px;} .axis-preview,.result-grid,.type-stack,.type-list,.compat{grid-template-columns:1fr;} .actions,.share-row,.back-row{width:100%;} button,.link-button{width:100%;} .option-inner{align-items:center;} .axis-item{padding:13px;} .axis-top{align-items:flex-start;} .axis-code{font-size:15px;} .axis-pair-name{font-size:11px;} .axis-winner{font-size:13px;} .axis-scale{font-size:11px;} }
   </style>
 </head>
 <body>
-  <div class="float f1">🐾</div>
-  <div class="float f2">💗</div>
-  <div class="float f3">✨</div>
-  <div class="float f4">🐶</div>
-
+  <div class="float f1">🐾</div><div class="float f2">💗</div><div class="float f3">✨</div><div class="float f4">🐶</div>
   <main class="container">
     <section id="startScreen" class="screen active">
-      <div class="hero">
-        <div class="hero-grid">
-          <div class="hero-main">
-            <span class="badge">🐾 4つの恋愛軸でわかる16タイプ診断</span>
-            <h1>恋する犬タイプ診断</h1>
-            <p class="lead">
-              あなたの恋愛スタイルを、4つの恋愛軸から16種類の犬タイプに分類します。<br>
-              カップルでも、片思い中でも、友達同士でも楽しめるゆるかわ診断です。
-            </p>
-
-            <div class="chips">
-              <span class="chip">💗 L/F リード傾向</span>
-              <span class="chip">🫶 C/A 愛情表現</span>
-              <span class="chip">🏡 R/P 恋の価値観</span>
-              <span class="chip">🪽 O/E 距離感</span>
-            </div>
-
-            <div class="axis-preview">
-              <div class="axis-pill"><b>L / F</b><span>リード型 / 寄り添い型</span></div>
-              <div class="axis-pill"><b>C / A</b><span>甘えたい型 / 受け止めたい型</span></div>
-              <div class="axis-pill"><b>R / P</b><span>安定型 / 情熱型</span></div>
-              <div class="axis-pill"><b>O / E</b><span>自由型 / 誠実型</span></div>
-            </div>
-
-            <div class="actions">
-              <button class="primary" onclick="startQuiz()">診断をはじめる</button>
-              <button class="secondary" onclick="showTypeList()">16タイプを見る</button>
-            </div>
-
-            <p class="notice">※この診断はエンタメ目的です。医学的・心理学的な診断ではありません。</p>
-          </div>
-
-          <div class="hero-art">
-            <div class="dog-stage" id="heroDog"></div>
-          </div>
+      <div class="hero"><div class="hero-grid">
+        <div class="hero-main">
+          <span class="badge">🐾 4つの恋愛軸でわかる16タイプ診断</span>
+          <h1>恋する犬タイプ診断</h1>
+          <p class="lead">あなたの恋愛スタイルを、4つの恋愛軸から16種類の犬タイプに分類します。<br>カップルでも、片思い中でも、友達同士でも楽しめるゆるかわ診断です。</p>
+          <div class="chips"><span class="chip">💗 L/F リード傾向</span><span class="chip">🫶 C/A 愛情表現</span><span class="chip">🏡 R/P 恋の価値観</span><span class="chip">🪽 O/E 距離感</span></div>
+          <div class="axis-preview"><div class="axis-pill"><b>L / F</b><span>リード型 / 寄り添い型</span></div><div class="axis-pill"><b>C / A</b><span>甘えたい型 / 受け止めたい型</span></div><div class="axis-pill"><b>R / P</b><span>安定型 / 情熱型</span></div><div class="axis-pill"><b>O / E</b><span>自由型 / 誠実型</span></div></div>
+          <div class="actions"><button class="primary" onclick="startQuiz()">診断をはじめる</button><button class="secondary" onclick="showTypeList()">16タイプを見る</button></div>
+          <p class="notice">※この診断はエンタメ目的です。医学的・心理学的な診断ではありません。</p>
         </div>
-      </div>
+        <div class="hero-art"><div class="dog-stage" id="heroDog"></div></div>
+      </div></div>
     </section>
-
-    <section id="quizScreen" class="screen">
-      <div class="card">
-        <div class="progress-row">
-          <span id="questionCount">1 / 20</span>
-          <div class="progress"><div id="bar" class="bar"></div></div>
-        </div>
-        <h2 id="questionTitle" class="q-title"></h2>
-        <div id="options" class="options"></div>
-        <div class="back-row">
-          <button class="secondary" onclick="prevQuestion()">← ひとつ戻る</button>
-          <button class="secondary" onclick="resetQuiz()">最初から</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="resultScreen" class="screen">
-      <div class="card">
-        <div class="result-hero">
-          <div class="dog-panel">
-            <div class="dog-stage" id="resultDog"></div>
-          </div>
-          <div class="summary-panel">
-            <span class="result-label">あなたの結果</span>
-            <h2 id="resultTitle" class="result-title"></h2>
-            <div id="resultCode" class="result-code"></div>
-            <p id="resultSubtitle" class="result-sub"></p>
-            <div id="typeStack" class="type-stack"></div>
-          </div>
-        </div>
-
-        <div class="result-grid">
-          <div class="mini-card">
-            <h3>あなたの恋愛傾向</h3>
-            <p id="resultDescription"></p>
-          </div>
-          <div class="mini-card">
-            <h3>4つの恋愛軸</h3>
-            <div id="axisList" class="axis-list"></div>
-          </div>
-          <div class="mini-card">
-            <h3>恋愛で出やすいクセ</h3>
-            <ul id="resultTraits"></ul>
-          </div>
-          <div class="mini-card">
-            <h3>相性がいい犬タイプ</h3>
-            <div id="compatibility" class="compat"></div>
-          </div>
-          <div class="mini-card">
-            <h3>刺さる一言</h3>
-            <p id="magicWord"></p>
-          </div>
-          <div class="mini-card">
-            <h3>注意ポイント</h3>
-            <p id="weakPoint"></p>
-          </div>
-        </div>
-
-        <div class="cta">
-          <h3>もっと深く知りたい人へ</h3>
-          <p>
-            あなたの犬タイプ別に「沼りやすい相手」「追われるLINE」「長続きする付き合い方」をまとめています。
-            カップルで見せ合うと、会話のネタにもなります。
-          </p>
-          <a id="paidLink" class="link-button primary" href="https://note.com/" target="_blank" rel="noopener">タイプ別の恋愛攻略を見る</a>
-        </div>
-
-        <div class="share-row">
-          <button class="primary" onclick="shareX()">Xで結果をシェア</button>
-          <button class="secondary" onclick="copyResult()">結果をコピー</button>
-          <button class="secondary" onclick="resetQuiz()">もう一回診断する</button>
-        </div>
-
-        <p class="notice">販売ページURLはコード内の paidLink の href を変更してください。</p>
-      </div>
-    </section>
-
-    <section id="typeListScreen" class="screen">
-      <div class="card">
-        <h2 class="q-title">16種類の犬タイプ一覧</h2>
-        <div id="typeList" class="type-list"></div>
-        <div class="back-row">
-          <button class="primary" onclick="startQuiz()">診断する</button>
-          <button class="secondary" onclick="goStart()">トップに戻る</button>
-        </div>
-      </div>
-    </section>
+    <section id="quizScreen" class="screen"><div class="card"><div class="progress-row"><span id="questionCount">1 / 20</span><div class="progress"><div id="bar" class="bar"></div></div></div><h2 id="questionTitle" class="q-title"></h2><p class="q-hint">4つの選択肢から、いちばん近いものを選んでください。</p><div id="options" class="options"></div><div class="back-row"><button class="secondary" onclick="prevQuestion()">← ひとつ戻る</button><button class="secondary" onclick="resetQuiz()">最初から</button></div></div></section>
+    <section id="resultScreen" class="screen"><div class="card"><div class="result-hero"><div class="dog-panel"><div class="dog-stage" id="resultDog"></div></div><div class="summary-panel"><span class="result-label">あなたの結果</span><h2 id="resultTitle" class="result-title"></h2><div id="resultCode" class="result-code"></div><p id="resultSubtitle" class="result-sub"></p><div id="typeStack" class="type-stack"></div></div></div>
+      <div class="result-grid"><div class="mini-card"><h3>あなたの恋愛傾向</h3><p id="resultDescription"></p></div><div class="mini-card"><h3>4つの恋愛軸</h3><div id="axisList" class="axis-list"></div></div><div class="mini-card"><h3>恋愛で出やすいクセ</h3><ul id="resultTraits"></ul></div><div class="mini-card"><h3>相性がいい犬タイプ</h3><div id="compatibility" class="compat"></div></div><div class="mini-card"><h3>刺さる一言</h3><p id="magicWord"></p></div><div class="mini-card"><h3>注意ポイント</h3><p id="weakPoint"></p></div></div>
+      <div class="cta"><h3>もっと深く知りたい人へ</h3><p>あなたの犬タイプ別に「沼りやすい相手」「追われるLINE」「長続きする付き合い方」をまとめています。カップルで見せ合うと、会話のネタにもなります。</p><a id="paidLink" class="link-button primary" href="https://note.com/" target="_blank" rel="noopener">タイプ別の恋愛攻略を見る</a></div>
+      <div class="share-row"><button class="primary" onclick="shareX()">Xで結果をシェア</button><button class="secondary" onclick="copyResult()">結果をコピー</button><button class="secondary" onclick="resetQuiz()">もう一回診断する</button></div>
+      <p class="notice">販売ページURLはコード内の paidLink の href を変更してください。</p>
+    </div></section>
+    <section id="typeListScreen" class="screen"><div class="card"><h2 class="q-title">16種類の犬タイプ一覧</h2><div id="typeList" class="type-list"></div><div class="back-row"><button class="primary" onclick="startQuiz()">診断する</button><button class="secondary" onclick="goStart()">トップに戻る</button></div></div></section>
   </main>
-
   <script>
-    const axisInfo = {
-      L: { pair: "L / F", name: "リード型", short: "自分から恋を進める", desc: "好きな人に対して、自分から連絡したり誘ったりしやすいタイプ。" },
-      F: { pair: "L / F", name: "寄り添い型", short: "相手の温度に合わせる", desc: "相手の反応や空気を見ながら、ゆっくり距離を縮めるタイプ。" },
-      C: { pair: "C / A", name: "甘えたい型", short: "愛情をわかりやすく受け取りたい", desc: "好きな人にはかまってほしい、好きを言葉や態度で感じたいタイプ。" },
-      A: { pair: "C / A", name: "受け止めたい型", short: "相手を支えたい", desc: "恋人を安心させたり、話を聞いたり、包み込む愛情が出やすいタイプ。" },
-      R: { pair: "R / P", name: "安定型", short: "長く続く安心感を重視", desc: "ときめきだけでなく、価値観や生活感、将来性を大切にするタイプ。" },
-      P: { pair: "R / P", name: "情熱型", short: "ドキドキと熱量を重視", desc: "恋の高揚感や好きという感情の強さを大切にするタイプ。" },
-      O: { pair: "O / E", name: "自由型", short: "自然な距離感を好む", desc: "恋人同士でも、お互いの時間や自由を大切にしたいタイプ。" },
-      E: { pair: "O / E", name: "誠実型", short: "一途さと安心感を好む", desc: "毎日の連絡や向き合う時間、大切にされている実感を重視するタイプ。" }
-    };
-
-    const questions = [
-      { text: "好きな人ができたとき、あなたはどっち寄り？", options: [
-        { label: "自分から話しかけたり誘ったりする", note: "待つより動く。恋はちょっと攻めたい。", axis: "L", point: 2, icon: "💌" },
-        { label: "相手の反応を見ながら距離を縮める", note: "空気を読みながら、じわっと近づく。", axis: "F", point: 2, icon: "🌷" }
-      ]},
-      { text: "付き合ったら、どっちの自分が出やすい？", options: [
-        { label: "かまってほしい、甘えたい", note: "好きな人にはわかりやすく懐く。", axis: "C", point: 2, icon: "💞" },
-        { label: "相手を安心させたい、支えたい", note: "相手が弱っていると放っておけない。", axis: "A", point: 2, icon: "🤍" }
-      ]},
-      { text: "理想の恋愛に近いのは？", options: [
-        { label: "安心できて、無理なく続く関係", note: "日常の相性や価値観を大事にしたい。", axis: "R", point: 2, icon: "🏡" },
-        { label: "ドキドキして、感情が動く関係", note: "好きって気持ちをちゃんと味わいたい。", axis: "P", point: 2, icon: "🔥" }
-      ]},
-      { text: "恋人との距離感は？", options: [
-        { label: "お互い自由な時間も大事", note: "ずっと一緒より、いい距離感が好き。", axis: "O", point: 2, icon: "🪽" },
-        { label: "ちゃんと向き合う時間を大事にしたい", note: "適当な扱いをされると一気に冷める。", axis: "E", point: 2, icon: "🔒" }
-      ]},
-      { text: "デートの予定を決めるときは？", options: [
-        { label: "自分が候補を出して決めたい", note: "相手が迷っているなら引っ張れる。", axis: "L", point: 1, icon: "🗓️" },
-        { label: "相手の行きたい場所を聞いて合わせたい", note: "相手が楽しそうだと自分も嬉しい。", axis: "F", point: 1, icon: "🎈" }
-      ]},
-      { text: "疲れている日に恋人から会いたいと言われたら？", options: [
-        { label: "少しだけでも会って甘えたい", note: "好きな人の充電力を信じている。", axis: "C", point: 1, icon: "🫶" },
-        { label: "相手が寂しいなら会いに行きたい", note: "自分より相手の気持ちを優先しがち。", axis: "A", point: 1, icon: "🌙" }
-      ]},
-      { text: "恋愛で一番イヤなのは？", options: [
-        { label: "将来や生活感が全然見えないこと", note: "好きでも不安定すぎるとしんどい。", axis: "R", point: 2, icon: "📎" },
-        { label: "好きなのに熱量が伝わってこないこと", note: "平和でも冷めている感じはつらい。", axis: "P", point: 2, icon: "💥" }
-      ]},
-      { text: "恋人への連絡頻度は？", options: [
-        { label: "毎秒じゃなくていい。ゆるく続けばOK", note: "義務LINEはちょっと苦手。", axis: "O", point: 1, icon: "💬" },
-        { label: "できれば毎日ちゃんとやり取りしたい", note: "短くても気にかけてほしい。", axis: "E", point: 1, icon: "📱" }
-      ]},
-      { text: "恋の駆け引きについてどう思う？", options: [
-        { label: "多少なら使う。追わせるのも大事", note: "恋愛には温度調整があると思う。", axis: "L", point: 1, icon: "🎯" },
-        { label: "できれば素直に向き合いたい", note: "駆け引きされると疲れる。", axis: "F", point: 1, icon: "🍀" }
-      ]},
-      { text: "恋人に褒められるなら？", options: [
-        { label: "かわいい、好き、会いたい", note: "愛情表現をストレートにもらうと弱い。", axis: "C", point: 1, icon: "💗" },
-        { label: "落ち着く、信頼できる、頼れる", note: "存在そのものを認められると刺さる。", axis: "A", point: 1, icon: "🧸" }
-      ]},
-      { text: "付き合う前に重視するのは？", options: [
-        { label: "価値観・金銭感覚・生活リズム", note: "長く続くかを冷静に見ている。", axis: "R", point: 1, icon: "📝" },
-        { label: "一緒にいるときの高揚感", note: "理屈より、心が動くかどうか。", axis: "P", point: 1, icon: "🎠" }
-      ]},
-      { text: "恋人が友達と遊びに行くときは？", options: [
-        { label: "楽しんできてね、で送り出せる", note: "信頼しているなら束縛しない。", axis: "O", point: 2, icon: "🌼" },
-        { label: "平気な顔をするけど少し気になる", note: "大切だからこそ、ちゃんと安心したい。", axis: "E", point: 2, icon: "🥺" }
-      ]},
-      { text: "告白されるより、告白する方が？", options: [
-        { label: "タイミング次第では全然あり", note: "自分の気持ちを自分で進めたい。", axis: "L", point: 1, icon: "🎀" },
-        { label: "できれば相手から来てほしい", note: "確信がないと踏み出しにくい。", axis: "F", point: 1, icon: "🌸" }
-      ]},
-      { text: "恋人にしてしまいがちなことは？", options: [
-        { label: "寂しいとちょっと試す", note: "本当に好きか確認したくなる。", axis: "C", point: 1, icon: "🫧" },
-        { label: "相手の問題まで背負う", note: "気づくと世話を焼きすぎる。", axis: "A", point: 1, icon: "🤲" }
-      ]},
-      { text: "記念日やイベントは？", options: [
-        { label: "無理のない範囲で大事にしたい", note: "特別感より継続感が大事。", axis: "R", point: 1, icon: "🎁" },
-        { label: "ちゃんと盛り上げたい", note: "思い出になる演出が好き。", axis: "P", point: 1, icon: "🎉" }
-      ]},
-      { text: "恋愛で一番ほしいものは？", options: [
-        { label: "気楽さと笑える空気", note: "重すぎる恋は長持ちしないと思う。", axis: "O", point: 1, icon: "☁️" },
-        { label: "安心感と一途さ", note: "ちゃんと大切にされている実感がほしい。", axis: "E", point: 1, icon: "💍" }
-      ]},
-      { text: "喧嘩したときは？", options: [
-        { label: "早めに話して解決したい", note: "モヤモヤを長引かせたくない。", axis: "L", point: 1, icon: "🗨️" },
-        { label: "少し落ち着いてから話したい", note: "感情的なままぶつかるのは避けたい。", axis: "F", point: 1, icon: "🌱" }
-      ]},
-      { text: "相手が落ち込んでいるときは？", options: [
-        { label: "そばにいて甘え合いたい", note: "言葉より体温で安心したい。", axis: "C", point: 1, icon: "🩷" },
-        { label: "話を聞いて支えたい", note: "相手の気持ちを受け止めたい。", axis: "A", point: 1, icon: "🫂" }
-      ]},
-      { text: "恋愛の始まり方で好きなのは？", options: [
-        { label: "自然に仲良くなって安心して付き合う", note: "勢いだけより納得感がほしい。", axis: "R", point: 1, icon: "🌿" },
-        { label: "一気に惹かれて燃え上がる", note: "恋は落ちるものだと思う。", axis: "P", point: 1, icon: "⚡" }
-      ]},
-      { text: "恋人に言われて一番うれしいのは？", options: [
-        { label: "一緒にいると楽しい", note: "空気感を好きと言われるとうれしい。", axis: "O", point: 1, icon: "🎵" },
-        { label: "これからも一緒にいたい", note: "未来を含めて大切にされたい。", axis: "E", point: 1, icon: "🌹" }
-      ]}
-    ];
-
-    const typeData = {
-      LCRO: { dog: "ポメラニアン", tagline: "リード型 × 甘えたい型 × 安定型 × 自由型", description: "自分から恋を進める力がありつつ、好きな人にはしっかり甘えたいタイプ。安定した関係を好みますが、束縛されすぎるのは苦手です。明るくかわいげがあり、相手を自然に夢中にさせます。", traits: ["距離を縮めるのが早い", "好きな人にはわかりやすく懐く", "自由そうに見えて意外と現実的"], good: ["FAPE", "FCRE"], magic: "かわいいだけじゃなくて、ちゃんと大事にしたい。", weak: "相手を試しすぎると、本音が伝わる前に誤解されます。" },
-      LCRE: { dog: "柴犬", tagline: "リード型 × 甘えたい型 × 安定型 × 誠実型", description: "自分のペースで恋を進めながら、内側では一途に愛情を求めるタイプ。軽いノリより信頼を重視し、好きな人には不器用に甘えるところがあります。", traits: ["好き嫌いがはっきりしている", "信頼するまで時間がかかる", "恋人には意外と甘えたい"], good: ["FARE", "FCPE"], magic: "不器用なところも含めて好き。", weak: "素直になるタイミングを逃すと、冷たい人に見られがちです。" },
-      LCPO: { dog: "トイプードル", tagline: "リード型 × 甘えたい型 × 情熱型 × 自由型", description: "恋の空気を明るくできる華やかなタイプ。自分から楽しい流れを作り、好きな人には甘えたい気持ちも強め。ときめきと自由な距離感を大切にします。", traits: ["会話とノリで距離を縮める", "恋愛のイベント感が好き", "寂しいと急にかまってモードになる"], good: ["FARE", "FARO"], magic: "一緒にいると毎日かわいい。", weak: "刺激を求めすぎると、安定した相手を退屈に感じます。" },
-      LCPE: { dog: "チワワ", tagline: "リード型 × 甘えたい型 × 情熱型 × 誠実型", description: "好きになったらかなり一直線。自分から気持ちを動かしつつ、相手からの愛情表現も強く求めます。曖昧な関係より、ちゃんと向き合う恋が向いています。", traits: ["連絡が来ないと考えすぎる", "好きな人には全力で懐く", "愛情表現が少ない相手は苦手"], good: ["FARE", "LARE"], magic: "不安にさせないよ。ちゃんと好きだよ。", weak: "不安なときほど、確認ではなくお願いの形で伝えると愛されやすいです。" },
-      LARO: { dog: "ゴールデンレトリバー", tagline: "リード型 × 受け止めたい型 × 安定型 × 自由型", description: "明るく頼れて、相手を楽しませるのが上手なタイプ。恋愛でも主導権を握りつつ、相手の気持ちを受け止めます。重くなりすぎない関係が得意です。", traits: ["恋人を元気にする力がある", "面倒見がよく頼られやすい", "束縛されると少し窮屈"], good: ["FCRE", "FCPO"], magic: "あなたといると前向きになれる。", weak: "強く見えるぶん、弱音を出すのが遅れがちです。" },
-      LARE: { dog: "秋田犬", tagline: "リード型 × 受け止めたい型 × 安定型 × 誠実型", description: "大切な人を守りたい気持ちが強い誠実タイプ。恋愛を軽く扱わず、付き合うなら長く深く向き合いたい派です。頼れる反面、ひとりで抱え込みやすいところもあります。", traits: ["一度好きになると簡単には離れない", "相手のために頑張りすぎる", "誠実さのない相手には冷める"], good: ["FCPE", "LCPE"], magic: "あなたがいると安心する。", weak: "守る恋だけでなく、頼る恋も覚えると関係が柔らかくなります。" },
-      LAPO: { dog: "ビーグル", tagline: "リード型 × 受け止めたい型 × 情熱型 × 自由型", description: "恋愛を明るく楽しく進めるムードメーカー。自分から誘えて、相手の気分も上げられます。深刻すぎる関係より、一緒に笑えて刺激のある関係で魅力が出ます。", traits: ["デートの提案が得意", "マンネリが苦手", "相手を楽しませようと頑張る"], good: ["FCPO", "FARO"], magic: "次はどこ行く？一緒なら何でも楽しそう。", weak: "楽しい雰囲気でごまかさず、たまには真面目な話もすると信頼が深まります。" },
-      LAPE: { dog: "ドーベルマン", tagline: "リード型 × 受け止めたい型 × 情熱型 × 誠実型", description: "本気になったらまっすぐ向き合う情熱タイプ。好きな人を守りたい気持ちが強く、相手から見ると心強い存在です。ただし独占欲が強く出ることもあります。", traits: ["好きな人には全力で尽くす", "曖昧な態度が苦手", "恋人を守りたい気持ちが強い"], good: ["FCPE", "FAPE"], magic: "本気で向き合ってくれるところが好き。", weak: "正しさで押すより、相手のペースを待つ余白があると愛が伝わります。" },
-      FCRO: { dog: "ミニチュアダックス", tagline: "寄り添い型 × 甘えたい型 × 安定型 × 自由型", description: "相手に合わせながら、やわらかく距離を縮めるタイプ。安心できる恋愛を好み、無理に主導権を握ろうとはしません。甘え上手で、穏やかな関係に強いです。", traits: ["空気を読むのがうまい", "安心できる相手にだけ甘える", "強引な相手には疲れやすい"], good: ["LARO", "LCRO"], magic: "そのままでいてくれるだけで落ち着く。", weak: "合わせすぎると本音が見えなくなるので、小さな希望は早めに出すのが吉。" },
-      FCRE: { dog: "マルチーズ", tagline: "寄り添い型 × 甘えたい型 × 安定型 × 誠実型", description: "やさしくて、好きな人に対してかなり一途。自分から強く押すより、相手の愛情を感じながら心を開いていきます。安心感のある相手には深く懐きます。", traits: ["愛情表現を大事にする", "不安になると黙りがち", "長く大切にされたい"], good: ["LARO", "LCRO"], magic: "ちゃんと大切にするから安心して。", weak: "我慢して察してもらうより、寂しいを言葉にすると関係が安定します。" },
-      FCPO: { dog: "フレンチブルドッグ", tagline: "寄り添い型 × 甘えたい型 × 情熱型 × 自由型", description: "恋愛に楽しさとスキンシップを求めるタイプ。相手に合わせる柔らかさがありながら、好きな人にはかなり甘えます。笑える関係だとどんどん魅力が出ます。", traits: ["好きな人の前で素が出る", "重すぎる空気が苦手", "甘やかされるとすぐ懐く"], good: ["LAPO", "LARO"], magic: "一緒にいるとなんか癒される。", weak: "楽しいだけで流さず、大事な話はちゃんと向き合うと長続きします。" },
-      FCPE: { dog: "キャバリア", tagline: "寄り添い型 × 甘えたい型 × 情熱型 × 誠実型", description: "好きな人にまっすぐ懐く、王道の愛されタイプ。ときめきも一途さも大切にします。愛情を返してくれる相手とは深くつながれますが、雑な相手には傷つきやすいです。", traits: ["好きが表情に出やすい", "恋人中心になりやすい", "安心できる言葉に弱い"], good: ["LARE", "LAPE"], magic: "ずっと隣にいてほしい。", weak: "相手優先にしすぎると苦しくなるので、自分の予定も大切に。" },
-      FARO: { dog: "コーギー", tagline: "寄り添い型 × 受け止めたい型 × 安定型 × 自由型", description: "相手に合わせながらも、関係を明るく保つのが得意。恋人を支える力があり、自由な空気も大事にします。友達みたいな恋人関係で魅力が伸びます。", traits: ["恋人の味方でいるのが得意", "重すぎる束縛は苦手", "日常の小さな楽しみを作れる"], good: ["LCPO", "LAPO"], magic: "味方でいてくれてありがとう。", weak: "平気なふりをしすぎると、いつの間にか疲れが溜まります。" },
-      FARE: { dog: "ラブラドール", tagline: "寄り添い型 × 受け止めたい型 × 安定型 × 誠実型", description: "恋人を大切に支える、信頼感の強いタイプ。派手な駆け引きより、日々のやさしさを積み重ねる恋愛が向いています。誠実な相手と組むと最強です。", traits: ["相手の変化に気づきやすい", "長期的な関係を大事にする", "頼られると頑張りすぎる"], good: ["LCRE", "LCPE"], magic: "あなたのやさしさに救われてる。", weak: "尽くすだけではなく、受け取ることも恋愛の一部です。" },
-      FAPO: { dog: "シベリアンハスキー", tagline: "寄り添い型 × 受け止めたい型 × 情熱型 × 自由型", description: "好きな人を大切にしつつ、自分の世界も大事にするタイプ。感情が動く恋が好きで、束縛されすぎると逃げたくなります。自由を認めてくれる相手と好相性です。", traits: ["好きでも一人時間が必要", "刺激のある関係が好き", "押しつけられると反発する"], good: ["LCPO", "LAPO"], magic: "自由なところも含めて好き。", weak: "自由を守るほど、安心させる言葉もセットで渡すと関係が安定します。" },
-      FAPE: { dog: "ボーダーコリー", tagline: "寄り添い型 × 受け止めたい型 × 情熱型 × 誠実型", description: "相手に合わせながらも、内側にはかなり強い愛情を持つタイプ。恋愛を真剣に考え、好きな人のために努力できます。言葉より行動で愛を示しがちです。", traits: ["相手のために改善しようとする", "恋愛に手を抜けない", "本気の相手にはかなり一途"], good: ["LCRO", "LAPE"], magic: "ちゃんと見てるよ。努力してくれてありがとう。", weak: "完璧に頑張ろうとしすぎると、恋が修行になります。" }
-    };
-
-    const dogStyle = {
-      LCRO: { base:"#FFD77A", sub:"#FFF1C8", ear:"#F7C968", type:"fluffy", deco:"bow", decoColor:"#ff8fbd" },
-      LCRE: { base:"#E99035", sub:"#FFE4B7", ear:"#D97824", type:"pointy", deco:"collar", decoColor:"#ff7faf" },
-      LCPO: { base:"#C9A073", sub:"#F5DEC0", ear:"#B2875D", type:"curly", deco:"bow", decoColor:"#cfa8ff" },
-      LCPE: { base:"#F4CF9E", sub:"#FFE8C6", ear:"#E2B57F", type:"pointy", deco:"heart", decoColor:"#ff7faf" },
-      LARO: { base:"#F4CF7A", sub:"#FFF0C7", ear:"#E2B85B", type:"drop", deco:"scarf", decoColor:"#7ee0cf" },
-      LARE: { base:"#D4965D", sub:"#F9DEC0", ear:"#B9753E", type:"pointy", deco:"collar", decoColor:"#82dec9" },
-      LAPO: { base:"#F1C980", sub:"#FFEBC5", ear:"#6B3E20", type:"drop", deco:"star", decoColor:"#ff9ac2" },
-      LAPE: { base:"#5B3726", sub:"#F1C994", ear:"#482616", type:"pointy", deco:"heart", decoColor:"#ff7faf" },
-      FCRO: { base:"#C58C4A", sub:"#FFE4B9", ear:"#A86D2D", type:"long", deco:"ribbon", decoColor:"#ffd978" },
-      FCRE: { base:"#F8F8F2", sub:"#FFF2E6", ear:"#ECE9E1", type:"fluffy", deco:"bow", decoColor:"#ff8fbd" },
-      FCPO: { base:"#F4C7A8", sub:"#FFE5D2", ear:"#4B2E25", type:"bat", deco:"heart", decoColor:"#cfa8ff" },
-      FCPE: { base:"#EFC8AA", sub:"#FFE4D0", ear:"#A6634E", type:"long", deco:"ribbon", decoColor:"#ff9ac2" },
-      FARO: { base:"#E7A94F", sub:"#FFE1A6", ear:"#D38C35", type:"pointy", deco:"star", decoColor:"#82dec9" },
-      FARE: { base:"#F0D58C", sub:"#FFF0C8", ear:"#D7B56B", type:"drop", deco:"collar", decoColor:"#7ee0cf" },
-      FAPO: { base:"#8FA1AF", sub:"#EAF4FA", ear:"#738896", type:"pointy", deco:"star", decoColor:"#7bc9ff" },
-      FAPE: { base:"#2D2A2A", sub:"#F5F1E9", ear:"#1E1B1B", type:"pointy", deco:"collar", decoColor:"#82dec9" }
-    };
-
-    const axisPairs = [
-      { left:"L", right:"F", label:"L / F", leftName:"リード型", rightName:"寄り添い型" },
-      { left:"C", right:"A", label:"C / A", leftName:"甘えたい型", rightName:"受け止めたい型" },
-      { left:"R", right:"P", label:"R / P", leftName:"安定型", rightName:"情熱型" },
-      { left:"O", right:"E", label:"O / E", leftName:"自由型", rightName:"誠実型" }
-    ];
-
-    let current = 0;
-    let answers = [];
-    let scores = { L:0, F:0, C:0, A:0, R:0, P:0, O:0, E:0 };
-    let latestResult = null;
-
-    function showScreen(id) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      window.scrollTo({ top:0, behavior:'smooth' });
-    }
-
-    function startQuiz() {
-      current = 0;
-      answers = [];
-      scores = { L:0, F:0, C:0, A:0, R:0, P:0, O:0, E:0 };
-      showScreen('quizScreen');
-      renderQuestion();
-    }
-
-    function resetQuiz() { startQuiz(); }
-    function goStart() { showScreen('startScreen'); }
-
-    function renderQuestion() {
-      const q = questions[current];
-      document.getElementById('questionCount').textContent = `${current + 1} / ${questions.length}`;
-      document.getElementById('bar').style.width = `${(current / questions.length) * 100}%`;
-      document.getElementById('questionTitle').textContent = q.text;
-
-      const options = document.getElementById('options');
-      options.innerHTML = '';
-      q.options.forEach((opt, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'option';
-        btn.innerHTML = `
-          <div class="option-inner">
-            <span class="option-icon">${opt.icon}</span>
-            <div>
-              <b>${opt.label}</b>
-              <small>${opt.note}</small>
-            </div>
-          </div>
-        `;
-        btn.onclick = () => selectOption(index);
-        options.appendChild(btn);
-      });
-    }
-
-    function selectOption(index) {
-      answers[current] = questions[current].options[index];
-      if (current < questions.length - 1) {
-        current++;
-        renderQuestion();
-      } else {
-        calculateResult();
-      }
-    }
-
-    function prevQuestion() {
-      if (current === 0) {
-        goStart();
-        return;
-      }
-      current--;
-      answers = answers.slice(0, current);
-      recalcScores();
-      renderQuestion();
-    }
-
-    function recalcScores() {
-      scores = { L:0, F:0, C:0, A:0, R:0, P:0, O:0, E:0 };
-      answers.forEach(ans => {
-        if (ans) scores[ans.axis] += ans.point;
-      });
-    }
-
-    function calculateResult() {
-      recalcScores();
-      const code = [
-        scores.L >= scores.F ? "L" : "F",
-        scores.C >= scores.A ? "C" : "A",
-        scores.R >= scores.P ? "R" : "P",
-        scores.O >= scores.E ? "O" : "E"
-      ].join("");
-
-      latestResult = { code, ...typeData[code] };
-      renderResult(latestResult);
-      showScreen('resultScreen');
-      document.getElementById('bar').style.width = '100%';
-
-      const url = new URL(location.href);
-      url.searchParams.set('type', code);
-      window.history.replaceState({}, '', url);
-    }
-
-    function renderResult(result) {
-      document.getElementById('resultDog').innerHTML = dogSvg(result.code, false);
-      document.getElementById('resultTitle').textContent = result.dog;
-      document.getElementById('resultCode').textContent = `${result.code}｜${result.dog}`;
-      document.getElementById('resultSubtitle').textContent = result.tagline;
-      document.getElementById('resultDescription').textContent = result.description;
-      document.getElementById('magicWord').textContent = result.magic;
-      document.getElementById('weakPoint').textContent = result.weak;
-
-      const stack = document.getElementById('typeStack');
-      stack.innerHTML = '';
-      result.code.split('').forEach(letter => {
-        const a = axisInfo[letter];
-        const div = document.createElement('div');
-        div.className = 'type-chip';
-        div.innerHTML = `<b>${letter}：${a.name}</b><span>${a.desc}</span>`;
-        stack.appendChild(div);
-      });
-
-      const traits = document.getElementById('resultTraits');
-      traits.innerHTML = '';
-      result.traits.forEach(t => {
-        const li = document.createElement('li');
-        li.textContent = t;
-        traits.appendChild(li);
-      });
-
-      const compatibility = document.getElementById('compatibility');
-      compatibility.innerHTML = '';
-      result.good.forEach(code => {
-        const type = typeData[code];
-        const div = document.createElement('div');
-        div.className = 'compat-box';
-        div.innerHTML = `<b>${code}｜${type.dog}</b><span>${type.tagline}</span>`;
-        compatibility.appendChild(div);
-      });
-
-      const axisList = document.getElementById('axisList');
-      axisList.innerHTML = '';
-      axisPairs.forEach(pair => {
-        const leftScore = scores[pair.left];
-        const rightScore = scores[pair.right];
-        const total = Math.max(leftScore + rightScore, 1);
-        const percent = Math.round(leftScore / total * 100);
-        const winnerLetter = leftScore >= rightScore ? pair.left : pair.right;
-        const winnerName = leftScore >= rightScore ? pair.leftName : pair.rightName;
-        const div = document.createElement('div');
-        div.className = 'axis-item';
-        div.innerHTML = `
-          <div class="axis-top">
-            <div class="axis-code">${pair.label}</div>
-            <div class="axis-pair-name">${pair.leftName} / ${pair.rightName}</div>
-          </div>
-          <div class="axis-winner">あなたは ${winnerLetter}：${winnerName}</div>
-          <div class="meter"><div class="fill" style="width:${percent}%"></div></div>
-          <div class="axis-scale">
-            <span>${pair.left}：${pair.leftName}</span>
-            <span class="axis-center">50%</span>
-            <span>${pair.right}：${pair.rightName}</span>
-          </div>
-        `;
-        axisList.appendChild(div);
-      });
-
-      document.title = `${result.code}｜${result.dog}｜恋する犬タイプ診断`;
-    }
-
-    function showTypeList() {
-      const list = document.getElementById('typeList');
-      list.innerHTML = '';
-      Object.entries(typeData).forEach(([code, type]) => {
-        const div = document.createElement('div');
-        div.className = 'type-card';
-        div.innerHTML = `
-          <div>${dogSvg(code, true)}</div>
-          <div>
-            <h3>${type.dog}</h3>
-            <p><b>${code}</b><br>${type.tagline}</p>
-          </div>
-        `;
-        list.appendChild(div);
-      });
-      showScreen('typeListScreen');
-    }
-
-    function shareX() {
-      if (!latestResult) return;
-      const text = `私の恋愛タイプは「${latestResult.code}｜${latestResult.dog}」でした！\n${latestResult.tagline}\nあなたは何犬？\n#恋する犬タイプ診断`;
-      const shareUrl = `${location.origin}${location.pathname}?type=${latestResult.code}`;
-      const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
-      window.open(xUrl, '_blank', 'noopener,noreferrer');
-    }
-
-    async function copyResult() {
-      if (!latestResult) return;
-      const text = `恋する犬タイプ診断\n私の結果：${latestResult.code}｜${latestResult.dog}\n${latestResult.tagline}\n${latestResult.description}\n#恋する犬タイプ診断`;
-      try {
-        await navigator.clipboard.writeText(text);
-        alert('結果をコピーしました！');
-      } catch(e) {
-        alert('コピーに失敗しました。');
-      }
-    }
-
-    function loadFromUrl() {
-      const code = new URLSearchParams(location.search).get('type');
-      if (code && typeData[code]) {
-        scores = { L:1, F:1, C:1, A:1, R:1, P:1, O:1, E:1 };
-        latestResult = { code, ...typeData[code] };
-        renderResult(latestResult);
-        showScreen('resultScreen');
-      }
-    }
-
-    function dogSvg(code, tiny=false) {
-      const s = dogStyle[code] || dogStyle.LCRO;
-      const cls = tiny ? 'tiny-dog' : 'dog-svg';
-      const ears = dogEars(s.type, s.ear);
-      const deco = dogDeco(s.deco, s.decoColor);
-      const extra = dogExtra(code, s);
-      return `
-        <svg class="${cls}" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="cute dog">
-          <ellipse cx="140" cy="236" rx="70" ry="17" fill="rgba(238,95,154,.10)"/>
-          <path d="M78 206 C50 198 42 172 57 151 C66 138 82 137 91 149" fill="${s.base}" opacity=".96"/>
-          <path d="M189 148 C216 126 246 141 243 168 C239 196 207 204 187 185" fill="${s.base}" opacity=".96"/>
-          <path d="M222 158 C232 154 240 158 244 166" stroke="#5b3f49" stroke-width="8" stroke-linecap="round" fill="none" opacity=".14"/>
-          ${ears}
-          <circle cx="140" cy="130" r="78" fill="${s.base}"/>
-          ${extra}
-          <ellipse cx="140" cy="156" rx="48" ry="38" fill="${s.sub}"/>
-          <circle cx="105" cy="126" r="13" fill="#2f252a"/>
-          <circle cx="175" cy="126" r="13" fill="#2f252a"/>
-          <circle cx="101" cy="121" r="3.3" fill="#fff"/>
-          <circle cx="171" cy="121" r="3.3" fill="#fff"/>
-          <ellipse cx="140" cy="148" rx="14" ry="10" fill="#3a3034"/>
-          <path d="M138 157 C132 166 122 171 111 170" stroke="#4e3b42" stroke-width="5" stroke-linecap="round" fill="none"/>
-          <path d="M142 157 C148 166 158 171 169 170" stroke="#4e3b42" stroke-width="5" stroke-linecap="round" fill="none"/>
-          <ellipse cx="88" cy="150" rx="14" ry="10" fill="#ff9fc2" opacity=".68"/>
-          <ellipse cx="192" cy="150" rx="14" ry="10" fill="#ff9fc2" opacity=".68"/>
-          <path d="M106 70 C116 56 132 53 144 58" stroke="rgba(255,255,255,.24)" stroke-width="8" stroke-linecap="round" fill="none"/>
-          <path d="M104 209 C103 226 116 238 134 232" stroke="${s.base}" stroke-width="18" stroke-linecap="round" fill="none"/>
-          <path d="M176 209 C177 226 164 238 146 232" stroke="${s.base}" stroke-width="18" stroke-linecap="round" fill="none"/>
-          ${deco}
-        </svg>
-      `;
-    }
-
-    function dogEars(type, color) {
-      if (type === "pointy") {
-        return `<path d="M84 91 Q72 38 111 70 Q104 91 91 110 Z" fill="${color}"/>
-                <path d="M196 91 Q208 38 169 70 Q176 91 189 110 Z" fill="${color}"/>
-                <path d="M88 82 Q83 56 103 72" fill="#ff9cae" opacity=".65"/>
-                <path d="M192 82 Q197 56 177 72" fill="#ff9cae" opacity=".65"/>`;
-      }
-      if (type === "drop") {
-        return `<path d="M91 88 Q54 84 57 132 Q61 173 99 148 Z" fill="${color}"/>
-                <path d="M189 88 Q226 84 223 132 Q219 173 181 148 Z" fill="${color}"/>`;
-      }
-      if (type === "long") {
-        return `<path d="M92 86 Q50 85 48 142 Q48 191 91 170 Q103 128 92 86 Z" fill="${color}"/>
-                <path d="M188 86 Q230 85 232 142 Q232 191 189 170 Q177 128 188 86 Z" fill="${color}"/>`;
-      }
-      if (type === "bat") {
-        return `<path d="M88 87 Q44 46 66 126 Q81 103 98 106 Z" fill="${color}"/>
-                <path d="M192 87 Q236 46 214 126 Q199 103 182 106 Z" fill="${color}"/>
-                <path d="M76 85 Q63 66 68 106" fill="#ff9cae" opacity=".65"/>
-                <path d="M204 85 Q217 66 212 106" fill="#ff9cae" opacity=".65"/>`;
-      }
-      if (type === "curly") {
-        return `<path d="M89 91 Q58 65 76 114 Q58 136 91 151 Q111 125 99 95 Z" fill="${color}"/>
-                <path d="M191 91 Q222 65 204 114 Q222 136 189 151 Q169 125 181 95 Z" fill="${color}"/>`;
-      }
-      return `<path d="M91 89 Q62 56 78 114 Q61 131 91 149 Q110 123 101 94 Z" fill="${color}"/>
-              <path d="M189 89 Q218 56 202 114 Q219 131 189 149 Q170 123 179 94 Z" fill="${color}"/>`;
-    }
-
-    function dogDeco(type, color) {
-      if (type === "bow") {
-        return `<g transform="translate(140 208)">
-          <circle cx="0" cy="0" r="8" fill="${color}"/>
-          <path d="M-8 0 C-30 -17 -38 -1 -22 12 C-13 10 -10 6 -8 0 Z" fill="${color}"/>
-          <path d="M8 0 C30 -17 38 -1 22 12 C13 10 10 6 8 0 Z" fill="${color}"/>
-        </g>`;
-      }
-      if (type === "collar") {
-        return `<g transform="translate(140 205)">
-          <rect x="-42" y="-6" width="84" height="13" rx="7" fill="${color}"/>
-          <circle cx="0" cy="13" r="7" fill="#ffd45c"/>
-        </g>`;
-      }
-      if (type === "heart") {
-        return `<path d="M140 222 C120 208 110 196 110 184 C110 175 117 169 126 169 C133 169 138 174 140 181 C142 174 147 169 154 169 C163 169 170 175 170 184 C170 196 160 208 140 222 Z" fill="${color}"/>`;
-      }
-      if (type === "star") {
-        return `<path d="M140 190 L146 204 L162 204 L149 213 L154 229 L140 220 L126 229 L131 213 L118 204 L134 204 Z" fill="${color}"/>`;
-      }
-      if (type === "ribbon") {
-        return `<g transform="translate(140 207)">
-          <circle cx="0" cy="0" r="8" fill="${color}"/>
-          <path d="M-5 7 L-17 29 L-3 21 L5 29 L3 9 Z" fill="${color}"/>
-          <path d="M5 7 L17 29 L3 21 L-5 29 L-3 9 Z" fill="${color}" opacity=".9"/>
-        </g>`;
-      }
-      if (type === "scarf") {
-        return `<path d="M95 202 C120 216 160 217 187 202" stroke="${color}" stroke-width="16" stroke-linecap="round" fill="none"/>
-                <path d="M168 209 L190 235" stroke="${color}" stroke-width="15" stroke-linecap="round"/>`;
-      }
-      return "";
-    }
-
-    function dogExtra(code, s) {
-      if (code === "FAPE") {
-        return `<path d="M92 75 C112 48 154 45 185 74 C169 68 154 69 140 75 C122 64 106 66 92 75 Z" fill="#fff" opacity=".95"/>
-                <path d="M117 67 C111 92 105 107 92 125" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".95"/>`;
-      }
-      if (code === "FAPO") {
-        return `<path d="M88 81 C108 57 131 55 140 72 C150 55 173 57 193 81 C175 76 158 76 140 86 C122 76 105 76 88 81 Z" fill="#eef8ff" opacity=".9"/>`;
-      }
-      if (code === "LCPO") {
-        return `<circle cx="92" cy="86" r="14" fill="${s.base}"/>
-                <circle cx="113" cy="64" r="13" fill="${s.base}"/>
-                <circle cx="140" cy="55" r="14" fill="${s.base}"/>
-                <circle cx="167" cy="64" r="13" fill="${s.base}"/>
-                <circle cx="188" cy="86" r="14" fill="${s.base}"/>`;
-      }
-      return "";
-    }
-
-    document.getElementById('heroDog').innerHTML = dogSvg('LCRO');
-    loadFromUrl();
+    const axisInfo={L:{pair:"L / F",name:"リード型",desc:"好きな人に対して、自分から連絡したり誘ったりしやすいタイプ。"},F:{pair:"L / F",name:"寄り添い型",desc:"相手の反応や空気を見ながら、ゆっくり距離を縮めるタイプ。"},C:{pair:"C / A",name:"甘えたい型",desc:"好きな人にはかまってほしい、好きを言葉や態度で感じたいタイプ。"},A:{pair:"C / A",name:"受け止めたい型",desc:"恋人を安心させたり、話を聞いたり、包み込む愛情が出やすいタイプ。"},R:{pair:"R / P",name:"安定型",desc:"ときめきだけでなく、価値観や生活感、将来性を大切にするタイプ。"},P:{pair:"R / P",name:"情熱型",desc:"恋の高揚感や好きという感情の強さを大切にするタイプ。"},O:{pair:"O / E",name:"自由型",desc:"恋人同士でも、お互いの時間や自由を大切にしたいタイプ。"},E:{pair:"O / E",name:"誠実型",desc:"毎日の連絡や向き合う時間、大切にされている実感を重視するタイプ。"}};
+    function make4(question, iconA, leftStrong, leftWeak, rightWeak, rightStrong, leftAxis, rightAxis){return{text:question,options:[{label:leftStrong,note:`${axisInfo[leftAxis].name}がかなり強め`,axis:leftAxis,point:2,icon:iconA},{label:leftWeak,note:`${axisInfo[leftAxis].name}寄りだけど控えめ`,axis:leftAxis,point:1,icon:"🌷"},{label:rightWeak,note:`${axisInfo[rightAxis].name}寄りだけど控えめ`,axis:rightAxis,point:1,icon:"🍀"},{label:rightStrong,note:`${axisInfo[rightAxis].name}がかなり強め`,axis:rightAxis,point:2,icon:"💫"}]};}
+    const questions=[make4("好きな人ができたとき、あなたはどっち寄り？","💌","かなり自分から動く。気になったら誘う","どちらかといえば自分から動く","どちらかといえば相手の様子を見る","かなり慎重。相手の反応を見ながら近づく","L","F"),make4("付き合ったら、どっちの自分が出やすい？","💞","かなり甘えたい。かまってほしい","どちらかといえば甘えたい","どちらかといえば支えたい","かなり支えたい。相手を安心させたい","C","A"),make4("理想の恋愛に近いのは？","🏡","安定感が最優先。安心できる恋がいい","どちらかといえば安心感重視","どちらかといえばときめき重視","ドキドキ最優先。感情が動く恋がいい","R","P"),make4("恋人との距離感は？","🪽","かなり自由でいたい。自分の時間も大事","どちらかといえば自由な距離感が好き","どちらかといえば密に向き合いたい","かなり一途な関係がいい。ちゃんと向き合いたい","O","E"),make4("デートの予定を決めるときは？","🗓️","ほぼ自分が引っ張って決める","候補を出すなど少しリードする","相手に合わせることが多い","ほぼ相手に合わせて決める","L","F"),make4("疲れている日に恋人から会いたいと言われたら？","🫶","自分も会って甘えたいと思う","少しなら会って癒されたい","相手が寂しいなら合わせたい","自分より相手を優先して支えたい","C","A"),make4("恋愛で一番イヤなのは？","📎","将来や生活感が見えないことがかなりイヤ","どちらかといえば不安定さがイヤ","どちらかといえば熱量の低さがイヤ","好きなのに盛り上がらないのがかなりイヤ","R","P"),make4("恋人への連絡頻度は？","💬","毎日じゃなくても平気。自由でいたい","どちらかといえばマイペースでOK","どちらかといえば毎日つながりたい","毎日しっかりやり取りしたい","O","E"),make4("恋の駆け引きについてどう思う？","🎯","多少は使う。自分から流れを作りたい","少しなら駆け引きもあり","できれば素直に向き合いたい","駆け引きは苦手。相手に合わせて自然体がいい","L","F"),make4("恋人に褒められるなら？","💗","かわいい・会いたいって言われるのが最強","愛情表現をもらえるとうれしい","信頼できる・落ち着くがうれしい","頼れる・支えになると言われるのが最強","C","A"),make4("付き合う前に重視するのは？","📝","価値観や生活感をかなり重視する","どちらかといえば相性や安定感重視","どちらかといえば高揚感重視","一緒にいてときめくかが最重要","R","P"),make4("恋人が友達と遊びに行くときは？","🌼","全然平気。自由に楽しんでほしい","少し気になるけど基本は平気","どちらかといえばちょっと不安","かなり気になる。大切だからこそ安心したい","O","E"),make4("告白されるより、告白する方が？","🎀","自分から行く方がしっくりくる","タイミング次第で自分からもいける","どちらかといえば相手から来てほしい","かなり相手から来てほしい","L","F"),make4("恋人にしてしまいがちなことは？","🫧","寂しいとかなり甘えたり試したりする","少し甘えたくなりやすい","相手に寄り添いすぎることがある","かなり相手の問題まで背負いがち","C","A"),make4("記念日やイベントは？","🎁","無理のない範囲で大事にしたい","どちらかといえば落ち着いた祝い方が好き","どちらかといえば盛り上げたい","かなり特別感を出したい","R","P"),make4("恋愛で一番ほしいものは？","☁️","気楽さと心地よい距離感","どちらかといえば自由で自然な空気","どちらかといえば安心感と一途さ","かなり一途さと大切にされる実感がほしい","O","E"),make4("喧嘩したときは？","🗨️","早めに話して主導して解決したい","どちらかといえば自分から話したい","どちらかといえば相手の様子を見たい","少し落ち着いてから相手に寄り添って話したい","L","F"),make4("相手が落ち込んでいるときは？","🩷","そばにいて甘え合いたい","近くで寄り添ってほしい","相手の話を聞いてあげたい","しっかり支えて受け止めたい","C","A"),make4("恋愛の始まり方で好きなのは？","🌿","自然に仲良くなって安心して付き合いたい","どちらかといえばじわじわ好きになりたい","どちらかといえば一気に惹かれたい","燃え上がるような恋の始まりが好き","R","P"),make4("恋人に言われて一番うれしいのは？","🎵","一緒にいても気楽でいられるね","自然体でいられるのがうれしい","これからも一緒にいたいね","ずっと大事にしたいって言われたい","O","E")];
+    const typeData={LCRO:{dog:"ポメラニアン",tagline:"リード型 × 甘えたい型 × 安定型 × 自由型",description:"自分から恋を進める力がありつつ、好きな人にはしっかり甘えたいタイプ。安定した関係を好みますが、束縛されすぎるのは苦手です。明るくかわいげがあり、相手を自然に夢中にさせます。",traits:["距離を縮めるのが早い","好きな人にはわかりやすく懐く","自由そうに見えて意外と現実的"],good:["FAPE","FCRE"],magic:"かわいいだけじゃなくて、ちゃんと大事にしたい。",weak:"相手を試しすぎると、本音が伝わる前に誤解されます。"},LCRE:{dog:"柴犬",tagline:"リード型 × 甘えたい型 × 安定型 × 誠実型",description:"自分のペースで恋を進めながら、内側では一途に愛情を求めるタイプ。軽いノリより信頼を重視し、好きな人には不器用に甘えるところがあります。",traits:["好き嫌いがはっきりしている","信頼するまで時間がかかる","恋人には意外と甘えたい"],good:["FARE","FCPE"],magic:"不器用なところも含めて好き。",weak:"素直になるタイミングを逃すと、冷たい人に見られがちです。"},LCPO:{dog:"トイプードル",tagline:"リード型 × 甘えたい型 × 情熱型 × 自由型",description:"恋の空気を明るくできる華やかなタイプ。自分から楽しい流れを作り、好きな人には甘えたい気持ちも強め。ときめきと自由な距離感を大切にします。",traits:["会話とノリで距離を縮める","恋愛のイベント感が好き","寂しいと急にかまってモードになる"],good:["FARE","FARO"],magic:"一緒にいると毎日かわいい。",weak:"刺激を求めすぎると、安定した相手を退屈に感じます。"},LCPE:{dog:"チワワ",tagline:"リード型 × 甘えたい型 × 情熱型 × 誠実型",description:"好きになったらかなり一直線。自分から気持ちを動かしつつ、相手からの愛情表現も強く求めます。曖昧な関係より、ちゃんと向き合う恋が向いています。",traits:["連絡が来ないと考えすぎる","好きな人には全力で懐く","愛情表現が少ない相手は苦手"],good:["FARE","LARE"],magic:"不安にさせないよ。ちゃんと好きだよ。",weak:"不安なときほど、確認ではなくお願いの形で伝えると愛されやすいです。"},LARO:{dog:"ゴールデンレトリバー",tagline:"リード型 × 受け止めたい型 × 安定型 × 自由型",description:"明るく頼れて、相手を楽しませるのが上手なタイプ。恋愛でも主導権を握りつつ、相手の気持ちを受け止めます。重くなりすぎない関係が得意です。",traits:["恋人を元気にする力がある","面倒見がよく頼られやすい","束縛されると少し窮屈"],good:["FCRE","FCPO"],magic:"あなたといると前向きになれる。",weak:"強く見えるぶん、弱音を出すのが遅れがちです。"},LARE:{dog:"秋田犬",tagline:"リード型 × 受け止めたい型 × 安定型 × 誠実型",description:"大切な人を守りたい気持ちが強い誠実タイプ。恋愛を軽く扱わず、付き合うなら長く深く向き合いたい派です。頼れる反面、ひとりで抱え込みやすいところもあります。",traits:["一度好きになると簡単には離れない","相手のために頑張りすぎる","誠実さのない相手には冷める"],good:["FCPE","LCPE"],magic:"あなたがいると安心する。",weak:"守る恋だけでなく、頼る恋も覚えると関係が柔らかくなります。"},LAPO:{dog:"ビーグル",tagline:"リード型 × 受け止めたい型 × 情熱型 × 自由型",description:"恋愛を明るく楽しく進めるムードメーカー。自分から誘えて、相手の気分も上げられます。深刻すぎる関係より、一緒に笑えて刺激のある関係で魅力が出ます。",traits:["デートの提案が得意","マンネリが苦手","相手を楽しませようと頑張る"],good:["FCPO","FARO"],magic:"次はどこ行く？一緒なら何でも楽しそう。",weak:"楽しい雰囲気でごまかさず、たまには真面目な話もすると信頼が深まります。"},LAPE:{dog:"ドーベルマン",tagline:"リード型 × 受け止めたい型 × 情熱型 × 誠実型",description:"本気になったらまっすぐ向き合う情熱タイプ。好きな人を守りたい気持ちが強く、相手から見ると心強い存在です。ただし独占欲が強く出ることもあります。",traits:["好きな人には全力で尽くす","曖昧な態度が苦手","恋人を守りたい気持ちが強い"],good:["FCPE","FAPE"],magic:"本気で向き合ってくれるところが好き。",weak:"正しさで押すより、相手のペースを待つ余白があると愛が伝わります。"},FCRO:{dog:"ミニチュアダックス",tagline:"寄り添い型 × 甘えたい型 × 安定型 × 自由型",description:"相手に合わせながら、やわらかく距離を縮めるタイプ。安心できる恋愛を好み、無理に主導権を握ろうとはしません。甘え上手で、穏やかな関係に強いです。",traits:["空気を読むのがうまい","安心できる相手にだけ甘える","強引な相手には疲れやすい"],good:["LARO","LCRO"],magic:"そのままでいてくれるだけで落ち着く。",weak:"合わせすぎると本音が見えなくなるので、小さな希望は早めに出すのが吉。"},FCRE:{dog:"マルチーズ",tagline:"寄り添い型 × 甘えたい型 × 安定型 × 誠実型",description:"やさしくて、好きな人に対してかなり一途。自分から強く押すより、相手の愛情を感じながら心を開いていきます。安心感のある相手には深く懐きます。",traits:["愛情表現を大事にする","不安になると黙りがち","長く大切にされたい"],good:["LARO","LCRO"],magic:"ちゃんと大切にするから安心して。",weak:"我慢して察してもらうより、寂しいを言葉にすると関係が安定します。"},FCPO:{dog:"フレンチブルドッグ",tagline:"寄り添い型 × 甘えたい型 × 情熱型 × 自由型",description:"恋愛に楽しさとスキンシップを求めるタイプ。相手に合わせる柔らかさがありながら、好きな人にはかなり甘えます。笑える関係だとどんどん魅力が出ます。",traits:["好きな人の前で素が出る","重すぎる空気が苦手","甘やかされるとすぐ懐く"],good:["LAPO","LARO"],magic:"一緒にいるとなんか癒される。",weak:"楽しいだけで流さず、大事な話はちゃんと向き合うと長続きします。"},FCPE:{dog:"キャバリア",tagline:"寄り添い型 × 甘えたい型 × 情熱型 × 誠実型",description:"好きな人にまっすぐ懐く、王道の愛されタイプ。ときめきも一途さも大切にします。愛情を返してくれる相手とは深くつながれますが、雑な相手には傷つきやすいです。",traits:["好きが表情に出やすい","恋人中心になりやすい","安心できる言葉に弱い"],good:["LARE","LAPE"],magic:"ずっと隣にいてほしい。",weak:"相手優先にしすぎると苦しくなるので、自分の予定も大切に。"},FARO:{dog:"コーギー",tagline:"寄り添い型 × 受け止めたい型 × 安定型 × 自由型",description:"相手に合わせながらも、関係を明るく保つのが得意。恋人を支える力があり、自由な空気も大事にします。友達みたいな恋人関係で魅力が伸びます。",traits:["恋人の味方でいるのが得意","重すぎる束縛は苦手","日常の小さな楽しみを作れる"],good:["LCPO","LAPO"],magic:"味方でいてくれてありがとう。",weak:"平気なふりをしすぎると、いつの間にか疲れが溜まります。"},FARE:{dog:"ラブラドール",tagline:"寄り添い型 × 受け止めたい型 × 安定型 × 誠実型",description:"恋人を大切に支える、信頼感の強いタイプ。派手な駆け引きより、日々のやさしさを積み重ねる恋愛が向いています。誠実な相手と組むと最強です。",traits:["相手の変化に気づきやすい","長期的な関係を大事にする","頼られると頑張りすぎる"],good:["LCRE","LCPE"],magic:"あなたのやさしさに救われてる。",weak:"尽くすだけではなく、受け取ることも恋愛の一部です。"},FAPO:{dog:"シベリアンハスキー",tagline:"寄り添い型 × 受け止めたい型 × 情熱型 × 自由型",description:"好きな人を大切にしつつ、自分の世界も大事にするタイプ。感情が動く恋が好きで、束縛されすぎると逃げたくなります。自由を認めてくれる相手と好相性です。",traits:["好きでも一人時間が必要","刺激のある関係が好き","押しつけられると反発する"],good:["LCPO","LAPO"],magic:"自由なところも含めて好き。",weak:"自由を守るほど、安心させる言葉もセットで渡すと関係が安定します。"},FAPE:{dog:"ボーダーコリー",tagline:"寄り添い型 × 受け止めたい型 × 情熱型 × 誠実型",description:"相手に合わせながらも、内側にはかなり強い愛情を持つタイプ。恋愛を真剣に考え、好きな人のために努力できます。言葉より行動で愛を示しがちです。",traits:["相手のために改善しようとする","恋愛に手を抜けない","本気の相手にはかなり一途"],good:["LCRO","LAPE"],magic:"ちゃんと見てるよ。努力してくれてありがとう。",weak:"完璧に頑張ろうとしすぎると、恋が修行になります。"}};
+    const dogStyle={LCRO:{base:"#F6D88C",cream:"#FFF3D8",inner:"#F6C972",earType:"fluffy",tail:"pom",blush:"#f6b4b4",deco:"bow",decoColor:"#ff8fbd"},LCRE:{base:"#E18A3A",cream:"#FFF0D4",inner:"#FFD7AA",earType:"pointy",tail:"curl",blush:"#f5b2aa",deco:"collar",decoColor:"#ff7faf"},LCPO:{base:"#C7A27E",cream:"#F8E7D5",inner:"#E8C9AE",earType:"round",tail:"pom",blush:"#f5b5ba",deco:"bow",decoColor:"#cfa8ff"},LCPE:{base:"#F1C99F",cream:"#FFF0DB",inner:"#F7D8B9",earType:"pointy",tail:"curl",blush:"#f7b7b2",deco:"heart",decoColor:"#ff7faf"},LARO:{base:"#F1CF86",cream:"#FFF2D3",inner:"#F1D89B",earType:"drop",tail:"wag",blush:"#f5b5aa",deco:"scarf",decoColor:"#86decc"},LARE:{base:"#CC8D5A",cream:"#F8E5D1",inner:"#EDC19D",earType:"pointy",tail:"curl",blush:"#f3b1a8",deco:"collar",decoColor:"#89dec9"},LAPO:{base:"#E4A55A",cream:"#FFEACD",inner:"#F1C580",earType:"drop",tail:"wag",blush:"#f6b2b8",deco:"star",decoColor:"#ff9ac2"},LAPE:{base:"#3D3028",cream:"#F2E7D6",inner:"#E8D4B8",earType:"pointy",tail:"curl",blush:"#efb7b0",deco:"heart",decoColor:"#ff7faf"},FCRO:{base:"#B98346",cream:"#FFF0D3",inner:"#E6C394",earType:"long",tail:"long",blush:"#f2b6ae",deco:"ribbon",decoColor:"#ffd978"},FCRE:{base:"#F8F6EF",cream:"#FFF8EC",inner:"#F0E8D9",earType:"fluffy",tail:"pom",blush:"#f8b8c4",deco:"bow",decoColor:"#ff8fbd"},FCPO:{base:"#F0C3A4",cream:"#FFEBD8",inner:"#F1D3BF",earType:"bat",tail:"short",blush:"#f3b1b3",deco:"heart",decoColor:"#cfa8ff"},FCPE:{base:"#EBC2A8",cream:"#FFF0E2",inner:"#F3D2BC",earType:"long",tail:"long",blush:"#f4b9b4",deco:"ribbon",decoColor:"#ff9ac2"},FARO:{base:"#D48C3E",cream:"#FFE4B8",inner:"#EFB25A",earType:"pointy",tail:"short",blush:"#f2b3b0",deco:"star",decoColor:"#82dec9"},FARE:{base:"#EAD08A",cream:"#FFF1D1",inner:"#E7C26F",earType:"drop",tail:"wag",blush:"#f4b5b2",deco:"collar",decoColor:"#7ee0cf"},FAPO:{base:"#94A3B3",cream:"#ECF4F8",inner:"#CCD8E2",earType:"pointy",tail:"curl",blush:"#f3b8c0",deco:"star",decoColor:"#7bc9ff"},FAPE:{base:"#2C2A2A",cream:"#F5EFE4",inner:"#E3D8C6",earType:"pointy",tail:"long",blush:"#efb5b8",deco:"collar",decoColor:"#82dec9"}};
+    const axisPairs=[{left:"L",right:"F",label:"L / F",leftName:"リード型",rightName:"寄り添い型"},{left:"C",right:"A",label:"C / A",leftName:"甘えたい型",rightName:"受け止めたい型"},{left:"R",right:"P",label:"R / P",leftName:"安定型",rightName:"情熱型"},{left:"O",right:"E",label:"O / E",leftName:"自由型",rightName:"誠実型"}];
+    let current=0, answers=[], scores={L:0,F:0,C:0,A:0,R:0,P:0,O:0,E:0}, latestResult=null;
+    function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'});}
+    function startQuiz(){current=0; answers=[]; scores={L:0,F:0,C:0,A:0,R:0,P:0,O:0,E:0}; showScreen('quizScreen'); renderQuestion();}
+    function resetQuiz(){startQuiz();} function goStart(){showScreen('startScreen');}
+    function renderQuestion(){const q=questions[current]; document.getElementById('questionCount').textContent=`${current+1} / ${questions.length}`; document.getElementById('bar').style.width=`${(current/questions.length)*100}%`; document.getElementById('questionTitle').textContent=q.text; const options=document.getElementById('options'); options.innerHTML=''; q.options.forEach((opt,index)=>{const btn=document.createElement('button'); btn.className='option'; btn.innerHTML=`<div class="option-inner"><span class="option-icon">${opt.icon}</span><div><b>${opt.label}</b><small>${opt.note}</small></div></div>`; btn.onclick=()=>selectOption(index); options.appendChild(btn);});}
+    function selectOption(index){answers[current]=questions[current].options[index]; if(current<questions.length-1){current++; renderQuestion();} else {calculateResult();}}
+    function prevQuestion(){if(current===0){goStart(); return;} current--; answers=answers.slice(0,current); recalcScores(); renderQuestion();}
+    function recalcScores(){scores={L:0,F:0,C:0,A:0,R:0,P:0,O:0,E:0}; answers.forEach(ans=>{if(ans) scores[ans.axis]+=ans.point;});}
+    function calculateResult(){recalcScores(); const code=[scores.L>=scores.F?"L":"F",scores.C>=scores.A?"C":"A",scores.R>=scores.P?"R":"P",scores.O>=scores.E?"O":"E"].join(''); latestResult={code,...typeData[code]}; renderResult(latestResult); showScreen('resultScreen'); const url=new URL(location.href); url.searchParams.set('type', code); window.history.replaceState({},'',url);}
+    function renderResult(result){document.getElementById('resultDog').innerHTML=dogSvg(result.code,false); document.getElementById('resultTitle').textContent=result.dog; document.getElementById('resultCode').textContent=`${result.code}｜${result.dog}`; document.getElementById('resultSubtitle').textContent=result.tagline; document.getElementById('resultDescription').textContent=result.description; document.getElementById('magicWord').textContent=result.magic; document.getElementById('weakPoint').textContent=result.weak; const stack=document.getElementById('typeStack'); stack.innerHTML=''; result.code.split('').forEach(letter=>{const a=axisInfo[letter]; const div=document.createElement('div'); div.className='type-chip'; div.innerHTML=`<b>${letter}：${a.name}</b><span>${a.desc}</span>`; stack.appendChild(div);}); const traits=document.getElementById('resultTraits'); traits.innerHTML=''; result.traits.forEach(t=>{const li=document.createElement('li'); li.textContent=t; traits.appendChild(li);}); const compatibility=document.getElementById('compatibility'); compatibility.innerHTML=''; result.good.forEach(code=>{const type=typeData[code]; const div=document.createElement('div'); div.className='compat-box'; div.innerHTML=`<b>${code}｜${type.dog}</b><span>${type.tagline}</span>`; compatibility.appendChild(div);}); const axisList=document.getElementById('axisList'); axisList.innerHTML=''; axisPairs.forEach(pair=>{const leftScore=scores[pair.left], rightScore=scores[pair.right], total=Math.max(leftScore+rightScore,1), percent=Math.round(leftScore/total*100), winnerLetter=leftScore>=rightScore?pair.left:pair.right, winnerName=leftScore>=rightScore?pair.leftName:pair.rightName; const div=document.createElement('div'); div.className='axis-item'; div.innerHTML=`<div class="axis-top"><div class="axis-code">${pair.label}</div><div class="axis-pair-name">${pair.leftName} / ${pair.rightName}</div></div><div class="axis-winner">あなたは ${winnerLetter}：${winnerName}</div><div class="meter"><div class="fill" style="width:${percent}%"></div></div><div class="axis-scale"><span>${pair.left}：${pair.leftName}</span><span class="axis-center">50%</span><span>${pair.right}：${pair.rightName}</span></div>`; axisList.appendChild(div);}); document.title=`${result.code}｜${result.dog}｜恋する犬タイプ診断`;}
+    function showTypeList(){const list=document.getElementById('typeList'); list.innerHTML=''; Object.entries(typeData).forEach(([code,type])=>{const div=document.createElement('div'); div.className='type-card'; div.innerHTML=`<div>${dogSvg(code,true)}</div><div><h3>${type.dog}</h3><p><b>${code}</b><br>${type.tagline}</p></div>`; list.appendChild(div);}); showScreen('typeListScreen');}
+    function shareX(){if(!latestResult) return; const text=`私の恋愛タイプは「${latestResult.code}｜${latestResult.dog}」でした！\n${latestResult.tagline}\nあなたは何犬？\n#恋する犬タイプ診断`; const shareUrl=`${location.origin}${location.pathname}?type=${latestResult.code}`; window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`,'_blank','noopener,noreferrer');}
+    async function copyResult(){if(!latestResult) return; const text=`恋する犬タイプ診断\n私の結果：${latestResult.code}｜${latestResult.dog}\n${latestResult.tagline}\n${latestResult.description}\n#恋する犬タイプ診断`; try{await navigator.clipboard.writeText(text); alert('結果をコピーしました！');}catch(e){alert('コピーに失敗しました。');}}
+    function loadFromUrl(){const code=new URLSearchParams(location.search).get('type'); if(code&&typeData[code]){scores={L:1,F:1,C:1,A:1,R:1,P:1,O:1,E:1}; latestResult={code,...typeData[code]}; renderResult(latestResult); showScreen('resultScreen');}}
+    function dogSvg(code,tiny=false){const s=dogStyle[code]||dogStyle.LCRE; const cls=tiny?'tiny-dog':'dog-svg'; return `<svg class="${cls}" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-label="cute dog"><ellipse cx="160" cy="286" rx="88" ry="18" fill="rgba(120,100,90,.08)"/>${tailShape(s)}<path d="M116 180 C110 157 120 130 144 120 L211 120 C248 126 272 154 272 195 L272 236 C272 255 258 266 241 266 L126 266 C108 266 96 251 96 233 L96 192 C96 188 96 184 96 181 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6" stroke-linejoin="round"/>${bodyPatch(s)}${legShape()}${headShape(s)}${decoShape(s)}</svg>`;}
+    function tailShape(s){if(s.tail==='curl'){return `<path d="M226 139 C252 133 278 141 288 162 C297 181 293 204 278 216 C261 230 237 226 228 210 C220 195 229 177 244 177 C259 177 266 191 259 202" fill="none" stroke="#2f2723" stroke-width="8" stroke-linecap="round"/><path d="M228 144 C249 139 270 145 278 161 C284 173 282 190 271 199 C260 208 244 206 239 195 C235 185 240 178 249 178 C257 178 261 184 258 191" fill="none" stroke="${s.cream}" stroke-width="20" stroke-linecap="round"/><path d="M228 143 C249 138 270 145 278 160 C285 174 282 191 271 200 C260 210 244 207 239 196 C235 186 240 179 248 179 C257 179 261 184 258 191" fill="none" stroke="#2f2723" stroke-width="6" stroke-linecap="round"/>`;} if(s.tail==='pom'){return `<path d="M224 151 C244 132 271 134 283 154 C292 169 289 189 275 199 C261 209 241 205 232 192 C224 181 225 165 233 156" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M234 158 C250 146 267 149 273 161 C279 173 275 187 263 193 C251 198 239 194 233 184" fill="${s.cream}" stroke="#2f2723" stroke-width="5"/>`;} if(s.tail==='short'){return `<path d="M245 164 C262 156 277 158 284 171" fill="none" stroke="#2f2723" stroke-width="8" stroke-linecap="round"/>`;} if(s.tail==='long'){return `<path d="M232 152 C255 140 278 146 287 165 C295 181 291 200 275 212" fill="none" stroke="#2f2723" stroke-width="9" stroke-linecap="round"/>`;} return `<path d="M231 153 C255 144 278 153 285 171" fill="none" stroke="#2f2723" stroke-width="8" stroke-linecap="round"/>`;}
+    function bodyPatch(s){return `<path d="M138 127 C127 135 120 145 117 162 L118 224 C128 239 143 248 160 248 C179 248 193 239 202 224 L202 164 C199 145 189 132 177 124 Z" fill="${s.cream}" stroke="#2f2723" stroke-width="6" stroke-linejoin="round"/>`;}
+    function legShape(){return `<g fill="#fff8ec" stroke="#2f2723" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M102 230 L102 275 C102 283 108 288 116 288 L126 288 C134 288 139 283 139 275 L139 231 Z" /><path d="M145 231 L145 277 C145 284 150 288 158 288 L168 288 C176 288 181 283 181 275 L181 231 Z" /><path d="M198 226 L198 274 C198 282 204 288 213 288 L221 288 C229 288 235 282 235 274 L235 227 Z" /><path d="M240 221 L240 272 C240 281 246 288 255 288 L264 288 C272 288 278 281 278 272 L278 222 Z" /><path d="M111 288 Q114 278 118 288" /><path d="M121 288 Q124 278 128 288" /><path d="M154 288 Q157 278 161 288" /><path d="M164 288 Q167 278 171 288" /><path d="M208 288 Q211 278 215 288" /><path d="M218 288 Q221 278 225 288" /><path d="M249 288 Q252 278 256 288" /><path d="M259 288 Q262 278 266 288" /></g>`;}
+    function headShape(s){return `${earShape(s)}<path d="M83 64 C92 38 114 24 141 24 L176 24 C203 24 227 38 235 64 L242 86 C247 102 246 123 238 137 C223 166 196 184 160 186 C123 184 95 166 82 137 C74 123 73 102 78 86 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6" stroke-linejoin="round"/><path d="M105 112 C105 95 116 84 132 80 L188 80 C204 84 215 95 215 112 C215 147 190 170 160 171 C129 170 105 147 105 112 Z" fill="${s.cream}"/><ellipse cx="132" cy="114" rx="10" ry="8" fill="${s.inner}" opacity=".75"/><ellipse cx="188" cy="114" rx="10" ry="8" fill="${s.inner}" opacity=".75"/><ellipse cx="132" cy="132" rx="12" ry="15" fill="#2b201a"/><ellipse cx="188" cy="132" rx="12" ry="15" fill="#2b201a"/><ellipse cx="160" cy="148" rx="17" ry="14" fill="#2e241e"/><path d="M160 161 L160 179" stroke="#2e241e" stroke-width="7" stroke-linecap="round"/><path d="M160 178 C152 188 141 192 130 189" fill="none" stroke="#2e241e" stroke-width="7" stroke-linecap="round"/><path d="M160 178 C168 188 179 192 190 189" fill="none" stroke="#2e241e" stroke-width="7" stroke-linecap="round"/><ellipse cx="115" cy="154" rx="15" ry="17" fill="${s.blush}" opacity=".78"/><ellipse cx="205" cy="154" rx="15" ry="17" fill="${s.blush}" opacity=".78"/>`;}
+    function earShape(s){if(s.earType==='drop'){return `<path d="M95 66 C87 42 68 43 60 69 C56 84 60 101 73 111 L96 108 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M225 66 C233 42 252 43 260 69 C264 84 260 101 247 111 L224 108 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M84 69 C80 57 72 56 68 70 C66 79 68 89 75 96 Z" fill="${s.cream}"/><path d="M236 69 C240 57 248 56 252 70 C254 79 252 89 245 96 Z" fill="${s.cream}"/>`;}
+      if(s.earType==='long'){return `<path d="M95 67 C88 42 67 42 59 71 C54 90 57 117 75 132 L98 119 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M225 67 C232 42 253 42 261 71 C266 90 263 117 245 132 L222 119 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M84 70 C80 58 73 58 69 71 C66 83 68 100 78 110 Z" fill="${s.cream}"/><path d="M236 70 C240 58 247 58 251 71 C254 83 252 100 242 110 Z" fill="${s.cream}"/>`;}
+      if(s.earType==='bat'){return `<path d="M100 67 L82 24 Q70 9 63 29 L61 74 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6" stroke-linejoin="round"/><path d="M220 67 L238 24 Q250 9 257 29 L259 74 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6" stroke-linejoin="round"/><path d="M95 59 L84 34 Q77 24 73 37 L72 65 Z" fill="${s.cream}"/><path d="M225 59 L236 34 Q243 24 247 37 L248 65 Z" fill="${s.cream}"/>`;}
+      if(s.earType==='round'){return `<path d="M101 67 C96 37 72 37 64 60 C60 72 64 88 78 98 L101 92 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M219 67 C224 37 248 37 256 60 C260 72 256 88 242 98 L219 92 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M88 63 C85 52 77 50 72 61 C69 68 72 76 79 82 Z" fill="${s.cream}"/><path d="M232 63 C235 52 243 50 248 61 C251 68 248 76 241 82 Z" fill="${s.cream}"/>`;}
+      if(s.earType==='fluffy'){return `<path d="M100 67 C96 37 74 35 64 58 C58 72 62 92 80 105 L102 97 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M220 67 C224 37 246 35 256 58 C262 72 258 92 240 105 L218 97 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6"/><path d="M88 63 C84 50 75 50 70 61 C67 69 70 80 79 87 Z" fill="${s.cream}"/><path d="M232 63 C236 50 245 50 250 61 C253 69 250 80 241 87 Z" fill="${s.cream}"/>`;}
+      return `<path d="M101 67 L86 25 Q74 9 65 28 L63 72 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6" stroke-linejoin="round"/><path d="M219 67 L234 25 Q246 9 255 28 L257 72 Z" fill="${s.base}" stroke="#2f2723" stroke-width="6" stroke-linejoin="round"/><path d="M95 59 L85 36 Q79 24 73 37 L73 64 Z" fill="${s.cream}"/><path d="M225 59 L235 36 Q241 24 247 37 L247 64 Z" fill="${s.cream}"/>`;}
+    function decoShape(s){if(s.deco==='bow'){return `<g transform="translate(160 226)"><circle cx="0" cy="0" r="7" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3"/><path d="M-6 0 C-20 -12 -28 -4 -20 7 C-12 8 -8 5 -6 0 Z" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3"/><path d="M6 0 C20 -12 28 -4 20 7 C12 8 8 5 6 0 Z" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3"/></g>`;} if(s.deco==='collar'){return `<rect x="123" y="219" width="74" height="12" rx="6" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3"/><circle cx="160" cy="237" r="6" fill="#ffd86c" stroke="#2f2723" stroke-width="3"/>`;} if(s.deco==='heart'){return `<path d="M160 242 C145 232 136 224 136 214 C136 206 142 201 149 201 C154 201 158 204 160 209 C162 204 166 201 171 201 C178 201 184 206 184 214 C184 224 175 232 160 242 Z" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3"/>`;} if(s.deco==='star'){return `<path d="M160 207 L166 220 L180 220 L169 228 L174 241 L160 233 L146 241 L151 228 L140 220 L154 220 Z" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3" stroke-linejoin="round"/>`;} if(s.deco==='ribbon'){return `<g transform="translate(160 226)"><circle cx="0" cy="0" r="7" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3"/><path d="M-4 7 L-14 26 L-1 20 L5 28 L2 8 Z" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3"/><path d="M4 7 L14 26 L1 20 L-5 28 L-2 8 Z" fill="${s.decoColor}" stroke="#2f2723" stroke-width="3"/></g>`;} if(s.deco==='scarf'){return `<path d="M124 225 C141 233 180 233 197 224" fill="none" stroke="${s.decoColor}" stroke-width="12" stroke-linecap="round"/><path d="M186 226 L199 248" fill="none" stroke="${s.decoColor}" stroke-width="12" stroke-linecap="round"/>`;} return '';}
+    document.getElementById('heroDog').innerHTML=dogSvg('LCRE'); loadFromUrl();
   </script>
 </body>
 </html>
