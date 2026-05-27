@@ -157,23 +157,24 @@
     const questions=[make4("好きな人ができたとき、あなたはどっち寄り？","💌","かなり自分から動く。気になったら誘う","どちらかといえば自分から動く","どちらかといえば相手の様子を見る","かなり慎重。相手の反応を見ながら近づく","L","F"),make4("付き合ったら、どっちの自分が出やすい？","💞","かなり甘えたい。かまってほしい","どちらかといえば甘えたい","どちらかといえば支えたい","かなり支えたい。相手を安心させたい","C","A"),make4("理想の恋愛に近いのは？","🏡","安定感が最優先。安心できる恋がいい","どちらかといえば安心感重視","どちらかといえばときめき重視","ドキドキ最優先。感情が動く恋がいい","R","P"),make4("恋人との距離感は？","🪽","かなり自由でいたい。自分の時間も大事","どちらかといえば自由な距離感が好き","どちらかといえば密に向き合いたい","かなり一途な関係がいい。ちゃんと向き合いたい","O","E"),make4("デートの予定を決めるときは？","🗓️","ほぼ自分が引っ張って決める","候補を出すなど少しリードする","相手に合わせることが多い","ほぼ相手に合わせて決める","L","F"),make4("疲れている日に恋人から会いたいと言われたら？","🫶","自分も会って甘えたいと思う","少しなら会って癒されたい","相手が寂しいなら合わせたい","自分より相手を優先して支えたい","C","A"),make4("恋愛で一番イヤなのは？","📎","将来や生活感が見えないことがかなりイヤ","どちらかといえば不安定さがイヤ","どちらかといえば熱量の低さがイヤ","好きなのに盛り上がらないのがかなりイヤ","R","P"),make4("恋人への連絡頻度は？","💬","毎日じゃなくても平気。自由でいたい","どちらかといえばマイペースでOK","どちらかといえば毎日つながりたい","毎日しっかりやり取りしたい","O","E"),make4("恋の駆け引きについてどう思う？","🎯","多少は使う。自分から流れを作りたい","少しなら駆け引きもあり","できれば素直に向き合いたい","駆け引きは苦手。相手に合わせて自然体がいい","L","F"),make4("恋人に褒められるなら？","💗","かわいい・会いたいって言われるのが最強","愛情表現をもらえるとうれしい","信頼できる・落ち着くがうれしい","頼れる・支えになると言われるのが最強","C","A"),make4("付き合う前に重視するのは？","📝","価値観や生活感をかなり重視する","どちらかといえば相性や安定感重視","どちらかといえば高揚感重視","一緒にいてときめくかが最重要","R","P"),make4("恋人が友達と遊びに行くときは？","🌼","全然平気。自由に楽しんでほしい","少し気になるけど基本は平気","どちらかといえばちょっと不安","かなり気になる。大切だからこそ安心したい","O","E"),make4("告白されるより、告白する方が？","🎀","自分から行く方がしっくりくる","タイミング次第で自分からもいける","どちらかといえば相手から来てほしい","かなり相手から来てほしい","L","F"),make4("恋人にしてしまいがちなことは？","🫧","寂しいとかなり甘えたり試したりする","少し甘えたくなりやすい","相手に寄り添いすぎることがある","かなり相手の問題まで背負いがち","C","A"),make4("記念日やイベントは？","🎁","無理のない範囲で大事にしたい","どちらかといえば落ち着いた祝い方が好き","どちらかといえば盛り上げたい","かなり特別感を出したい","R","P"),make4("恋愛で一番ほしいものは？","☁️","気楽さと心地よい距離感","どちらかといえば自由で自然な空気","どちらかといえば安心感と一途さ","かなり一途さと大切にされる実感がほしい","O","E"),make4("喧嘩したときは？","🗨️","早めに話して主導して解決したい","どちらかといえば自分から話したい","どちらかといえば相手の様子を見たい","少し落ち着いてから相手に寄り添って話したい","L","F"),make4("相手が落ち込んでいるときは？","🩷","そばにいて甘え合いたい","近くで寄り添ってほしい","相手の話を聞いてあげたい","しっかり支えて受け止めたい","C","A"),make4("恋愛の始まり方で好きなのは？","🌿","自然に仲良くなって安心して付き合いたい","どちらかといえばじわじわ好きになりたい","どちらかといえば一気に惹かれたい","燃え上がるような恋の始まりが好き","R","P"),make4("恋人に言われて一番うれしいのは？","🎵","一緒にいても気楽でいられるね","自然体でいられるのがうれしい","これからも一緒にいたいね","ずっと大事にしたいって言われたい","O","E")];
     const typeData={LCRO:{dog:"ポメラニアン",tagline:"リード型 × 甘えたい型 × 安定型 × 自由型",description:"自分から恋を進める力がありつつ、好きな人にはしっかり甘えたいタイプ。安定した関係を好みますが、束縛されすぎるのは苦手です。明るくかわいげがあり、相手を自然に夢中にさせます。",traits:["距離を縮めるのが早い","好きな人にはわかりやすく懐く","自由そうに見えて意外と現実的"],good:["FAPE","FCRE"],magic:"かわいいだけじゃなくて、ちゃんと大事にしたい。",weak:"相手を試しすぎると、本音が伝わる前に誤解されます。"},LCRE:{dog:"柴犬",tagline:"リード型 × 甘えたい型 × 安定型 × 誠実型",description:"自分のペースで恋を進めながら、内側では一途に愛情を求めるタイプ。軽いノリより信頼を重視し、好きな人には不器用に甘えるところがあります。",traits:["好き嫌いがはっきりしている","信頼するまで時間がかかる","恋人には意外と甘えたい"],good:["FARE","FCPE"],magic:"不器用なところも含めて好き。",weak:"素直になるタイミングを逃すと、冷たい人に見られがちです。"},LCPO:{dog:"トイプードル",tagline:"リード型 × 甘えたい型 × 情熱型 × 自由型",description:"恋の空気を明るくできる華やかなタイプ。自分から楽しい流れを作り、好きな人には甘えたい気持ちも強め。ときめきと自由な距離感を大切にします。",traits:["会話とノリで距離を縮める","恋愛のイベント感が好き","寂しいと急にかまってモードになる"],good:["FARE","FARO"],magic:"一緒にいると毎日かわいい。",weak:"刺激を求めすぎると、安定した相手を退屈に感じます。"},LCPE:{dog:"チワワ",tagline:"リード型 × 甘えたい型 × 情熱型 × 誠実型",description:"好きになったらかなり一直線。自分から気持ちを動かしつつ、相手からの愛情表現も強く求めます。曖昧な関係より、ちゃんと向き合う恋が向いています。",traits:["連絡が来ないと考えすぎる","好きな人には全力で懐く","愛情表現が少ない相手は苦手"],good:["FARE","LARE"],magic:"不安にさせないよ。ちゃんと好きだよ。",weak:"不安なときほど、確認ではなくお願いの形で伝えると愛されやすいです。"},LARO:{dog:"ゴールデンレトリバー",tagline:"リード型 × 受け止めたい型 × 安定型 × 自由型",description:"明るく頼れて、相手を楽しませるのが上手なタイプ。恋愛でも主導権を握りつつ、相手の気持ちを受け止めます。重くなりすぎない関係が得意です。",traits:["恋人を元気にする力がある","面倒見がよく頼られやすい","束縛されると少し窮屈"],good:["FCRE","FCPO"],magic:"あなたといると前向きになれる。",weak:"強く見えるぶん、弱音を出すのが遅れがちです。"},LARE:{dog:"秋田犬",tagline:"リード型 × 受け止めたい型 × 安定型 × 誠実型",description:"大切な人を守りたい気持ちが強い誠実タイプ。恋愛を軽く扱わず、付き合うなら長く深く向き合いたい派です。頼れる反面、ひとりで抱え込みやすいところもあります。",traits:["一度好きになると簡単には離れない","相手のために頑張りすぎる","誠実さのない相手には冷める"],good:["FCPE","LCPE"],magic:"あなたがいると安心する。",weak:"守る恋だけでなく、頼る恋も覚えると関係が柔らかくなります。"},LAPO:{dog:"ビーグル",tagline:"リード型 × 受け止めたい型 × 情熱型 × 自由型",description:"恋愛を明るく楽しく進めるムードメーカー。自分から誘えて、相手の気分も上げられます。深刻すぎる関係より、一緒に笑えて刺激のある関係で魅力が出ます。",traits:["デートの提案が得意","マンネリが苦手","相手を楽しませようと頑張る"],good:["FCPO","FARO"],magic:"次はどこ行く？一緒なら何でも楽しそう。",weak:"楽しい雰囲気でごまかさず、たまには真面目な話もすると信頼が深まります。"},LAPE:{dog:"ドーベルマン",tagline:"リード型 × 受け止めたい型 × 情熱型 × 誠実型",description:"本気になったらまっすぐ向き合う情熱タイプ。好きな人を守りたい気持ちが強く、相手から見ると心強い存在です。ただし独占欲が強く出ることもあります。",traits:["好きな人には全力で尽くす","曖昧な態度が苦手","恋人を守りたい気持ちが強い"],good:["FCPE","FAPE"],magic:"本気で向き合ってくれるところが好き。",weak:"正しさで押すより、相手のペースを待つ余白があると愛が伝わります。"},FCRO:{dog:"ミニチュアダックス",tagline:"寄り添い型 × 甘えたい型 × 安定型 × 自由型",description:"相手に合わせながら、やわらかく距離を縮めるタイプ。安心できる恋愛を好み、無理に主導権を握ろうとはしません。甘え上手で、穏やかな関係に強いです。",traits:["空気を読むのがうまい","安心できる相手にだけ甘える","強引な相手には疲れやすい"],good:["LARO","LCRO"],magic:"そのままでいてくれるだけで落ち着く。",weak:"合わせすぎると本音が見えなくなるので、小さな希望は早めに出すのが吉。"},FCRE:{dog:"マルチーズ",tagline:"寄り添い型 × 甘えたい型 × 安定型 × 誠実型",description:"やさしくて、好きな人に対してかなり一途。自分から強く押すより、相手の愛情を感じながら心を開いていきます。安心感のある相手には深く懐きます。",traits:["愛情表現を大事にする","不安になると黙りがち","長く大切にされたい"],good:["LARO","LCRO"],magic:"ちゃんと大切にするから安心して。",weak:"我慢して察してもらうより、寂しいを言葉にすると関係が安定します。"},FCPO:{dog:"フレンチブルドッグ",tagline:"寄り添い型 × 甘えたい型 × 情熱型 × 自由型",description:"恋愛に楽しさとスキンシップを求めるタイプ。相手に合わせる柔らかさがありながら、好きな人にはかなり甘えます。笑える関係だとどんどん魅力が出ます。",traits:["好きな人の前で素が出る","重すぎる空気が苦手","甘やかされるとすぐ懐く"],good:["LAPO","LARO"],magic:"一緒にいるとなんか癒される。",weak:"楽しいだけで流さず、大事な話はちゃんと向き合うと長続きします。"},FCPE:{dog:"キャバリア",tagline:"寄り添い型 × 甘えたい型 × 情熱型 × 誠実型",description:"好きな人にまっすぐ懐く、王道の愛されタイプ。ときめきも一途さも大切にします。愛情を返してくれる相手とは深くつながれますが、雑な相手には傷つきやすいです。",traits:["好きが表情に出やすい","恋人中心になりやすい","安心できる言葉に弱い"],good:["LARE","LAPE"],magic:"ずっと隣にいてほしい。",weak:"相手優先にしすぎると苦しくなるので、自分の予定も大切に。"},FARO:{dog:"コーギー",tagline:"寄り添い型 × 受け止めたい型 × 安定型 × 自由型",description:"相手に合わせながらも、関係を明るく保つのが得意。恋人を支える力があり、自由な空気も大事にします。友達みたいな恋人関係で魅力が伸びます。",traits:["恋人の味方でいるのが得意","重すぎる束縛は苦手","日常の小さな楽しみを作れる"],good:["LCPO","LAPO"],magic:"味方でいてくれてありがとう。",weak:"平気なふりをしすぎると、いつの間にか疲れが溜まります。"},FARE:{dog:"ラブラドール",tagline:"寄り添い型 × 受け止めたい型 × 安定型 × 誠実型",description:"恋人を大切に支える、信頼感の強いタイプ。派手な駆け引きより、日々のやさしさを積み重ねる恋愛が向いています。誠実な相手と組むと最強です。",traits:["相手の変化に気づきやすい","長期的な関係を大事にする","頼られると頑張りすぎる"],good:["LCRE","LCPE"],magic:"あなたのやさしさに救われてる。",weak:"尽くすだけではなく、受け取ることも恋愛の一部です。"},FAPO:{dog:"シベリアンハスキー",tagline:"寄り添い型 × 受け止めたい型 × 情熱型 × 自由型",description:"好きな人を大切にしつつ、自分の世界も大事にするタイプ。感情が動く恋が好きで、束縛されすぎると逃げたくなります。自由を認めてくれる相手と好相性です。",traits:["好きでも一人時間が必要","刺激のある関係が好き","押しつけられると反発する"],good:["LCPO","LAPO"],magic:"自由なところも含めて好き。",weak:"自由を守るほど、安心させる言葉もセットで渡すと関係が安定します。"},FAPE:{dog:"ボーダーコリー",tagline:"寄り添い型 × 受け止めたい型 × 情熱型 × 誠実型",description:"相手に合わせながらも、内側にはかなり強い愛情を持つタイプ。恋愛を真剣に考え、好きな人のために努力できます。言葉より行動で愛を示しがちです。",traits:["相手のために改善しようとする","恋愛に手を抜けない","本気の相手にはかなり一途"],good:["LCRO","LAPE"],magic:"ちゃんと見てるよ。努力してくれてありがとう。",weak:"完璧に頑張ろうとしすぎると、恋が修行になります。"}};
     
+    
     const dogStyle={
-      LCRO:{base:"#F6D88C", cream:"#FFF3D8", blush:"#f6b4b4", accent:"#ff9fc8", kind:"fluffy", bg:"#f8dfe9"},
-      LCRE:{base:"#E18A3A", cream:"#FFF0D4", blush:"#f5b2aa", accent:"#ff98ba", kind:"compact", bg:"#dff0ea"},
-      LCPO:{base:"#C7A27E", cream:"#F8E7D5", blush:"#f5b5ba", accent:"#d8b0ff", kind:"fluffy", bg:"#f2e4ef"},
-      LCPE:{base:"#F1C99F", cream:"#FFF0DB", blush:"#f7b7b2", accent:"#ff93c0", kind:"compact", bg:"#f7e3df"},
-      LARO:{base:"#F1CF86", cream:"#FFF2D3", blush:"#f5b5aa", accent:"#86decc", kind:"floppy", bg:"#f8ebd6"},
-      LARE:{base:"#CC8D5A", cream:"#F8E5D1", blush:"#f3b1a8", accent:"#89dec9", kind:"spitz", bg:"#efe5d9"},
-      LAPO:{base:"#E4A55A", cream:"#FFEACD", blush:"#f6b2b8", accent:"#ff9ac2", kind:"floppy", bg:"#fde9d8"},
-      LAPE:{base:"#3D3028", cream:"#F2E7D6", blush:"#efb7b0", accent:"#ff7faf", kind:"spitz", bg:"#e8dfe9"},
-      FCRO:{base:"#B98346", cream:"#FFF0D3", blush:"#f2b6ae", accent:"#ffd978", kind:"floppy", bg:"#f6e1cf"},
-      FCRE:{base:"#F8F6EF", cream:"#FFF8EC", blush:"#f8b8c4", accent:"#ff8fbd", kind:"fluffy", bg:"#f5e3ec"},
-      FCPO:{base:"#F0C3A4", cream:"#FFEBD8", blush:"#f3b1b3", accent:"#cfa8ff", kind:"compact", bg:"#f7e4e5"},
-      FCPE:{base:"#EBC2A8", cream:"#FFF0E2", blush:"#f4b9b4", accent:"#ff9ac2", kind:"floppy", bg:"#efe3f8"},
-      FARO:{base:"#D48C3E", cream:"#FFE4B8", blush:"#f2b3b0", accent:"#82dec9", kind:"compact", bg:"#e2f1ec"},
-      FARE:{base:"#EAD08A", cream:"#FFF1D1", blush:"#f4b5b2", accent:"#7ee0cf", kind:"floppy", bg:"#edf7e9"},
-      FAPO:{base:"#94A3B3", cream:"#ECF4F8", blush:"#f3b8c0", accent:"#7bc9ff", kind:"spitz", bg:"#e9e2f7"},
-      FAPE:{base:"#2C2A2A", cream:"#F5EFE4", blush:"#efb5b8", accent:"#82dec9", kind:"floppy", bg:"#efe2dd"}
+      LCRO:{base:"#F6D88C", cream:"#FFF3D8", blush:"#f6b4b4", accent:"#ff9fc8", pattern:"plain", accessory:"bow"},
+      LCRE:{base:"#E18A3A", cream:"#FFF0D4", blush:"#f5b2aa", accent:"#ff98ba", pattern:"plain", accessory:"collar"},
+      LCPO:{base:"#C7A27E", cream:"#F8E7D5", blush:"#f5b5ba", accent:"#d8b0ff", pattern:"plain", accessory:"bow"},
+      LCPE:{base:"#F1C99F", cream:"#FFF0DB", blush:"#f7b7b2", accent:"#ff93c0", pattern:"plain", accessory:"heart"},
+      LARO:{base:"#F1CF86", cream:"#FFF2D3", blush:"#f5b5aa", accent:"#86decc", pattern:"plain", accessory:"scarf"},
+      LARE:{base:"#CC8D5A", cream:"#F8E5D1", blush:"#f3b1a8", accent:"#89dec9", pattern:"plain", accessory:"collar"},
+      LAPO:{base:"#E4A55A", cream:"#FFEACD", blush:"#f6b2b8", accent:"#ff9ac2", pattern:"plain", accessory:"star"},
+      LAPE:{base:"#2F2A2D", cream:"#F4E9D8", blush:"#efb7b0", accent:"#ff7faf", pattern:"tan", accessory:"heart"},
+      FCRO:{base:"#B98346", cream:"#FFF0D3", blush:"#f2b6ae", accent:"#ffd978", pattern:"plain", accessory:"ribbon"},
+      FCRE:{base:"#F8F6EF", cream:"#FFF8EC", blush:"#f8b8c4", accent:"#ff8fbd", pattern:"white", accessory:"bow"},
+      FCPO:{base:"#F0C3A4", cream:"#FFEBD8", blush:"#f3b1b3", accent:"#cfa8ff", pattern:"plain", accessory:"heart"},
+      FCPE:{base:"#EBC2A8", cream:"#FFF0E2", blush:"#f4b9b4", accent:"#ff9ac2", pattern:"plain", accessory:"ribbon"},
+      FARO:{base:"#D48C3E", cream:"#FFE4B8", blush:"#f2b3b0", accent:"#82dec9", pattern:"plain", accessory:"star"},
+      FARE:{base:"#EAD08A", cream:"#FFF1D1", blush:"#f4b5b2", accent:"#7ee0cf", pattern:"plain", accessory:"collar"},
+      FAPO:{base:"#94A3B3", cream:"#ECF4F8", blush:"#f3b8c0", accent:"#7bc9ff", pattern:"plain", accessory:"star"},
+      FAPE:{base:"#2C2A2A", cream:"#F5EFE4", blush:"#efb5b8", accent:"#82dec9", pattern:"tan", accessory:"collar"}
     };
     const axisPairs=[{left:"L",right:"F",label:"L / F",leftName:"リード型",rightName:"寄り添い型"},{left:"C",right:"A",label:"C / A",leftName:"甘えたい型",rightName:"受け止めたい型"},{left:"R",right:"P",label:"R / P",leftName:"安定型",rightName:"情熱型"},{left:"O",right:"E",label:"O / E",leftName:"自由型",rightName:"誠実型"}];
     let current=0, answers=[], scores={L:0,F:0,C:0,A:0,R:0,P:0,O:0,E:0}, latestResult=null;
@@ -194,134 +195,75 @@
     function dogSvg(code,tiny=false){
       const s=dogStyle[code]||dogStyle.LCRE;
       const cls=tiny?'tiny-dog':'dog-svg';
-      const renderer={spitz:renderSpitz, fluffy:renderFluffy, floppy:renderFloppy, compact:renderCompact}[s.kind] || renderCompact;
-      return `<svg class="${cls}" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-label="cute dog">${renderer(s)}</svg>`;
-    }
-
-    function baseFrame(s){
       return `
+      <svg class="${cls}" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-label="cute dog">
         <defs>
-          <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+          <filter id="grainA" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" result="noise"/>
             <feColorMatrix type="saturate" values="0"/>
-            <feComponentTransfer><feFuncA type="table" tableValues="0 0.05"/></feComponentTransfer>
+            <feComponentTransfer><feFuncA type="table" tableValues="0 0.04"/></feComponentTransfer>
             <feBlend in="SourceGraphic" in2="noise" mode="multiply"/>
           </filter>
         </defs>
-        <rect width="320" height="320" fill="${s.bg||'#f8e4ea'}"/>
-        <ellipse cx="160" cy="284" rx="84" ry="15" fill="rgba(120,100,90,.10)"/>
-      `;
+        <ellipse cx="160" cy="288" rx="82" ry="16" fill="rgba(243,175,175,.18)"/>
+        <g filter="url(#grainA)">
+          <path d="M101 116 L92 60 Q90 30 120 42 L145 82 Z" fill="${s.base}" stroke="#19120f" stroke-width="8" stroke-linejoin="round"/>
+          <path d="M219 116 L228 60 Q230 30 200 42 L175 82 Z" fill="${s.base}" stroke="#19120f" stroke-width="8" stroke-linejoin="round"/>
+          <path d="M111 104 L108 72 Q108 54 126 62 L144 88 Z" fill="${s.cream}"/>
+          <path d="M209 104 L212 72 Q212 54 194 62 L176 88 Z" fill="${s.cream}"/>
+          <circle cx="160" cy="122" r="78" fill="${s.base}" stroke="#19120f" stroke-width="8"/>
+          ${facePatch(s)}
+          ${eyeBrowPatches(s)}
+          <ellipse cx="130" cy="138" rx="14" ry="17" fill="#1e1714"/>
+          <ellipse cx="190" cy="138" rx="14" ry="17" fill="#1e1714"/>
+          <circle cx="125" cy="132" r="5" fill="#fff"/>
+          <circle cx="185" cy="132" r="5" fill="#fff"/>
+          <ellipse cx="113" cy="160" rx="18" ry="18" fill="${s.blush}" opacity=".86"/>
+          <ellipse cx="207" cy="160" rx="18" ry="18" fill="${s.blush}" opacity=".86"/>
+          <ellipse cx="160" cy="156" rx="18" ry="14" fill="#1e1714"/>
+          <path d="M160 168 L160 184" stroke="#1e1714" stroke-width="8" stroke-linecap="round"/>
+          <path d="M160 184 C151 196 138 198 128 190" fill="none" stroke="#1e1714" stroke-width="8" stroke-linecap="round"/>
+          <path d="M160 184 C169 196 182 198 192 190" fill="none" stroke="#1e1714" stroke-width="8" stroke-linecap="round"/>
+          <path d="M110 188 C106 213 108 245 114 268 C116 278 124 286 134 286 L186 286 C196 286 204 278 206 268 C212 245 214 213 210 188 Z" fill="${s.base}" stroke="#19120f" stroke-width="8" stroke-linejoin="round"/>
+          <path d="M124 188 C124 213 140 246 160 246 C180 246 196 213 196 188 Z" fill="${s.cream}"/>
+          <path d="M208 192 C226 184 248 187 261 202 C276 218 277 241 263 255 C247 270 223 270 210 254 C199 241 202 220 217 214 C228 209 239 214 242 226" fill="none" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
+          <path d="M211 195 C225 189 241 192 250 203 C260 215 260 231 251 240 C241 250 227 249 220 240 C213 232 216 220 226 216 C232 213 237 216 239 223" fill="none" stroke="${s.cream}" stroke-width="18" stroke-linecap="round"/>
+          <path d="M211 195 C225 189 241 192 250 203 C260 215 260 231 251 240 C241 250 227 249 220 240 C213 232 216 220 226 216 C232 213 237 216 239 223" fill="none" stroke="#19120f" stroke-width="5" stroke-linecap="round"/>
+          <path d="M116 244 L116 286" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
+          <path d="M146 244 L146 286" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
+          <path d="M178 244 L178 286" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
+          <path d="M204 244 L204 286" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
+          <path d="M112 286 q6 -11 12 0 M123 286 q6 -11 12 0 M142 286 q6 -11 12 0 M175 286 q6 -11 12 0 M197 286 q6 -11 12 0 M208 286 q6 -11 12 0" fill="none" stroke="#19120f" stroke-width="4" stroke-linecap="round"/>
+          ${accessoryShape(s)}
+        </g>
+      </svg>`;
     }
 
-    function commonFace(s, x=160, y=115, blushY=150, eyeY=136, eyeDX=40, big=false){
-      const eyeR = big ? 16 : 14;
-      return `
-        <ellipse cx="${x-eyeDX}" cy="${eyeY}" rx="${eyeR}" ry="${eyeR+2}" fill="#5b3726"/>
-        <ellipse cx="${x+eyeDX}" cy="${eyeY}" rx="${eyeR}" ry="${eyeR+2}" fill="#5b3726"/>
-        <circle cx="${x-eyeDX-4}" cy="${eyeY-4}" r="6" fill="#fff"/>
-        <circle cx="${x+eyeDX-4}" cy="${eyeY-4}" r="6" fill="#fff"/>
-        <ellipse cx="${x-44}" cy="${eyeY-28}" rx="10" ry="8" fill="${s.cream}" opacity=".95"/>
-        <ellipse cx="${x+44}" cy="${eyeY-28}" rx="10" ry="8" fill="${s.cream}" opacity=".95"/>
-        <ellipse cx="${x-63}" cy="${blushY}" rx="18" ry="18" fill="${s.blush}" opacity=".82"/>
-        <ellipse cx="${x+63}" cy="${blushY}" rx="18" ry="18" fill="${s.blush}" opacity=".82"/>
-        <ellipse cx="${x}" cy="${blushY-6}" rx="18" ry="15" fill="#5b3726"/>
-        <path d="M${x} ${blushY+6} L${x} ${blushY+24}" stroke="#5b3726" stroke-width="7" stroke-linecap="round"/>
-        <path d="M${x} ${blushY+23} C${x-10} ${blushY+36} ${x-24} ${blushY+36} ${x-34} ${blushY+28}" fill="none" stroke="#5b3726" stroke-width="7" stroke-linecap="round"/>
-        <path d="M${x} ${blushY+23} C${x+10} ${blushY+36} ${x+24} ${blushY+36} ${x+34} ${blushY+28}" fill="none" stroke="#5b3726" stroke-width="7" stroke-linecap="round"/>
-      `;
+    function facePatch(s){
+      if(s.pattern==='tan'){
+        return `<path d="M93 144 C101 110 122 94 160 94 C198 94 219 110 227 144 C220 176 196 202 160 202 C124 202 100 176 93 144 Z" fill="${s.cream}"/>`;
+      }
+      if(s.pattern==='white'){
+        return `<path d="M97 147 C104 113 124 98 160 97 C196 98 216 113 223 147 C215 176 193 199 160 201 C127 199 105 176 97 147 Z" fill="${s.cream}"/><ellipse cx="160" cy="92" rx="30" ry="22" fill="${s.cream}"/>`;
+      }
+      return `<path d="M97 147 C104 113 124 98 160 97 C196 98 216 113 223 147 C215 176 193 199 160 201 C127 199 105 176 97 147 Z" fill="${s.cream}"/>`;
     }
 
-    function charm(s, kind='heart'){
-      if(kind==='heart') return `<path d="M160 228 C149 219 142 214 142 206 C142 199 147 194 154 194 C158 194 161 196 163 200 C165 196 168 194 172 194 C179 194 184 199 184 206 C184 214 177 219 160 228 Z" fill="${s.accent}" stroke="#6b432d" stroke-width="3"/>`;
-      return `<circle cx="160" cy="216" r="8" fill="${s.accent}" stroke="#6b432d" stroke-width="3"/>`;
+    function eyeBrowPatches(s){
+      if(s.pattern==='tan' || s.pattern==='plain'){
+        return `<ellipse cx="130" cy="112" rx="10" ry="8" fill="${s.cream}"/><ellipse cx="190" cy="112" rx="10" ry="8" fill="${s.cream}"/>`;
+      }
+      return `<ellipse cx="130" cy="112" rx="10" ry="8" fill="#f4ead9"/><ellipse cx="190" cy="112" rx="10" ry="8" fill="#f4ead9"/>`;
     }
 
-    function renderCompact(s){
-      return `${baseFrame(s)}
-        <g filter="url(#grain)">
-          <path d="M96 113 L109 58 Q118 28 139 42 L154 74 Z" fill="${s.base}" stroke="#6b432d" stroke-width="6" stroke-linejoin="round"/>
-          <path d="M224 113 L211 58 Q202 28 181 42 L166 74 Z" fill="${s.base}" stroke="#6b432d" stroke-width="6" stroke-linejoin="round"/>
-          <path d="M104 104 L113 66 Q119 48 132 61 L145 85 Z" fill="${s.cream}"/>
-          <path d="M216 104 L207 66 Q201 48 188 61 L175 85 Z" fill="${s.cream}"/>
-          <circle cx="160" cy="115" r="82" fill="${s.base}" stroke="#6b432d" stroke-width="7"/>
-          <path d="M93 134 C102 101 123 85 160 84 C197 85 218 101 227 134 C219 172 195 196 160 196 C125 196 101 172 93 134 Z" fill="${s.cream}"/>
-          <path d="M103 190 C98 215 101 249 108 270 C110 278 118 284 127 284 L193 284 C202 284 210 278 212 270 C219 249 222 216 217 190 Z" fill="${s.base}" stroke="#6b432d" stroke-width="7"/>
-          <path d="M126 188 C126 208 138 235 160 235 C182 235 194 208 194 188 Z" fill="${s.cream}"/>
-          <path d="M227 186 C246 178 270 184 278 204 C285 222 280 241 265 250 C247 260 226 252 220 237 C214 224 222 210 234 209 C244 209 249 217 245 225" fill="none" stroke="#6b432d" stroke-width="8" stroke-linecap="round"/>
-          <path d="M227 190 C243 184 261 188 267 203 C271 214 268 228 258 233 C248 239 236 235 232 227 C228 220 232 212 240 212" fill="none" stroke="${s.cream}" stroke-width="18" stroke-linecap="round"/>
-          <path d="M227 190 C243 184 261 188 267 203 C271 214 268 228 258 233 C248 239 236 235 232 227 C228 220 232 212 240 212" fill="none" stroke="#6b432d" stroke-width="5" stroke-linecap="round"/>
-          ${commonFace(s,160,115,154,138,38,false)}
-          <path d="M115 247 L115 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M145 247 L145 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M182 247 L182 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M210 247 L210 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M110 286 q6 -10 12 0 M121 286 q6 -10 12 0 M140 286 q6 -10 12 0 M177 286 q6 -10 12 0 M201 286 q6 -10 12 0 M212 286 q6 -10 12 0" fill="none" stroke="#6b432d" stroke-width="4" stroke-linecap="round"/>
-        </g>`;
-    }
-
-    function renderSpitz(s){
-      return `${baseFrame(s)}
-        <g filter="url(#grain)">
-          <path d="M92 117 L104 50 Q110 20 136 34 L154 74 Z" fill="${s.base}" stroke="#6b432d" stroke-width="7" stroke-linejoin="round"/>
-          <path d="M228 117 L216 50 Q210 20 184 34 L166 74 Z" fill="${s.base}" stroke="#6b432d" stroke-width="7" stroke-linejoin="round"/>
-          <path d="M104 104 L112 66 Q117 50 131 61 L145 84 Z" fill="${s.cream}"/>
-          <path d="M216 104 L208 66 Q203 50 189 61 L175 84 Z" fill="${s.cream}"/>
-          <circle cx="160" cy="116" r="84" fill="${s.base}" stroke="#6b432d" stroke-width="7"/>
-          <path d="M90 140 C100 102 126 86 160 86 C194 86 220 102 230 140 C221 172 196 196 160 198 C124 196 99 172 90 140 Z" fill="${s.cream}"/>
-          <path d="M104 185 C100 207 102 246 111 270 C114 279 122 284 130 284 L194 284 C203 284 211 279 213 270 C221 247 222 208 216 185 Z" fill="${s.base}" stroke="#6b432d" stroke-width="7"/>
-          <path d="M126 186 C126 205 137 232 160 232 C183 232 194 205 194 186 Z" fill="${s.cream}"/>
-          <path d="M225 196 C240 182 263 180 279 192 C293 203 297 224 287 241 C277 258 256 262 239 253 C223 244 219 226 230 216 C239 207 252 210 257 219" fill="none" stroke="#6b432d" stroke-width="8" stroke-linecap="round"/>
-          <path d="M228 199 C241 189 259 189 270 197 C280 204 283 219 277 230 C271 241 258 243 247 238 C237 233 235 223 242 216 C247 212 254 213 256 219" fill="none" stroke="${s.cream}" stroke-width="18" stroke-linecap="round"/>
-          <path d="M228 199 C241 189 259 189 270 197 C280 204 283 219 277 230 C271 241 258 243 247 238 C237 233 235 223 242 216 C247 212 254 213 256 219" fill="none" stroke="#6b432d" stroke-width="5" stroke-linecap="round"/>
-          ${commonFace(s,160,116,155,139,38,false)}
-          <path d="M114 247 L114 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M145 247 L145 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M183 247 L183 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M210 247 L210 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M110 286 q6 -10 12 0 M121 286 q6 -10 12 0 M140 286 q6 -10 12 0 M179 286 q6 -10 12 0 M203 286 q6 -10 12 0 M214 286 q6 -10 12 0" fill="none" stroke="#6b432d" stroke-width="4" stroke-linecap="round"/>
-        </g>`;
-    }
-
-    function renderFluffy(s){
-      return `${baseFrame(s)}
-        <g filter="url(#grain)">
-          <path d="M98 116 C77 112 67 96 76 81 C83 69 99 66 107 53 C119 34 142 32 156 41 C170 30 195 32 207 53 C214 67 230 69 238 82 C247 96 237 113 217 116 C226 129 222 148 205 154 C194 177 173 188 160 188 C147 188 126 177 115 154 C98 148 90 129 98 116 Z" fill="${s.base}" stroke="#6b432d" stroke-width="6" stroke-linejoin="round"/>
-          <path d="M111 127 C111 102 130 81 160 81 C190 81 209 102 209 127 C209 157 188 175 160 176 C132 175 111 157 111 127 Z" fill="${s.cream}"/>
-          <path d="M115 178 C96 180 90 204 103 217 C95 229 98 246 113 252 C114 271 129 283 145 281 C154 287 168 287 177 281 C193 283 208 271 209 252 C224 246 227 229 218 217 C231 204 225 180 206 178 Z" fill="${s.base}" stroke="#6b432d" stroke-width="6" stroke-linejoin="round"/>
-          <path d="M127 184 C126 203 136 230 160 230 C184 230 194 203 193 184 Z" fill="${s.cream}"/>
-          <path d="M223 196 C236 188 253 190 262 202 C270 213 270 229 262 239 C253 250 238 251 228 243" fill="none" stroke="#6b432d" stroke-width="8" stroke-linecap="round"/>
-          <path d="M228 199 C237 194 248 196 254 204 C259 211 259 222 254 228 C248 234 239 235 233 231" fill="none" stroke="${s.cream}" stroke-width="18" stroke-linecap="round"/>
-          <path d="M228 199 C237 194 248 196 254 204 C259 211 259 222 254 228 C248 234 239 235 233 231" fill="none" stroke="#6b432d" stroke-width="5" stroke-linecap="round"/>
-          ${commonFace(s,160,113,153,136,40,true)}
-          ${charm(s,'heart')}
-          <path d="M114 240 L114 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M146 240 L146 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M182 240 L182 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M209 240 L209 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M110 286 q6 -10 12 0 M121 286 q6 -10 12 0 M141 286 q6 -10 12 0 M178 286 q6 -10 12 0 M201 286 q6 -10 12 0 M212 286 q6 -10 12 0" fill="none" stroke="#6b432d" stroke-width="4" stroke-linecap="round"/>
-        </g>`;
-    }
-
-    function renderFloppy(s){
-      return `${baseFrame(s)}
-        <g filter="url(#grain)">
-          <path d="M98 110 C84 82 61 88 51 108 C44 122 48 139 66 148 L93 145 Z" fill="${s.base}" stroke="#6b432d" stroke-width="7"/>
-          <path d="M222 110 C236 82 259 88 269 108 C276 122 272 139 254 148 L227 145 Z" fill="${s.base}" stroke="#6b432d" stroke-width="7"/>
-          <circle cx="160" cy="118" r="78" fill="${s.base}" stroke="#6b432d" stroke-width="7"/>
-          <path d="M94 136 C100 103 123 88 160 88 C197 88 220 103 226 136 C218 168 195 190 160 192 C125 190 102 168 94 136 Z" fill="${s.cream}"/>
-          <path d="M104 188 C100 210 103 246 111 268 C114 277 122 283 130 283 L192 283 C200 283 208 277 211 268 C219 246 220 210 216 188 Z" fill="${s.base}" stroke="#6b432d" stroke-width="7"/>
-          <path d="M125 188 C126 208 137 233 160 233 C183 233 194 208 195 188 Z" fill="${s.cream}"/>
-          <path d="M224 194 C246 185 267 194 275 214 C281 228 277 244 264 252" fill="none" stroke="#6b432d" stroke-width="8" stroke-linecap="round"/>
-          <path d="M226 197 C244 191 259 198 264 212 C268 221 265 232 257 237" fill="none" stroke="${s.cream}" stroke-width="18" stroke-linecap="round"/>
-          <path d="M226 197 C244 191 259 198 264 212 C268 221 265 232 257 237" fill="none" stroke="#6b432d" stroke-width="5" stroke-linecap="round"/>
-          ${commonFace(s,160,118,156,139,40,true)}
-          <path d="M160 172 C166 171 171 175 171 181 C171 187 166 191 160 194 C154 191 149 187 149 181 C149 175 154 171 160 172 Z" fill="${s.accent}"/>
-          <path d="M114 248 L114 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M144 248 L144 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M181 248 L181 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M209 248 L209 286" stroke="#6b432d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M110 286 q6 -10 12 0 M121 286 q6 -10 12 0 M139 286 q6 -10 12 0 M177 286 q6 -10 12 0 M200 286 q6 -10 12 0 M211 286 q6 -10 12 0" fill="none" stroke="#6b432d" stroke-width="4" stroke-linecap="round"/>
-        </g>`;
+    function accessoryShape(s){
+      if(s.accessory==='bow') return `<g transform="translate(160 224)"><circle cx="0" cy="0" r="7" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><path d="M-6 0 C-20 -12 -28 -4 -20 7 C-12 8 -8 5 -6 0 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><path d="M6 0 C20 -12 28 -4 20 7 C12 8 8 5 6 0 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/></g>`;
+      if(s.accessory==='collar') return `<rect x="126" y="220" width="68" height="12" rx="6" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><circle cx="160" cy="237" r="6" fill="#ffe07b" stroke="#19120f" stroke-width="3"/>`;
+      if(s.accessory==='heart') return `<path d="M160 239 C147 230 139 223 139 213 C139 205 145 199 152 199 C156 199 159 201 161 205 C163 201 166 199 170 199 C177 199 183 205 183 213 C183 223 175 230 160 239 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/>`;
+      if(s.accessory==='star') return `<path d="M160 203 L166 215 L179 216 L169 224 L172 237 L160 230 L148 237 L151 224 L141 216 L154 215 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3" stroke-linejoin="round"/>`;
+      if(s.accessory==='ribbon') return `<g transform="translate(160 224)"><circle cx="0" cy="0" r="7" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><path d="M-4 7 L-13 24 L-1 19 L5 28 L2 8 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><path d="M4 7 L13 24 L1 19 L-5 28 L-2 8 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/></g>`;
+      if(s.accessory==='scarf') return `<path d="M127 223 C141 231 179 231 193 223" fill="none" stroke="${s.accent}" stroke-width="11" stroke-linecap="round"/><path d="M185 223 L197 246" fill="none" stroke="${s.accent}" stroke-width="11" stroke-linecap="round"/>`;
+      return '';
     }
 
     document.getElementById('heroDog').innerHTML=dogSvg('FCRE'); loadFromUrl();
