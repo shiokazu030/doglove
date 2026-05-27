@@ -674,6 +674,137 @@
       button, .link-button { width: 100%; }
       .option-inner { align-items: center; }
     }
+  
+    /* axis graph improved */
+    .axis-list {
+      gap: 14px;
+    }
+
+    .axis-item {
+      padding: 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #fff8fc);
+      border: 1px solid var(--line);
+    }
+
+    .axis-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .axis-code {
+      color: var(--pink-dark);
+      font-size: 16px;
+      font-weight: 950;
+      letter-spacing: .02em;
+    }
+
+    .axis-pair-name {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      text-align: right;
+      line-height: 1.45;
+    }
+
+    .axis-winner {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      width: fit-content;
+      max-width: 100%;
+      padding: 8px 11px;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      background: rgba(255, 131, 181, .12);
+      color: var(--pink-dark);
+      font-size: 14px;
+      font-weight: 950;
+      line-height: 1.35;
+    }
+
+    .axis-scale {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      margin-top: 8px;
+      line-height: 1.45;
+    }
+
+    .axis-scale span:first-child {
+      text-align: left;
+    }
+
+    .axis-scale span:last-child {
+      text-align: right;
+    }
+
+    .axis-center {
+      color: rgba(140,116,128,.55);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .meter {
+      height: 16px;
+      background: rgba(255, 131, 181, .13);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .meter::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-1px);
+      background: rgba(255, 255, 255, .9);
+      box-shadow: 0 0 0 1px rgba(255, 131, 181, .08);
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #ffd983, #ff9bc4 58%, #ff72ac);
+      min-width: 8px;
+    }
+
+    @media (max-width: 720px) {
+      .axis-item {
+        padding: 13px;
+      }
+
+      .axis-top {
+        align-items: flex-start;
+      }
+
+      .axis-code {
+        font-size: 15px;
+      }
+
+      .axis-pair-name {
+        font-size: 11px;
+      }
+
+      .axis-winner {
+        font-size: 13px;
+      }
+
+      .axis-scale {
+        font-size: 11px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1089,16 +1220,22 @@
         const rightScore = scores[pair.right];
         const total = Math.max(leftScore + rightScore, 1);
         const percent = Math.round(leftScore / total * 100);
-        const winner = leftScore >= rightScore ? `${pair.left}：${pair.leftName}` : `${pair.right}：${pair.rightName}`;
+        const winnerLetter = leftScore >= rightScore ? pair.left : pair.right;
+        const winnerName = leftScore >= rightScore ? pair.leftName : pair.rightName;
         const div = document.createElement('div');
         div.className = 'axis-item';
         div.innerHTML = `
-          <div class="axis-name">
-            <span><strong>${pair.label}</strong> ${pair.leftName}</span>
-            <span>${winner}</span>
-            <span>${pair.rightName}</span>
+          <div class="axis-top">
+            <div class="axis-code">${pair.label}</div>
+            <div class="axis-pair-name">${pair.leftName} / ${pair.rightName}</div>
           </div>
+          <div class="axis-winner">あなたは ${winnerLetter}：${winnerName}</div>
           <div class="meter"><div class="fill" style="width:${percent}%"></div></div>
+          <div class="axis-scale">
+            <span>${pair.left}：${pair.leftName}</span>
+            <span class="axis-center">50%</span>
+            <span>${pair.right}：${pair.rightName}</span>
+          </div>
         `;
         axisList.appendChild(div);
       });
