@@ -123,6 +123,27 @@
     .tiny-dog { width:112px; height:112px; filter:drop-shadow(0 10px 14px rgba(238,95,154,.08)); }
     @media (max-width:880px){ .hero-grid, .result-hero, .type-card { grid-template-columns:1fr; } .hero-art{min-height:280px;} .type-card{text-align:center;} .tiny-dog{margin:0 auto;} }
     @media (max-width:720px){ .container{ width:min(100% - 16px, 1060px); padding-top:14px;} .hero-main,.card{padding:18px;} .axis-preview,.result-grid,.type-stack,.type-list,.compat{grid-template-columns:1fr;} .actions,.share-row,.back-row{width:100%;} button,.link-button{width:100%;} .option-inner{align-items:center;} .axis-item{padding:13px;} .axis-top{align-items:flex-start;} .axis-code{font-size:15px;} .axis-pair-name{font-size:11px;} .axis-winner{font-size:13px;} .axis-scale{font-size:11px;} }
+  
+    .dog-img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: min(300px, 92%);
+      height: auto;
+      margin: 0 auto;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 24px rgba(238,95,154,.13));
+    }
+
+    .tiny-dog-img {
+      width: 112px;
+      height: 112px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 10px 14px rgba(238,95,154,.08));
+    }
+
   </style>
 </head>
 <body>
@@ -152,7 +173,46 @@
     <section id="typeListScreen" class="screen"><div class="card"><h2 class="q-title">16種類の犬タイプ一覧</h2><div id="typeList" class="type-list"></div><div class="back-row"><button class="primary" onclick="startQuiz()">診断する</button><button class="secondary" onclick="goStart()">トップに戻る</button></div></div></section>
   </main>
   <script>
-    const axisInfo={L:{pair:"L / F",name:"リード型",desc:"好きな人に対して、自分から連絡したり誘ったりしやすいタイプ。"},F:{pair:"L / F",name:"寄り添い型",desc:"相手の反応や空気を見ながら、ゆっくり距離を縮めるタイプ。"},C:{pair:"C / A",name:"甘えたい型",desc:"好きな人にはかまってほしい、好きを言葉や態度で感じたいタイプ。"},A:{pair:"C / A",name:"受け止めたい型",desc:"恋人を安心させたり、話を聞いたり、包み込む愛情が出やすいタイプ。"},R:{pair:"R / P",name:"安定型",desc:"ときめきだけでなく、価値観や生活感、将来性を大切にするタイプ。"},P:{pair:"R / P",name:"情熱型",desc:"恋の高揚感や好きという感情の強さを大切にするタイプ。"},O:{pair:"O / E",name:"自由型",desc:"恋人同士でも、お互いの時間や自由を大切にしたいタイプ。"},E:{pair:"O / E",name:"誠実型",desc:"毎日の連絡や向き合う時間、大切にされている実感を重視するタイプ。"}};
+    
+    const dogImageMap = {
+      LCRO: "images/type01.png",
+      LCRE: "images/type02.png",
+      LCPO: "images/type03.png",
+      LCPE: "images/type04.png",
+      LARO: "images/type05.png",
+      LARE: "images/type06.png",
+      LAPO: "images/type07.png",
+      LAPE: "images/type08.png",
+      FCRO: "images/type09.png",
+      FCRE: "images/type10.png",
+      FCPO: "images/type11.png",
+      FCPE: "images/type12.png",
+      FARO: "images/type13.png",
+      FARE: "images/type14.png",
+      FAPO: "images/type15.png",
+      FAPE: "images/type16.png"
+    };
+
+    const dogImageAltMap = {
+      LCRO: "ポメラニアン",
+      LCRE: "柴犬",
+      LCPO: "トイプードル",
+      LCPE: "チワワ",
+      LARO: "ゴールデンレトリバー",
+      LARE: "秋田犬",
+      LAPO: "ビーグル",
+      LAPE: "ドーベルマン",
+      FCRO: "ミニチュアダックス",
+      FCRE: "マルチーズ",
+      FCPO: "フレンチブルドッグ",
+      FCPE: "キャバリア",
+      FARO: "コーギー",
+      FARE: "ラブラドール",
+      FAPO: "シベリアンハスキー",
+      FAPE: "ボーダーコリー"
+    };
+
+const axisInfo={L:{pair:"L / F",name:"リード型",desc:"好きな人に対して、自分から連絡したり誘ったりしやすいタイプ。"},F:{pair:"L / F",name:"寄り添い型",desc:"相手の反応や空気を見ながら、ゆっくり距離を縮めるタイプ。"},C:{pair:"C / A",name:"甘えたい型",desc:"好きな人にはかまってほしい、好きを言葉や態度で感じたいタイプ。"},A:{pair:"C / A",name:"受け止めたい型",desc:"恋人を安心させたり、話を聞いたり、包み込む愛情が出やすいタイプ。"},R:{pair:"R / P",name:"安定型",desc:"ときめきだけでなく、価値観や生活感、将来性を大切にするタイプ。"},P:{pair:"R / P",name:"情熱型",desc:"恋の高揚感や好きという感情の強さを大切にするタイプ。"},O:{pair:"O / E",name:"自由型",desc:"恋人同士でも、お互いの時間や自由を大切にしたいタイプ。"},E:{pair:"O / E",name:"誠実型",desc:"毎日の連絡や向き合う時間、大切にされている実感を重視するタイプ。"}};
     function make4(question, iconA, leftStrong, leftWeak, rightWeak, rightStrong, leftAxis, rightAxis){return{text:question,options:[{label:leftStrong,note:`${axisInfo[leftAxis].name}がかなり強め`,axis:leftAxis,point:2,icon:iconA},{label:leftWeak,note:`${axisInfo[leftAxis].name}寄りだけど控えめ`,axis:leftAxis,point:1,icon:"🌷"},{label:rightWeak,note:`${axisInfo[rightAxis].name}寄りだけど控えめ`,axis:rightAxis,point:1,icon:"🍀"},{label:rightStrong,note:`${axisInfo[rightAxis].name}がかなり強め`,axis:rightAxis,point:2,icon:"💫"}]};}
     const questions=[make4("好きな人ができたとき、あなたはどっち寄り？","💌","かなり自分から動く。気になったら誘う","どちらかといえば自分から動く","どちらかといえば相手の様子を見る","かなり慎重。相手の反応を見ながら近づく","L","F"),make4("付き合ったら、どっちの自分が出やすい？","💞","かなり甘えたい。かまってほしい","どちらかといえば甘えたい","どちらかといえば支えたい","かなり支えたい。相手を安心させたい","C","A"),make4("理想の恋愛に近いのは？","🏡","安定感が最優先。安心できる恋がいい","どちらかといえば安心感重視","どちらかといえばときめき重視","ドキドキ最優先。感情が動く恋がいい","R","P"),make4("恋人との距離感は？","🪽","かなり自由でいたい。自分の時間も大事","どちらかといえば自由な距離感が好き","どちらかといえば密に向き合いたい","かなり一途な関係がいい。ちゃんと向き合いたい","O","E"),make4("デートの予定を決めるときは？","🗓️","ほぼ自分が引っ張って決める","候補を出すなど少しリードする","相手に合わせることが多い","ほぼ相手に合わせて決める","L","F"),make4("疲れている日に恋人から会いたいと言われたら？","🫶","自分も会って甘えたいと思う","少しなら会って癒されたい","相手が寂しいなら合わせたい","自分より相手を優先して支えたい","C","A"),make4("恋愛で一番イヤなのは？","📎","将来や生活感が見えないことがかなりイヤ","どちらかといえば不安定さがイヤ","どちらかといえば熱量の低さがイヤ","好きなのに盛り上がらないのがかなりイヤ","R","P"),make4("恋人への連絡頻度は？","💬","毎日じゃなくても平気。自由でいたい","どちらかといえばマイペースでOK","どちらかといえば毎日つながりたい","毎日しっかりやり取りしたい","O","E"),make4("恋の駆け引きについてどう思う？","🎯","多少は使う。自分から流れを作りたい","少しなら駆け引きもあり","できれば素直に向き合いたい","駆け引きは苦手。相手に合わせて自然体がいい","L","F"),make4("恋人に褒められるなら？","💗","かわいい・会いたいって言われるのが最強","愛情表現をもらえるとうれしい","信頼できる・落ち着くがうれしい","頼れる・支えになると言われるのが最強","C","A"),make4("付き合う前に重視するのは？","📝","価値観や生活感をかなり重視する","どちらかといえば相性や安定感重視","どちらかといえば高揚感重視","一緒にいてときめくかが最重要","R","P"),make4("恋人が友達と遊びに行くときは？","🌼","全然平気。自由に楽しんでほしい","少し気になるけど基本は平気","どちらかといえばちょっと不安","かなり気になる。大切だからこそ安心したい","O","E"),make4("告白されるより、告白する方が？","🎀","自分から行く方がしっくりくる","タイミング次第で自分からもいける","どちらかといえば相手から来てほしい","かなり相手から来てほしい","L","F"),make4("恋人にしてしまいがちなことは？","🫧","寂しいとかなり甘えたり試したりする","少し甘えたくなりやすい","相手に寄り添いすぎることがある","かなり相手の問題まで背負いがち","C","A"),make4("記念日やイベントは？","🎁","無理のない範囲で大事にしたい","どちらかといえば落ち着いた祝い方が好き","どちらかといえば盛り上げたい","かなり特別感を出したい","R","P"),make4("恋愛で一番ほしいものは？","☁️","気楽さと心地よい距離感","どちらかといえば自由で自然な空気","どちらかといえば安心感と一途さ","かなり一途さと大切にされる実感がほしい","O","E"),make4("喧嘩したときは？","🗨️","早めに話して主導して解決したい","どちらかといえば自分から話したい","どちらかといえば相手の様子を見たい","少し落ち着いてから相手に寄り添って話したい","L","F"),make4("相手が落ち込んでいるときは？","🩷","そばにいて甘え合いたい","近くで寄り添ってほしい","相手の話を聞いてあげたい","しっかり支えて受け止めたい","C","A"),make4("恋愛の始まり方で好きなのは？","🌿","自然に仲良くなって安心して付き合いたい","どちらかといえばじわじわ好きになりたい","どちらかといえば一気に惹かれたい","燃え上がるような恋の始まりが好き","R","P"),make4("恋人に言われて一番うれしいのは？","🎵","一緒にいても気楽でいられるね","自然体でいられるのがうれしい","これからも一緒にいたいね","ずっと大事にしたいって言われたい","O","E")];
     const typeData={LCRO:{dog:"ポメラニアン",tagline:"リード型 × 甘えたい型 × 安定型 × 自由型",description:"自分から恋を進める力がありつつ、好きな人にはしっかり甘えたいタイプ。安定した関係を好みますが、束縛されすぎるのは苦手です。明るくかわいげがあり、相手を自然に夢中にさせます。",traits:["距離を縮めるのが早い","好きな人にはわかりやすく懐く","自由そうに見えて意外と現実的"],good:["FAPE","FCRE"],magic:"かわいいだけじゃなくて、ちゃんと大事にしたい。",weak:"相手を試しすぎると、本音が伝わる前に誤解されます。"},LCRE:{dog:"柴犬",tagline:"リード型 × 甘えたい型 × 安定型 × 誠実型",description:"自分のペースで恋を進めながら、内側では一途に愛情を求めるタイプ。軽いノリより信頼を重視し、好きな人には不器用に甘えるところがあります。",traits:["好き嫌いがはっきりしている","信頼するまで時間がかかる","恋人には意外と甘えたい"],good:["FARE","FCPE"],magic:"不器用なところも含めて好き。",weak:"素直になるタイミングを逃すと、冷たい人に見られがちです。"},LCPO:{dog:"トイプードル",tagline:"リード型 × 甘えたい型 × 情熱型 × 自由型",description:"恋の空気を明るくできる華やかなタイプ。自分から楽しい流れを作り、好きな人には甘えたい気持ちも強め。ときめきと自由な距離感を大切にします。",traits:["会話とノリで距離を縮める","恋愛のイベント感が好き","寂しいと急にかまってモードになる"],good:["FARE","FARO"],magic:"一緒にいると毎日かわいい。",weak:"刺激を求めすぎると、安定した相手を退屈に感じます。"},LCPE:{dog:"チワワ",tagline:"リード型 × 甘えたい型 × 情熱型 × 誠実型",description:"好きになったらかなり一直線。自分から気持ちを動かしつつ、相手からの愛情表現も強く求めます。曖昧な関係より、ちゃんと向き合う恋が向いています。",traits:["連絡が来ないと考えすぎる","好きな人には全力で懐く","愛情表現が少ない相手は苦手"],good:["FARE","LARE"],magic:"不安にさせないよ。ちゃんと好きだよ。",weak:"不安なときほど、確認ではなくお願いの形で伝えると愛されやすいです。"},LARO:{dog:"ゴールデンレトリバー",tagline:"リード型 × 受け止めたい型 × 安定型 × 自由型",description:"明るく頼れて、相手を楽しませるのが上手なタイプ。恋愛でも主導権を握りつつ、相手の気持ちを受け止めます。重くなりすぎない関係が得意です。",traits:["恋人を元気にする力がある","面倒見がよく頼られやすい","束縛されると少し窮屈"],good:["FCRE","FCPO"],magic:"あなたといると前向きになれる。",weak:"強く見えるぶん、弱音を出すのが遅れがちです。"},LARE:{dog:"秋田犬",tagline:"リード型 × 受け止めたい型 × 安定型 × 誠実型",description:"大切な人を守りたい気持ちが強い誠実タイプ。恋愛を軽く扱わず、付き合うなら長く深く向き合いたい派です。頼れる反面、ひとりで抱え込みやすいところもあります。",traits:["一度好きになると簡単には離れない","相手のために頑張りすぎる","誠実さのない相手には冷める"],good:["FCPE","LCPE"],magic:"あなたがいると安心する。",weak:"守る恋だけでなく、頼る恋も覚えると関係が柔らかくなります。"},LAPO:{dog:"ビーグル",tagline:"リード型 × 受け止めたい型 × 情熱型 × 自由型",description:"恋愛を明るく楽しく進めるムードメーカー。自分から誘えて、相手の気分も上げられます。深刻すぎる関係より、一緒に笑えて刺激のある関係で魅力が出ます。",traits:["デートの提案が得意","マンネリが苦手","相手を楽しませようと頑張る"],good:["FCPO","FARO"],magic:"次はどこ行く？一緒なら何でも楽しそう。",weak:"楽しい雰囲気でごまかさず、たまには真面目な話もすると信頼が深まります。"},LAPE:{dog:"ドーベルマン",tagline:"リード型 × 受け止めたい型 × 情熱型 × 誠実型",description:"本気になったらまっすぐ向き合う情熱タイプ。好きな人を守りたい気持ちが強く、相手から見ると心強い存在です。ただし独占欲が強く出ることもあります。",traits:["好きな人には全力で尽くす","曖昧な態度が苦手","恋人を守りたい気持ちが強い"],good:["FCPE","FAPE"],magic:"本気で向き合ってくれるところが好き。",weak:"正しさで押すより、相手のペースを待つ余白があると愛が伝わります。"},FCRO:{dog:"ミニチュアダックス",tagline:"寄り添い型 × 甘えたい型 × 安定型 × 自由型",description:"相手に合わせながら、やわらかく距離を縮めるタイプ。安心できる恋愛を好み、無理に主導権を握ろうとはしません。甘え上手で、穏やかな関係に強いです。",traits:["空気を読むのがうまい","安心できる相手にだけ甘える","強引な相手には疲れやすい"],good:["LARO","LCRO"],magic:"そのままでいてくれるだけで落ち着く。",weak:"合わせすぎると本音が見えなくなるので、小さな希望は早めに出すのが吉。"},FCRE:{dog:"マルチーズ",tagline:"寄り添い型 × 甘えたい型 × 安定型 × 誠実型",description:"やさしくて、好きな人に対してかなり一途。自分から強く押すより、相手の愛情を感じながら心を開いていきます。安心感のある相手には深く懐きます。",traits:["愛情表現を大事にする","不安になると黙りがち","長く大切にされたい"],good:["LARO","LCRO"],magic:"ちゃんと大切にするから安心して。",weak:"我慢して察してもらうより、寂しいを言葉にすると関係が安定します。"},FCPO:{dog:"フレンチブルドッグ",tagline:"寄り添い型 × 甘えたい型 × 情熱型 × 自由型",description:"恋愛に楽しさとスキンシップを求めるタイプ。相手に合わせる柔らかさがありながら、好きな人にはかなり甘えます。笑える関係だとどんどん魅力が出ます。",traits:["好きな人の前で素が出る","重すぎる空気が苦手","甘やかされるとすぐ懐く"],good:["LAPO","LARO"],magic:"一緒にいるとなんか癒される。",weak:"楽しいだけで流さず、大事な話はちゃんと向き合うと長続きします。"},FCPE:{dog:"キャバリア",tagline:"寄り添い型 × 甘えたい型 × 情熱型 × 誠実型",description:"好きな人にまっすぐ懐く、王道の愛されタイプ。ときめきも一途さも大切にします。愛情を返してくれる相手とは深くつながれますが、雑な相手には傷つきやすいです。",traits:["好きが表情に出やすい","恋人中心になりやすい","安心できる言葉に弱い"],good:["LARE","LAPE"],magic:"ずっと隣にいてほしい。",weak:"相手優先にしすぎると苦しくなるので、自分の予定も大切に。"},FARO:{dog:"コーギー",tagline:"寄り添い型 × 受け止めたい型 × 安定型 × 自由型",description:"相手に合わせながらも、関係を明るく保つのが得意。恋人を支える力があり、自由な空気も大事にします。友達みたいな恋人関係で魅力が伸びます。",traits:["恋人の味方でいるのが得意","重すぎる束縛は苦手","日常の小さな楽しみを作れる"],good:["LCPO","LAPO"],magic:"味方でいてくれてありがとう。",weak:"平気なふりをしすぎると、いつの間にか疲れが溜まります。"},FARE:{dog:"ラブラドール",tagline:"寄り添い型 × 受け止めたい型 × 安定型 × 誠実型",description:"恋人を大切に支える、信頼感の強いタイプ。派手な駆け引きより、日々のやさしさを積み重ねる恋愛が向いています。誠実な相手と組むと最強です。",traits:["相手の変化に気づきやすい","長期的な関係を大事にする","頼られると頑張りすぎる"],good:["LCRE","LCPE"],magic:"あなたのやさしさに救われてる。",weak:"尽くすだけではなく、受け取ることも恋愛の一部です。"},FAPO:{dog:"シベリアンハスキー",tagline:"寄り添い型 × 受け止めたい型 × 情熱型 × 自由型",description:"好きな人を大切にしつつ、自分の世界も大事にするタイプ。感情が動く恋が好きで、束縛されすぎると逃げたくなります。自由を認めてくれる相手と好相性です。",traits:["好きでも一人時間が必要","刺激のある関係が好き","押しつけられると反発する"],good:["LCPO","LAPO"],magic:"自由なところも含めて好き。",weak:"自由を守るほど、安心させる言葉もセットで渡すと関係が安定します。"},FAPE:{dog:"ボーダーコリー",tagline:"寄り添い型 × 受け止めたい型 × 情熱型 × 誠実型",description:"相手に合わせながらも、内側にはかなり強い愛情を持つタイプ。恋愛を真剣に考え、好きな人のために努力できます。言葉より行動で愛を示しがちです。",traits:["相手のために改善しようとする","恋愛に手を抜けない","本気の相手にはかなり一途"],good:["LCRO","LAPE"],magic:"ちゃんと見てるよ。努力してくれてありがとう。",weak:"完璧に頑張ろうとしすぎると、恋が修行になります。"}};
@@ -192,81 +252,15 @@
     async function copyResult(){if(!latestResult) return; const text=`恋する犬タイプ診断\n私の結果：${latestResult.code}｜${latestResult.dog}\n${latestResult.tagline}\n${latestResult.description}\n#恋する犬タイプ診断`; try{await navigator.clipboard.writeText(text); alert('結果をコピーしました！');}catch(e){alert('コピーに失敗しました。');}}
     function loadFromUrl(){const code=new URLSearchParams(location.search).get('type'); if(code&&typeData[code]){scores={L:1,F:1,C:1,A:1,R:1,P:1,O:1,E:1}; latestResult={code,...typeData[code]}; renderResult(latestResult); showScreen('resultScreen');}}
 
-    function dogSvg(code,tiny=false){
-      const s=dogStyle[code]||dogStyle.LCRE;
-      const cls=tiny?'tiny-dog':'dog-svg';
-      return `
-      <svg class="${cls}" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-label="cute dog">
-        <defs>
-          <filter id="grainA" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" result="noise"/>
-            <feColorMatrix type="saturate" values="0"/>
-            <feComponentTransfer><feFuncA type="table" tableValues="0 0.04"/></feComponentTransfer>
-            <feBlend in="SourceGraphic" in2="noise" mode="multiply"/>
-          </filter>
-        </defs>
-        <ellipse cx="160" cy="288" rx="82" ry="16" fill="rgba(243,175,175,.18)"/>
-        <g filter="url(#grainA)">
-          <path d="M101 116 L92 60 Q90 30 120 42 L145 82 Z" fill="${s.base}" stroke="#19120f" stroke-width="8" stroke-linejoin="round"/>
-          <path d="M219 116 L228 60 Q230 30 200 42 L175 82 Z" fill="${s.base}" stroke="#19120f" stroke-width="8" stroke-linejoin="round"/>
-          <path d="M111 104 L108 72 Q108 54 126 62 L144 88 Z" fill="${s.cream}"/>
-          <path d="M209 104 L212 72 Q212 54 194 62 L176 88 Z" fill="${s.cream}"/>
-          <circle cx="160" cy="122" r="78" fill="${s.base}" stroke="#19120f" stroke-width="8"/>
-          ${facePatch(s)}
-          ${eyeBrowPatches(s)}
-          <ellipse cx="130" cy="138" rx="14" ry="17" fill="#1e1714"/>
-          <ellipse cx="190" cy="138" rx="14" ry="17" fill="#1e1714"/>
-          <circle cx="125" cy="132" r="5" fill="#fff"/>
-          <circle cx="185" cy="132" r="5" fill="#fff"/>
-          <ellipse cx="113" cy="160" rx="18" ry="18" fill="${s.blush}" opacity=".86"/>
-          <ellipse cx="207" cy="160" rx="18" ry="18" fill="${s.blush}" opacity=".86"/>
-          <ellipse cx="160" cy="156" rx="18" ry="14" fill="#1e1714"/>
-          <path d="M160 168 L160 184" stroke="#1e1714" stroke-width="8" stroke-linecap="round"/>
-          <path d="M160 184 C151 196 138 198 128 190" fill="none" stroke="#1e1714" stroke-width="8" stroke-linecap="round"/>
-          <path d="M160 184 C169 196 182 198 192 190" fill="none" stroke="#1e1714" stroke-width="8" stroke-linecap="round"/>
-          <path d="M110 188 C106 213 108 245 114 268 C116 278 124 286 134 286 L186 286 C196 286 204 278 206 268 C212 245 214 213 210 188 Z" fill="${s.base}" stroke="#19120f" stroke-width="8" stroke-linejoin="round"/>
-          <path d="M124 188 C124 213 140 246 160 246 C180 246 196 213 196 188 Z" fill="${s.cream}"/>
-          <path d="M208 192 C226 184 248 187 261 202 C276 218 277 241 263 255 C247 270 223 270 210 254 C199 241 202 220 217 214 C228 209 239 214 242 226" fill="none" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
-          <path d="M211 195 C225 189 241 192 250 203 C260 215 260 231 251 240 C241 250 227 249 220 240 C213 232 216 220 226 216 C232 213 237 216 239 223" fill="none" stroke="${s.cream}" stroke-width="18" stroke-linecap="round"/>
-          <path d="M211 195 C225 189 241 192 250 203 C260 215 260 231 251 240 C241 250 227 249 220 240 C213 232 216 220 226 216 C232 213 237 216 239 223" fill="none" stroke="#19120f" stroke-width="5" stroke-linecap="round"/>
-          <path d="M116 244 L116 286" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
-          <path d="M146 244 L146 286" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
-          <path d="M178 244 L178 286" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
-          <path d="M204 244 L204 286" stroke="#19120f" stroke-width="8" stroke-linecap="round"/>
-          <path d="M112 286 q6 -11 12 0 M123 286 q6 -11 12 0 M142 286 q6 -11 12 0 M175 286 q6 -11 12 0 M197 286 q6 -11 12 0 M208 286 q6 -11 12 0" fill="none" stroke="#19120f" stroke-width="4" stroke-linecap="round"/>
-          ${accessoryShape(s)}
-        </g>
-      </svg>`;
+    
+    function dogSvg(code, tiny=false) {
+      const src = dogImageMap[code] || dogImageMap.LCRE;
+      const alt = dogImageAltMap[code] || "犬タイプ";
+      const className = tiny ? "tiny-dog-img" : "dog-img";
+      return `<img class="${className}" src="${src}" alt="${alt}" loading="lazy" onerror="this.onerror=null; this.src='${dogImageMap.LCRE}';">`;
     }
 
-    function facePatch(s){
-      if(s.pattern==='tan'){
-        return `<path d="M93 144 C101 110 122 94 160 94 C198 94 219 110 227 144 C220 176 196 202 160 202 C124 202 100 176 93 144 Z" fill="${s.cream}"/>`;
-      }
-      if(s.pattern==='white'){
-        return `<path d="M97 147 C104 113 124 98 160 97 C196 98 216 113 223 147 C215 176 193 199 160 201 C127 199 105 176 97 147 Z" fill="${s.cream}"/><ellipse cx="160" cy="92" rx="30" ry="22" fill="${s.cream}"/>`;
-      }
-      return `<path d="M97 147 C104 113 124 98 160 97 C196 98 216 113 223 147 C215 176 193 199 160 201 C127 199 105 176 97 147 Z" fill="${s.cream}"/>`;
-    }
-
-    function eyeBrowPatches(s){
-      if(s.pattern==='tan' || s.pattern==='plain'){
-        return `<ellipse cx="130" cy="112" rx="10" ry="8" fill="${s.cream}"/><ellipse cx="190" cy="112" rx="10" ry="8" fill="${s.cream}"/>`;
-      }
-      return `<ellipse cx="130" cy="112" rx="10" ry="8" fill="#f4ead9"/><ellipse cx="190" cy="112" rx="10" ry="8" fill="#f4ead9"/>`;
-    }
-
-    function accessoryShape(s){
-      if(s.accessory==='bow') return `<g transform="translate(160 224)"><circle cx="0" cy="0" r="7" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><path d="M-6 0 C-20 -12 -28 -4 -20 7 C-12 8 -8 5 -6 0 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><path d="M6 0 C20 -12 28 -4 20 7 C12 8 8 5 6 0 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/></g>`;
-      if(s.accessory==='collar') return `<rect x="126" y="220" width="68" height="12" rx="6" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><circle cx="160" cy="237" r="6" fill="#ffe07b" stroke="#19120f" stroke-width="3"/>`;
-      if(s.accessory==='heart') return `<path d="M160 239 C147 230 139 223 139 213 C139 205 145 199 152 199 C156 199 159 201 161 205 C163 201 166 199 170 199 C177 199 183 205 183 213 C183 223 175 230 160 239 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/>`;
-      if(s.accessory==='star') return `<path d="M160 203 L166 215 L179 216 L169 224 L172 237 L160 230 L148 237 L151 224 L141 216 L154 215 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3" stroke-linejoin="round"/>`;
-      if(s.accessory==='ribbon') return `<g transform="translate(160 224)"><circle cx="0" cy="0" r="7" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><path d="M-4 7 L-13 24 L-1 19 L5 28 L2 8 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/><path d="M4 7 L13 24 L1 19 L-5 28 L-2 8 Z" fill="${s.accent}" stroke="#19120f" stroke-width="3"/></g>`;
-      if(s.accessory==='scarf') return `<path d="M127 223 C141 231 179 231 193 223" fill="none" stroke="${s.accent}" stroke-width="11" stroke-linecap="round"/><path d="M185 223 L197 246" fill="none" stroke="${s.accent}" stroke-width="11" stroke-linecap="round"/>`;
-      return '';
-    }
-
-    document.getElementById('heroDog').innerHTML=dogSvg('FCRE'); loadFromUrl();
+document.getElementById('heroDog').innerHTML=dogSvg('LCRE'); loadFromUrl();
   </script>
 </body>
 </html>
