@@ -145,6 +145,38 @@
     }
 
   
+
+    .sample-box {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,248,252,.96));
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 20px rgba(75,53,65,.04);
+    }
+    .sample-box b {
+      display: block;
+      color: var(--pink-dark);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .sample-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+      font-weight: 720;
+    }
+    .sample-box .link-button {
+      width: auto;
+      margin-top: 12px;
+      padding: 12px 17px;
+      font-size: 14px;
+    }
+    @media (max-width:720px){
+      .sample-box .link-button { width: 100%; }
+    }
+
     .option small { display: none !important; }
   </style>
 </head>
@@ -154,11 +186,16 @@
     <section id="startScreen" class="screen active">
       <div class="hero"><div class="hero-grid">
         <div class="hero-main">
-          <span class="badge">🐾 4つの恋愛軸でわかる16タイプ診断</span>
+          <span class="badge">🐾 診断サイト制作サンプル｜4つの恋愛軸でわかる16タイプ診断</span>
           <h1>恋する犬タイプ診断</h1>
           <p class="lead">あなたの恋愛スタイルを、4つの恋愛軸から16種類の犬タイプに分類します。<br>カップルでも、片思い中でも、友達同士でも楽しめるゆるかわ診断です。</p>
           <div class="chips"><span class="chip">💗 L/F リード傾向</span><span class="chip">🫶 C/A 愛情表現</span><span class="chip">🏡 R/P 恋の価値観</span><span class="chip">🪽 O/E 距離感</span></div>
           <div class="axis-preview"><div class="axis-pill"><b>L / F</b><span>リード型 / 寄り添い型</span></div><div class="axis-pill"><b>C / A</b><span>甘えたい型 / 受け止めたい型</span></div><div class="axis-pill"><b>R / P</b><span>安定型 / 情熱型</span></div><div class="axis-pill"><b>O / E</b><span>自由型 / 誠実型</span></div></div>
+          <div class="sample-box">
+            <b>このページは診断サイト制作のサンプルです</b>
+            <p>診断結果から、note・LINE・商品ページへ自然につなげる「診断型LP」の見本として公開しています。実際の運用では、結果タイプごとに誘導先や文章を変更できます。</p>
+            <a class="link-button secondary" href="https://note.com/koisurudog/n/ne8eabfe75ee7" target="_blank" rel="noopener">noteの取扱説明書を見る</a>
+          </div>
           <div class="actions"><button class="primary" onclick="startQuiz()">診断をはじめる</button><button class="secondary" onclick="showTypeList()">16タイプを見る</button></div>
           <p class="notice">※この診断はエンタメ目的です。医学的・心理学的な診断ではありません。</p>
         </div>
@@ -169,15 +206,15 @@
     <section id="resultScreen" class="screen"><div class="card"><div class="result-hero"><div class="dog-panel"><div class="dog-stage" id="resultDog"></div></div><div class="summary-panel"><span class="result-label">あなたの結果</span><h2 id="resultTitle" class="result-title"></h2><div id="resultCode" class="result-code"></div><p id="resultSubtitle" class="result-sub"></p><div id="typeStack" class="type-stack"></div></div></div>
       <div class="result-grid"><div class="mini-card"><h3>あなたの恋愛傾向</h3><p id="resultDescription"></p></div><div class="mini-card"><h3>4つの恋愛軸</h3><div id="axisList" class="axis-list"></div></div><div class="mini-card"><h3>恋愛で出やすいクセ</h3><ul id="resultTraits"></ul></div><div class="mini-card"><h3>相性がいい犬タイプ</h3><div id="compatibility" class="compat"></div></div><div class="mini-card"><h3>刺さる一言</h3><p id="magicWord"></p></div><div class="mini-card"><h3>注意ポイント</h3><p id="weakPoint"></p></div></div>
       <div class="cta">
-          <h3>あなたの犬タイプの取扱説明書があります</h3>
+          <h3>診断結果からnoteへ自然に誘導できます</h3>
           <p>
             診断結果だけでは伝えきれなかった「恋愛で出やすいクセ」「不安になる瞬間」「相性がいい相手」「長続きするコツ」を、犬タイプ別にまとめました。
-            自分のタイプをもっと深く知りたい方は、取扱説明書も読んでみてください。
+            このように、結果ページからnoteや商品ページへ自然につなげる導線を設置できます。
           </p>
-          <a id="paidLink" class="link-button primary" href="https://note.com/koisurudog/n/ne8eabfe75ee7" target="_blank" rel="noopener">犬タイプ別の取扱説明書を見る</a>
+          <a id="paidLink" class="link-button primary" href="https://note.com/koisurudog/n/ne8eabfe75ee7" target="_blank" rel="noopener">noteで犬タイプ別の取扱説明書を見る</a>
         </div>
       <div class="share-row"><button class="primary" onclick="shareX()">Xで結果をシェア</button><button class="secondary" onclick="copyResult()">結果をコピー</button><button class="secondary" onclick="resetQuiz()">もう一回診断する</button></div>
-      <p class="notice">販売ページURLはコード内の paidLink の href を変更してください。</p>
+      <p class="notice">※このページは制作サンプルです。実際の運用では、note・LINE・商品ページなど任意のリンクに変更できます。</p>
     </div></section>
     <section id="typeListScreen" class="screen"><div class="card"><h2 class="q-title">16種類の犬タイプ一覧</h2><div id="typeList" class="type-list"></div><div class="back-row"><button class="primary" onclick="startQuiz()">診断する</button><button class="secondary" onclick="goStart()">トップに戻る</button></div></div></section>
   </main>
